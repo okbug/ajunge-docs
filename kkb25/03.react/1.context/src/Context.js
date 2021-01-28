@@ -1,2 +1,2 @@
 import React from 'react'
-export let JunContext = React.createContext()
+export const JunContext = React.createContext()
