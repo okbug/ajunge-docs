@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        微任务执行完 才渲染页面
+     -->
+
+
+    <script>
+        // document.body.style.background = 'green'
+        // console.log(1)
+        // Promise.resolve().then(() => {
+        //     console.log(2)
+        //     document.body.style.background = 'red'
+        // })
+        // console.log(3)
+        function setcolor(color) {
+            document.body.style.background = color
+        }
+        // {
+        //     let colors = ['red','blue', 'green','black', 'pink','yellow']
+        //     Promise.resolve().then(() => {
+        //         console.log('p1')
+        //         setcolor(colors[0]) // red
+        //         setTimeout(() => {
+        //             console.log('s2')
+        //             setcolor(colors[3]) // black
+        //         }, 2000);
+        //     })
+        //     setTimeout(() => {
+        //         console.log('s1')
+        //         setcolor(colors[1]) // blue
+        //         Promise.resolve().then(() => {
+        //             console.log('p2')
+        //             setcolor(colors[2]) // green
+        //         })
+        //     }, 1000);
+        //     // red   (not  blue) green black
+        // }
+        // {
+        //     console.log(1);                             1111111111
+        //     async function async() {
+        //         console.log(2);                         33333333333333
+        //         await console.log(3);                    4444444444444
+        //         console.log(4)                          77777777777777777
+        //     }
+        //     setTimeout(() => {
+        //         console.log(5);                          88888888888888
+        //     }, 0);
+        //     const promise = new Promise((resolve, reject) => {
+        //         console.log(6);                        222222222222222
+        //         resolve(7)        
+        //     })
+        //     promise.then(res => {
+        //         console.log(res)                        66666666666666666666
+        //     })
+        //     async();
+        //     console.log(8);                               5555555555555
+        //     //  1 6 2 3 8 7 4 5
+        // }
+    </script>
+</body>
+
+</html>
