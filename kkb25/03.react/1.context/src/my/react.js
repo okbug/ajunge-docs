@@ -1,4 +1,4 @@
-
+import Component from './Component'
 /**
  * 
  * @param {*} type h1, h2 or other
@@ -26,6 +26,7 @@ export function createElement(type, config, children) {
   }
 }
 const React = {
-  createElement
+  createElement,
+  Component
 }
 export default React

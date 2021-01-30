@@ -24,7 +24,7 @@ function createDOM(vdom) {
   let { type, props } = vdom // type:'h1',props:{}
   let dom
   if (typeof type === 'function') { // 如果是函数组件
-    return updateFunctionComponent(vdom)
+    return type.prototype.isReactComponent ? updateClassComponent(vdom) : updateFunctionComponent(vdom)
   } else { // 如果是普通字符串
     dom = document.createElement(type) // 创建真实DOM元素
   }
@@ -48,6 +48,13 @@ function updateFunctionComponent(vdom) {
   let { type, props } = vdom
   // type是函数组件的函数，函数中传入props吧，所以我们直接执行这个函数，并且他的返回值就是一个React虚拟DOM
   let renderedVDOM = type(props) // renderedVDOM 就是CreateElement的返回对象，此时给这个虚拟DOM再转为真实节点就OK
+  return createDOM(renderedVDOM)
+}
+
+function updateClassComponent(vdom) {
+  let { type: classComponent, props } = vdom
+  let classInstance = new classComponent(props)
+  let renderedVDOM = classInstance.render()
   return createDOM(renderedVDOM)
 }
 
