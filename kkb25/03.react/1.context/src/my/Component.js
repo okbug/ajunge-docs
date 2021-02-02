@@ -1,3 +1,6 @@
+export let updateQueue = {
+  isBatchingUpdate: false
+}
 class Component {
   constructor(props) {
     this.props = props

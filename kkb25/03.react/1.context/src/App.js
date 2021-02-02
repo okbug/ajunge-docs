@@ -1,17 +1,16 @@
+// import React from './my/react'
 import React from 'react'
-
 class App extends React.Component {
-  state = {
-    number :0
-  }
-  handleClick = () => {
-    this.setState({number: this.state.number + 1}, () => {
-      this.setState({number: this.state.number + 1})
-    })
-  }
   render() {
-    return (<button onClick={this.handleClick}>+ {this.state.number}</button>)
+    return (
+      <>
+        <h1>Hello World</h1>
+      </>
+    )
   }
 }
 
 export default App
+
+
+

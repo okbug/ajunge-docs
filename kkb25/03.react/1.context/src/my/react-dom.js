@@ -1,3 +1,5 @@
+import { addEvent } from './event'
+
 const ReactDOM = {
   render
 }
@@ -83,6 +85,8 @@ function updateProps(dom, props) {
       for (let attr in style) {
         dom.style[attr] = style[attr] // dom.style['color'] = 'red' 这是DOM的固有方法，所以要这样做
       }
+    } else if(key.startsWith('on')) {
+      addEvent(dom, key.toLowerCase(), props[key])
     } else {
       dom[key] = props[key]
     }
