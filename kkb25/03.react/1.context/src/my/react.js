@@ -25,8 +25,23 @@ export function createElement(type, config, children) {
     props
   }
 }
+export function createContext() {
+  let value;
+  function Provider(props) {
+    value = props.value
+    return props.children
+  }
+  function Consumer(props) {
+    return props.children(value)
+  }
+  return {
+    Provider,
+    Consumer
+  }
+}
 const React = {
   createElement,
-  Component
+  Component,
+  createContext
 }
 export default React
