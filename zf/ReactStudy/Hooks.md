@@ -112,3 +112,31 @@ function useState(initialState) {
 
 # useEffect or useLayoutEffect
 
+使用：
+不必多说，每次渲染的时候执行回调
+useEffect在每次页面渲染后执行 包括 首次渲染和每次更新结束
+依赖项改变了会重新执行useEffect函数
+第二个参数：依赖项数组
+回调的返回值：是一个函数或者不返回
+返回的函数类似类数组中的willUNMount 会执行销毁所需要的东西
+销毁函数会在每次重新执行函数前被执行
+
+
+
+# 竞态
+全称竞争状态：
+如果多次按一个按钮请求数据的话，如果下一次的结果比早的结果先请求到，那么就是旧的结果覆盖新的结果
+如何解决
+1。 防抖节流
+2.  给一个tag
+example:
+```js
+useEffect(() => {
+  let didCancel = false; // 标志
+  (async function() {
+    const result = await http()
+    if(!didCancel) setState(result) // 看是否可以去接收请求
+  })()
+  return () => {didCancel = true}
+})
+```
