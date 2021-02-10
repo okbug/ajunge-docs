@@ -40,3 +40,24 @@ handleClick = () => {
     }, 2000);
 ```
 看代码中的2.9和3和4。可以看出，在定时器中，setState是直接执行，并且在当前就可以看到结果
+
+
+
+
+Vue
+```js
+// vue/src/compiler/codeframe.js
+function repeat (str, n) {
+  let result = ''
+  if (n > 0) {
+    while (true) { // eslint-disable-line
+      if (n & 1) result += str
+      n >>>= 1
+      if (n <= 0) break
+      str += str
+    }
+  }
+  return result
+}
+
+```
