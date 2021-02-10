@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>browser</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        //这个history 是一个全局管理
+        var globalHistory = window.history;
+        (function (history) {
+            let oldPushState = history.pushState;
+            history.pushState = function (pathname, state) {
+                let result = oldPushState.apply(history, arguments);
+                if (typeof window.onpushstate) {
+                    window.onpushstate(new CustomEvent('pushstate', { detail: { pathname, state } }));
+                }
+                return result;
+            }
+        })(globalHistory);
+        window.onpushstate = (event) => {
+            document.getElementById('root').innerHTML=event.type;
+        }
+        //当你回退或前进的时候会执行 这个监听是浏览自带的，默认支持的
+        window.onpopstate = (event) => {
+            document.getElementById('root').innerHTML=event.type;
+        }
+        const originalHistoryLength = globalHistory.length;//历史条目的长度
+        setTimeout(() => {
+            globalHistory.pushState({ page: 1 }, { title: 'page1' }, '/page1');
+            console.log(globalHistory.length - originalHistoryLength);
+        }, 1000);
+        setTimeout(() => {
+            globalHistory.pushState({ page: 2 }, { title: 'page2' }, '/page2');
+            console.log(globalHistory.length - originalHistoryLength);
+        }, 2000);
+        setTimeout(() => {
+            globalHistory.pushState({ page: 3 }, { title: 'page3' }, '/page3');
+            console.log(globalHistory.length - originalHistoryLength);
+        }, 3000);
+        setTimeout(() => {
+            globalHistory.back();
+            console.log(globalHistory.length - originalHistoryLength);
+        }, 4000);
+        setTimeout(() => {
+            globalHistory.pushState({ page: 4 }, { title: 'page4' }, '/page4');
+            console.log(globalHistory.length - originalHistoryLength);
+        }, 5000);
+        setTimeout(() => {
+            globalHistory.go(1);
+            console.log(globalHistory.length - originalHistoryLength);
+        }, 6000);
+    </script>
+</body>
+
+</html>

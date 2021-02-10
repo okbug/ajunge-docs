@@ -1,0 +1,13 @@
+[
+   {
+    "path":"/",
+    "component":"./App",
+    "routes":[
+        {
+            "path":"/user",
+            "component":"./component/User"
+        }
+    ]
+   }
+
+]

@@ -1,0 +1,5 @@
+
+
+document.onclick = function(event){
+
+}

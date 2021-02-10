@@ -20,3 +20,26 @@ React.memo = function(OldComponent) {
 2.先后的长度不一样，更新
 3.先后有一个为null，更新
 4.使用for in进行浅比较，不一样了，更新
+
+
+
+# React.createContext
+
+利用闭包的机制，获取value
+
+```js
+function createContext() {
+  let value;
+  function Provider(props) {
+    value = props.value
+    return props.children
+  }
+  function Consumer(props) {
+    return props.children(value)
+  }
+  return {
+    Provider,
+    Consumer
+  }
+}
+```

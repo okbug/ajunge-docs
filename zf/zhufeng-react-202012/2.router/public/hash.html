@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <ul>
+        <li><a href="#/a">/a</a></li>
+        <li><a href="#/b">/b</a></li>
+    </ul>
+    <script>
+        //每当hash值发生变化的话，就会执行回调函数
+        window.addEventListener('hashchange',()=>{
+            console.log(window.location.hash);//#/a #/b
+            let pathname = window.location.hash.slice(1);
+            document.getElementById('root').innerHTML = pathname;
+        });
+    </script>
+</body>
+</html>
