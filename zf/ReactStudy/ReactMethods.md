@@ -43,3 +43,18 @@ function createContext() {
   }
 }
 ```
+
+
+
+# useLayoutEffect
+useEffect相当于在宏任务中放入一个回调
+useLayoutEffect相当于在微任务中放入一个回调
+为啥？：
+useLayoutEffect会在GUI渲染完成之前执行，所以在动画产生前DOM已经改变了
+useEffect在GUI渲染后执行，所以有动画
+结论：useEffect会 **有** 一个动画，useLayoutEffect **没有动画** 效果
+利用微任务
+JS中的微任务
+func === 需要在微任务中执行的函数
+queueMicrotask(func)
+Promise.resolve().then(func)
