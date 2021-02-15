@@ -16,3 +16,14 @@ function repeat(str, n) {
 function repeat(str, n) {
   
 }
+
+
+function foo(test) {
+  str = ""     
+  for( i=0;i<test.length; i++ ) {
+    temp = test.charCodeAt(i).toString(16);  
+    str += "\\u"+ new Array(5-String(temp).length).join("0") + temp
+  }
+  return str
+}
+console.log(foo('上分'))
