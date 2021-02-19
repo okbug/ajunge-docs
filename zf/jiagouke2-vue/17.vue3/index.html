@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="dist/umd/vue.js"></script>
+    <!-- 完整 @vue/reactivity 公开课  -->
+    <!-- 1. 创建虚拟节点 将虚拟节点转化成真实节点 -->
+    <!-- 2. 组件的实现 setup -->
+    <!-- 3. reactive api 实现 effect-->
+    <!-- 4. diff算法 -->
+    <!-- 5. vite -->
+    <!-- 组件库  3 5  补几次课 把组件库完善一下  -->
+    <!-- 周四 周六 30道面试题 -->
+    <script>
+        // children 可以是数组 也可以是字符串
+        let { render, effect, reactive } = Vue; // effect => Vue2 watcher
+        const state = reactive({
+            count: 0,
+            name: 'zf'
+        })
+        // diff 思想是什么？     vue3 里也有一些优化
+        const oldVnode = {
+            tag: 'ul',
+            props: null,
+            children: [{
+                    tag: 'li',
+                    props: { style: { background: 'red' }, key: 'A' },
+                    children: 'A'
+                },
+                {
+                    tag: 'li',
+                    props: { style: { background: 'yellow' }, key: 'B' },
+                    children: 'B'
+                },
+                {
+                    tag: 'li',
+                    props: { style: { background: 'blue' }, key: 'C' },
+                    children: 'C'
+                },
+                {
+                    tag: 'li',
+                    props: { style: { background: 'green' }, key: 'D' },
+                    children: 'D'
+                }
+            ]
+        }
+        render(oldVnode, app);
+
+        setTimeout(() => {
+            const newVnode = {
+                tag: 'ul',
+                props: null,
+                children: [
+                    {
+                        tag: 'li',
+                        props: { style: { background: 'green' }, key: 'A' },
+                        children: 'A'
+                    },{
+                        tag: 'li',
+                        props: { style: { background: 'red' }, key: 'D' },
+                        children: 'D'
+                    },
+                    {
+                        tag: 'li',
+                        props: { style: { background: 'yellow' }, key: 'B' },
+                        children: 'B'
+                    },
+                    {
+                        tag: 'li',
+                        props: { style: { background: 'blue' }, key: 'C' },
+                        children: 'C'
+                    }
+                ]
+            }
+            render(newVnode, app)
+        }, 1000);
+
+
+
+
+        // ------------------------
+
+        // const oldVnode = {
+        //     tag: 'div',
+        //     props: { style: { color: 'red' } ,id:'a'},
+        //     children:'zf'
+        // }
+        // render(oldVnode,app); // 先默认渲染一次
+        // setTimeout(() => { // 过一秒后再次渲染
+        //     const newVnode = {
+        //         tag: 'div',
+        //         props: { style: { color: 'blue' } },
+        //         children:'zf'
+        //     }
+        //     render(newVnode,app)
+        // }, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // ----------------------------------------------
+        // const MyComponent = {
+        //     setup(props, context) {
+        //         // 如果没有返回函数 会用template => render 在把render函数挂载到setup的返回结果中
+        //         return () => { // render函数
+        //             return {
+        //                 tag: 'div',
+        //                 props: { style: { color: 'pink' } },
+        //                 children: [{
+        //                         tag: 'p',
+        //                         props: null,
+        //                         children: '我是一个 自定义组件 ' + state.name 
+        //                     },
+        //                     {
+        //                         tag: 'button',
+        //                         props: {
+        //                             onClick: () => state.name = 'jw'
+        //                         },
+        //                         children: '点我啊'
+        //                     }
+        //                 ]
+        //             }
+        //         }
+        //     }
+        // }
+
+        // effect(()=>{
+        //     const vnode = {
+        //     tag: 'div',
+        //     props: { style: { border: '1px solid yellow' } },
+
+        //     // children可以是数组 字符串 （对象）
+        //     children: [{
+        //         tag: 'p',
+        //         props: { style: { color: 'blue' } },
+        //         children: `vue@3 - 计数器` + state.name
+        //     }, {
+        //         tag: 'button',
+        //         props: {
+        //             onClick: () => alert(state.count)
+        //         },
+        //         children: `点我啊`
+        //     }, {
+        //         tag: MyComponent, // 标签就是当前组件
+        //         props: null, // 组件的属性
+        //         children: '' // 组件的插槽
+        //     }, {
+        //         tag: MyComponent, // 标签就是当前组件
+        //         props: null, // 组件的属性
+        //         children: '' // 组件的插槽
+        //     }]
+        // }
+        //     render(vnode, app); // 渲染操作
+        // })
+    </script>
+</body>
+
+</html>

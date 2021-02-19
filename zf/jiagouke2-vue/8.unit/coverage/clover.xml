@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1597845634726" clover="3.2.0">
+  <project timestamp="1597845634726" name="All files">
+    <metrics statements="18" coveredstatements="15" conditionals="2" coveredconditionals="1" methods="10" coveredmethods="8" elements="30" coveredelements="24" complexity="0" loc="18" ncloc="18" packages="1" files="4" classes="4"/>
+    <file name="1.qs.js" path="C:\Users\test1\Desktop\2020-vue\8.unit\1.qs.js">
+      <metrics statements="11" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="9" count="2" type="stmt"/>
+      <line num="10" count="2" type="cond" truecount="1" falsecount="1"/>
+      <line num="11" count="0" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="23" count="1" type="stmt"/>
+      <line num="24" count="2" type="stmt"/>
+      <line num="26" count="1" type="stmt"/>
+    </file>
+    <file name="2.dom.js" path="C:\Users\test1\Desktop\2020-vue\8.unit\2.dom.js">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="8" count="1" type="stmt"/>
+    </file>
+    <file name="3.async.js" path="C:\Users\test1\Desktop\2020-vue\8.unit\3.async.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="10" count="1" type="stmt"/>
+    </file>
+    <file name="4.ajax.js" path="C:\Users\test1\Desktop\2020-vue\8.unit\4.ajax.js">
+      <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+      <line num="12" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>

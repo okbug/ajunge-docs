@@ -1,0 +1,70 @@
+#! /usr/bin/env node
+// console.log('zhu-cli~~');  // npm link 会自动产生执行命令
+// 1) 配置可执行命令 commander
+const program = require('commander');
+const chalk = require('chalk');
+
+// 核心功能 1.创建项目  2.更改配置文件   3.ui界面 @vue/ui
+
+const cleanArgs = (cmd) => {  // {force:true}
+    const args = {};
+    cmd.options.forEach(o=>{
+        const key = o.long.slice(2);
+        if(cmd[key]) args[key] = cmd[key];
+
+    })
+    return args;
+}
+
+// 万一重名了呢？  强制创建的模式
+program
+    .command('create <app-name>')
+    .description('create a new project')
+    .option('-f, --force', 'overwrite target directory if it exists')
+    .action((name, cmd) => {
+        // 调用create模块去创建
+
+        require('../lib/create')(name, cleanArgs(cmd))
+
+       // 我需要提取这个cmd中的属性
+    })
+
+// vue config --get a
+// vue config --set a 1  => 配置文件中
+// vue config -0
+program
+    .command('config [value]')
+    .description('inspect and modify the config')
+    .option('-g, --get <path>','get value from option')
+    .option('-s, --set <path> <value>')
+    .option('-d, --delete <path>','delete option from config')
+    .action((value,cmd)=>{
+
+        // 调用config模块去实现
+        console.log(value, cleanArgs(cmd)); 
+    })
+
+program
+    .command('ui')
+    .description('start and open zhufeng-cli ui')
+    .option('-p, --port <port>','Port used for the UI Server')
+    .action((cmd)=>{
+        // 调用ui模块实现
+        console.log(cleanArgs(cmd))
+    })
+
+program
+    .version(`zhufeng-cli@${require('../package.json').version}`)
+    .usage(`<command> [option]`)
+
+// 解析用户执行命令传入的参数
+
+program.on('--help',function () {
+    console.log();
+    console.log(`Run ${chalk.cyan(`zhufeng-cli <command> --help`)} show details`)
+    console.log();
+})
+
+program.parse(process.argv);
+
+

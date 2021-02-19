@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        let state = [1,2,3] // 1.变成响应式的数据
+
+        let originalArray = Array.prototype; // 数组原来的方法
+
+        // 不是深拷贝
+        let arrayMethods = Object.create(originalArray)
+
+        function defineReactive(obj){
+            // 函数劫持
+            arrayMethods.push = function (...args) {
+                originalArray.push.call(this,...args)
+                render(); // 更新视图
+            }
+            obj.__proto__ = arrayMethods; // 不行可以循环赋值, js中的原型链
+        }
+        defineReactive(state); //
+        // 插入到页面的功能 需要保存起来
+        function render(){
+            app.innerHTML = state;
+        }
+        render();
+        setTimeout(() => {
+            state.push(4)
+        }, 1000);
+    </script>
+</body>
+</html>

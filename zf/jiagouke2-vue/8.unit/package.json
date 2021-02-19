@@ -1,0 +1,21 @@
+{
+  "name": "8.unit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.qs.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^26.0.10",
+    "axios": "^0.19.2",
+    "jest": "^26.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0"
+  }
+}

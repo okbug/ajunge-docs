@@ -1,0 +1,75 @@
+@import './common/_var.scss'; // 全局的样式
+@import './mixins/mixins.scss'; // 方法
+
+$color-list:(primary:$primary,
+    success:$success,
+    info:$info,
+    warning:$warning,
+    danger:$danger);
+$color-active-list:(primary:$primary-active,
+    success:$success-active,
+    info:$info-active,
+    warning:$warning-active,
+    danger:$danger-active);
+
+@include blockquote(button) {
+    @include status($color-list);
+    display: inline-flex;
+    font-size: $font-size;
+    border-radius: $border-radius;
+    padding: 0px 20px;
+    border: none;
+    outline: none;
+    min-width: 80px;
+    box-shadow: 2px 2px #ccc;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .loading {
+        animation: rotate 1s linear infinite;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+    .icon {
+        fill: #fff;
+        vertical-align: middle;
+    }
+
+    &:active:not(:disabled) {
+        @include status($color-active-list);
+    }
+    &.zf-button-left {
+        .icon {
+            order:1
+        }
+        span{
+            order:2
+        }
+    }
+    &.zf-button-right {
+        .icon {
+            order:2
+        }
+        span{
+            order:1
+        }
+    }
+
+}

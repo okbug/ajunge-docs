@@ -1,0 +1,29 @@
+@import './common/_var.scss';
+@import './mixins/mixins.scss';
+
+@include blockquote(tree){
+    position: relative;
+    .zf-tree-label{
+        padding-left: 24px;;
+    }
+    .zf-tree-list{
+        padding-left: 34px;;
+    }
+    .zf-tree-no-expand{
+        .zf-icon{
+            visibility: hidden;
+        }
+    }
+    .zf-tree-draggable{
+        user-select: none;
+        -webkit-user-drag: element;
+    }
+    .zf-tree-indicator{
+        position: absolute;
+        height:1px;
+        right:0;
+        left:0;
+        background: blueviolet;
+    }
+}
+

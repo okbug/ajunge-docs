@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>    
+        function mergeHook(parentVal,childVal){
+            if(childVal){
+                if(parentVal){ // mixin
+                    return parentVal.concat(childVal)
+                }else{
+                    return [childVal]; // 将钩子函数 包装成了一个数组
+                }
+            }else{
+                return parentVal
+            }
+        }
+        function mergeOptions(parent,child){
+            let opts = {};
+            for(let key in child){  // undefined  function
+                opts[key] = mergeHook(parent[key],child[key]);
+            } //合并钩子方法
+            return opts;
+        }
+        function callHook(vm,hookName){
+            vm.options[hookName] && vm.options[hookName].forEach(h=>h());
+        }
+        function Vue(options){ // 合并操作
+            // 内部会将钩子函数 转换成一个数组 [beforeCreate]
+            this.options = mergeOptions(this.constructor.options,options);
+
+            console.log(this.options)
+            callHook(this,'beforeCreate');
+            callHook(this,'created');
+        }
+        // 全局组件  全局过滤器
+        Vue.options = {}; // 默认的  全局组件定义了一个a 组件  当前组件也定义了一个a组件
+
+        Vue.mixin  = function (obj) {
+            // 把Vue.options中的beforeCreate 变成了数组
+            // this.options[beforeCreate] = [fn]
+            this.options = mergeOptions(this.options,obj);
+            console.log(this.options)
+        }
+        Vue.mixin({ // mixin 可以提供全局数据  （数据不是共享的）
+            data(){
+                return {a:1}
+            },
+            beforeCreate(){
+                console.log('before create ok1');
+            }
+        })
+        new Vue({
+            beforeCreate(){
+                console.log('before create ok2');
+            },
+            created(){
+                console.log('created');
+            }
+        })
+    </script>
+</body>
+</html>

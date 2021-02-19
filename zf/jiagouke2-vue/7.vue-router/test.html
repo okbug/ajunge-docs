@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <a href="#/a">a页面</a>
+    <a href="#/b">b页面</a> -->
+
+    <a onClick="goA()">a页面</a>
+    <a onClick="goB()">b页面</a>
+    <div id="app"></div>
+
+    <script>
+        // hash模式
+        // let fn = function () {
+        //     app.innerHTML = window.location.hash
+        // };
+        // fn();
+        // window.addEventListener('hashchange',fn)
+
+        // history模式
+        // let fn = function () {
+        //     app.innerHTML = window.location.pathname
+        // };
+        // function goA(){
+        //     history.pushState({},null,'/a');
+        //     fn();
+        // }
+        // function goB(){
+        //     history.pushState({},null,'/b');
+        //     fn();
+        // }
+        // 只对浏览器的前进后退进行处理
+        // window.addEventListener('popstate',function () {
+        //     fn(); 
+        // });
+
+    </script>
+</body>
+</html>

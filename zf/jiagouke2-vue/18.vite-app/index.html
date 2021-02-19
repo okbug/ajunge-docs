@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vite App</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- 表示是一个es6模块 内部可以直接加载 main.js文件 import语法会发送请求  -->
+  <script type="module" src="/src/main.js"></script>
+
+  <!-- 
+    1. 通过服务端返回渲染 ，会将首页返还给你,首页加载了main.js
+    2. es6Module 不支持直接导入第三方模块,路径必须是/ 或者./开头，才会发请求
+    3. 增加/@modules 表 示他是一个第三方模块 返回会前端
+    4. 前端会扫描当前有import 语法 会再次发送请求 遇到@module 会将node_modules文件返还给你
+    5. 后端将.vue文件进行处理，返回给前端
+      ?type=template  export default {}  ?type=css
+
+    6. 会再次发送请求
+    7. 热更新靠的是websocket
+
+   -->
+</body>
+</html>

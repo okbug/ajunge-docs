@@ -1,0 +1,18 @@
+$namespace:'zf-';
+
+
+@mixin blockquote($block) {
+    // zf-
+    $blockName: $namespace + $block !global;
+
+    .#{$blockName} {
+        @content;
+    }
+}
+@mixin status($color) {
+    @each $key,$value in $color {
+        &.#{$blockName}-#{$key}{
+            background:#{$value};
+        }
+    }
+}

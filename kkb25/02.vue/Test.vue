@@ -1,28 +1,45 @@
-<template>
-  <div>
-    <h1 @click="handleClick">TESTVUE</h1>
-    <ul>
-      <li v-for="item in list" :key="item">{{item}}</li>
-    </ul>
-  </div>
-</template>
+
 
 <script>
-  export default {
-    name:'name',
-    data() {
-      return {
-        list:['A','B','C','D']
-      }
+export default {
+  name: "test",
+  data() {
+    return {
+      list: ["A", "B", "C", "D"],
+      seconds:'',
+      minute:'',
+      hours:''
+    };
+  },
+  methods: {
+    handleClick() {
+      console.log(1)
     },
-    methods: {
-      handleClick() {
-        this.list = ['D','C','B','A']
-      }
+  },
+  mounted() {
+    this.timer = setInterval(() => {
+      const date = new Date()
+      this.seconds = date.getSeconds()
+      this.minute = date.getMinutes()
+      this.hours = date.getHours()
+    }, 100)
+  },
+  computed:{
+    computedSecond() {
+      return this.seconds.toString().length === 1 ? '0' + this.seconds.toString() : this.seconds
     }
-  }
+  },
+  render() {
+    return (
+      <div id="app" class="test">
+        <h1>Hello World</h1>
+        <h2>{this.hours} : {this.minute} : {this.computedSecond}</h2>
+        <button onClick={this.handleClick}>点我</button>
+      </div>
+    );
+  },
+};
 </script>
 
 <style>
-
 </style>
