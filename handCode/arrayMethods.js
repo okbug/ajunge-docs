@@ -58,3 +58,9 @@ function flat2(arr) {
   return arr.reduce((pre,cur) => pre.concat(Array.isArray(cur) ? flat2(cur) : cur), [])
   // reduce => pre, cur => pre.concat(cur)
 }
+function flat3(arr) {
+  while (arr.some(Array.isArray)) {
+    arr = [].concat(...arr);
+  }
+  return arr
+}
