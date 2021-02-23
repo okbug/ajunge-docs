@@ -34,3 +34,27 @@ Array.prototype.map = function(fn) {
   }
   return result
 }
+
+
+
+
+// flat数组去重
+// 自己写出来的
+function flat1(arr) {
+  let result = []
+  for(let i = 0;i < arr.length;i++) {
+    const v = arr[i]
+    if(Array.isArray(v)) {
+      result = result.concat(flat1(v))
+    } else {
+      result.push(v)
+    }
+  }
+  return result
+}
+
+// 背下来的帅的解法
+function flat2(arr) {
+  return arr.reduce((pre,cur) => pre.concat(Array.isArray(cur) ? flat2(cur) : cur), [])
+  // reduce => pre, cur => pre.concat(cur)
+}
