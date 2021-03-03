@@ -239,7 +239,7 @@ function mountClassComponent(vdom) {
  * @param {*} parentDOM 父亲的真实DOM
  */
 function reconcileChildren(childrenVdom, parentDOM) {
-    for (let i = 0  i < childrenVdom.length i++) {
+    for (let i = 0; i < childrenVdom.length; i++) {
         let childVdom = childrenVdom[i]
         mount(childVdom, parentDOM)
     }
@@ -376,7 +376,7 @@ function updateChildren(parentDOM, oldVChildren, newVChildren) {
     oldVChildren = Array.isArray(oldVChildren) ? oldVChildren : [oldVChildren]
     newVChildren = Array.isArray(newVChildren) ? newVChildren : [newVChildren]
     let maxLength = Math.max(oldVChildren.length, newVChildren.length)
-    for (let i = 0  i < maxLength i++) {
+    for (let i = 0; i < maxLength; i++) {
         //在儿子们里查找，找索引是大于当前索引的
         let nextDOM = oldVChildren.find((item, index) => index > i && item && item.dom)
         compareTwoVdom(parentDOM, oldVChildren[i], newVChildren[i], nextDOM && nextDOM.dom)
