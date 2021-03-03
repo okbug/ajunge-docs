@@ -53,7 +53,7 @@ function createStore(reducer, preloadedState) {
     }
     function subscribe(listener) {
         listeners.push(listener)
-        return () => {
+        return () => { // 返回一个取消订阅的函数
             let index = listeners.indexOf(listener)
             listeners.splice(index, 1)
         }
