@@ -10,5 +10,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="ForMyDreamProject" />
     <orderEntry type="module" module-name="algo" />
+    <orderEntry type="module" module-name="react_study" />
+    <orderEntry type="module" module-name="vue3-element-koa2" />
   </component>
 </module>

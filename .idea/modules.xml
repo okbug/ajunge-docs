@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/2021.iml" filepath="$PROJECT_DIR$/.idea/2021.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../ForMyDreamProject/.idea/ForMyDreamProject.iml" filepath="$PROJECT_DIR$/../../ForMyDreamProject/.idea/ForMyDreamProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/../2019/algo/.idea/algo.iml" filepath="$PROJECT_DIR$/../2019/algo/.idea/algo.iml" />
+      <module fileurl="file://E:/WSproj/react_study/.idea/react_study.iml" filepath="E:/WSproj/react_study/.idea/react_study.iml" />
+      <module fileurl="file://E:/WSproj/vue3-element-koa2/.idea/vue3-element-koa2.iml" filepath="E:/WSproj/vue3-element-koa2/.idea/vue3-element-koa2.iml" />
     </modules>
   </component>
 </project>
