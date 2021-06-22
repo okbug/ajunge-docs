@@ -180,7 +180,14 @@ style-loader是将脚本插入到html文件中的style标签中，css-loader是�
 直接import or require
 安装 file-loader url-loader html-loader
 `npm install file-loader url-loader html-loader -D`
+  
+在html中通过img标签引入
+需要配置contentBase
 
+在css中通过url() 引入
+
+
+import
 配置
 ```js
 [
@@ -218,3 +225,142 @@ document.body.appendChild(image)
 那么要在use的options写一个esModule: false即可
 // 默认是true，即需要取返回对象中的default属性
 ```
+
+另外一种支持图片的loader叫做url-loader
+它是file-loader的一种 **增强**
+它能够在选项中加一个叫做limit的选项，如果一个文件大小小于这个限制，那么就转成base64的字符串，然后内嵌到HTML中
+一般是 x * 1024 也就是x kb
+
+在webpack配置中如下，我准备了一个9k的png
+```js
+[
+    {
+        test: /\.(jpg|png|gif|bmp)$/,
+        use: [
+            {
+                loader: 'url-loader',
+                options: {
+                    name: "[hash:10].[ext]",
+                    limit: 10240 // 10kb
+                }
+            }
+        ]
+    }
+]
+```
+
+那么打包之后，图片就是会以base64的格式添加到网页中。
+
+使用img标签导入图片的话
+需要给html文件添加一个html-loader
+这样才可以解析img中src的相对路径，并且转化为绝对路径
+
+## webpack对JS的兼容做处理
+
+我们知道babel是可以对ES6及其以上的JS代码做一个向下兼容的转换
+
+安装依赖
+`npm install babel-loader @babel/core @babel/preset-env @babel/preset-react @babel/polyfill -D`
+`npm install @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties -D`
+
+babel-loader使用Babel和webpack转译JavaScript文件
+@babel / @babel/core Babel编译的核心包
+@babel/preset-env 为每个环境预设的配置
+@babel/@babel/preset-reactReact插件的Babel预设
+@babel/plugin-proposal-decorators把类和对象装饰器编译成ES5
+@babel/plugin-proposal-class-properties转换静态类属性以及使用属性初始值化语法声明的属性
+
+webpack配置
+
+```js
+[
+    {
+        test: /\.jsx?$/,
+        use: [
+            {
+                loader: "babel-loader",
+                options: {
+                    presets: [
+                        "@babel/preset-env",
+                        "@babel/preset-react"
+                    ]
+                }
+            }
+
+        ]
+    }
+]
+```
+
+然后安装react和react-dom
+`npm install react react-dom -S`
+在index.js中写一个React组件
+
+```js
+import React from 'react'
+
+import ReactDOM from 'react-dom'
+
+function App() {
+    return (<>
+        <h1>App</h1>
+    </>)
+}
+
+ReactDOM.render(<App />, document.getElementById("app"))
+```
+打包比之前多了七秒钟
+并且可以渲染出React组件
+main.js文件内容增加
+
+支持装饰器
+装饰器的语法都是在提案中，如果要我们直接支持，需要在项目中添加一个jsconfig.json文件
+在里面写入选项
+```js
+{
+  "compilerOptions": {
+    "experimentalDecorators": true
+  }
+}
+```
+首先我们在index.js中写
+```js
+// target 装饰的目标
+// key 装饰的属性
+// desc 配置 
+
+function readonly (target, key, desc) {
+    desc.writable = false
+}
+
+class Person {
+    @readonly PI = 3.14
+}
+
+let p = new Person()
+p.PI = 3.15
+console.log(p)
+```
+
+这是装饰器的语法
+但是babel并不支持该语法
+那么我们在options中添加以下代码：
+```js
+[
+    {
+        options: {
+            plugins: [
+                ["@babel/plugin-proposal-decorators", {legacy: true}],
+                ["@babel/plugin-proposal-class-properties", {loose: true}]
+            ]
+        }
+    }
+]
+```
+上面的代码就可以成功被打包
+
+**预设是插件的集合，预设里面就是把很多插件打包在一起了**
+
+
+legacy 遗弃
+loose 宽松，如果为false，那么会采用Object.defineProperty

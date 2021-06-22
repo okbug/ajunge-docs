@@ -39,11 +39,35 @@ module.exports = {
                 test: /\.(jpg|png|gif|bmp)$/,
                 use: [
                     {
-                        loader: 'file-loader',
+                        loader: 'url-loader',
                         options: {
-                            name: "[hash:10].[ext]"
+                            name: "[hash:10].[ext]",
+                            limit: 1024 // 10kb
                         }
                     }
+                ]
+            },
+            {
+                test: /\.html$/,
+                use: ["html-loader"]
+            },
+            {
+                test: /\.jsx?$/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            presets: [
+                                "@babel/preset-env",
+                                "@babel/preset-react"
+                            ],
+                            plugins: [
+                                ["@babel/plugin-proposal-decorators", {legacy: true}],
+                                ["@babel/plugin-proposal-class-properties", {loose: true}]
+                            ]
+                        }
+                    }
+
                 ]
             }
         ]
