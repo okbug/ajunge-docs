@@ -72,3 +72,36 @@ Select type to generate single-spa application / parcel
 
 容器就是微应用最后的集合点
 在容器的imports中将这些子应用全部注册并且启动即可
+
+
+
+
+----
+
+
+占坑
+
+
+----
+
+
+
+# 模块联邦
+
+这个是webpack5新出的一个特性
+可以通过这个特性来使不同应用数据共享，达到实现微前端的目的
+
+
+在webpack的包中 有有一个函数，这样使用它
+
+```js
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin")
+
+new ModuleFederationPlugin({
+  filename:"",
+  name: "",
+  exposes: {
+    "./index": "./src/index"
+  }
+})
+```
