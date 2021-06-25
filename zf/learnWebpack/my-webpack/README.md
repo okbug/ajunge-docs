@@ -364,3 +364,52 @@ console.log(p)
 
 legacy 遗弃
 loose 宽松，如果为false，那么会采用Object.defineProperty
+
+
+options中，presets字段也可以通过传一个数组（第一项为预设名字的字符串，第二项是该预设的配置）
+与上面的plugins类似
+
+兼容ES6的语法
+
+在index.js中，如果需要使用Promise的话，那么可以通过
+`require("@babel/polyfill")`
+的方法
+但是导入之后打包代码多了特别特别多
+所以我们可以想到：
+
+**按需加载**
+
+如何按需加载？
+
+在webpack配置中
+presets中加入一个useBuiltIns选项 然后指定浏览器的版本
+
+```js
+[{
+    presets: [
+    ["@babel/preset-env", {
+        useBuiltIns: 'usage', // 按需加载polyfill
+        corejs: {version: 3}, // 指定corejs的版本
+        targets: { // 指定要兼容哪些浏览器
+            chrome: '60',
+            firefox: "60",
+            ie: '9',
+            safari: "10",
+            edge: "17"
+        }
+    }],
+    "@babel/preset-react"
+],
+}]
+```
+
+
+
+
+## ESLint代码校验
+
+安装依赖
+`npm install eslint eslint-loader babel-eslint -D`
+
+然后在配置中，添加一个
+

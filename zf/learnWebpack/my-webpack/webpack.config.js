@@ -53,12 +53,33 @@ module.exports = {
             },
             {
                 test: /\.jsx?$/,
+                use: 'eslint-loader',
+                enforce: "pre", // 强制指定顺序，这个是之前的意思
+                // 这个会默认先触发，然后将转化后的代码传给下一个rule
+                options: {fix: true}, // 启动自动修复
+                exclude: /node_modules/, // 排除不需要检验的代码
+                // 或者include: resolve("src") // 只检测这里的代码
+            },
+            {
+                test: /\.jsx?$/,
                 use: [
                     {
                         loader: "babel-loader",
                         options: {
                             presets: [
                                 "@babel/preset-env",
+                                // ["@babel/preset-env", {
+                                //     useBuiltIns: 'usage', // 按需加载polyfill
+                                //     corejs: {version: 3}, // 指定corejs的版本
+                                //     targets: { // 指定要兼容哪些浏览器
+                                //         chrome: '60',
+                                //         firefox: "60",
+                                //         ie: '9',
+                                //         safari: "10",
+                                //         edge: "17"
+                                //     }
+                                // }],
+                                
                                 "@babel/preset-react"
                             ],
                             plugins: [
