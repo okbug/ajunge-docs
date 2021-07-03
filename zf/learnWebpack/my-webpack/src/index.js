@@ -45,7 +45,8 @@ document.body.appendChild(image)
 // class Person {
 //     @readonly PI = 3.14
 // }
-
+let c = 1
+console.log(c === 1)
 // let p = new Person()
 // console.log(p)
 // p.PI = 3.15
@@ -54,6 +55,7 @@ document.body.appendChild(image)
 require("@babel/polyfill")
 let p = new Promise((resolve) => {
     resolve(1)
+    console.log(c === 1);
 })
 p.then((data) => {
     console.log(data)

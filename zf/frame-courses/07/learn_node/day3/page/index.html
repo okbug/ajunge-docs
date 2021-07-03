@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id='get'>get</button>
+  <button id='get2'>get2</button>
+  <button id='post'>post</button>
+
+
+  <form action="http://localhost:3000/add" method="post">
+    <input type="text" name='a'>
+    <input type="text" name='b'>
+    <button type="submit">提交</button>
+  </form>
+</body>
+
+</html>
+<script>
+  get.onclick = function () {
+    fetch('http://localhost:3000/list?a=123&b=234', {
+      credentials: 'include',
+    }).then(res => res.text()).then(data => {
+      console.log(data)
+    })
+  }
+  get2.onclick = function () {
+    fetch('http://localhost:3000/list2/23424').then(res => res.text()).then(data => {
+      console.log(data)
+    })
+  }
+  post.onclick = function () {
+    fetch('http://localhost:3000/add', {
+      method: "POST",
+      // body: JSON.stringify({
+      //   a: 1,
+      //   b: 23
+      // }),
+      body: 'a=1&b=23',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      }
+    })
+  }
+</script>

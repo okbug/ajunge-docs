@@ -1,0 +1,32 @@
+*{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.bot_nav_boxbot_nav_box{
+  position: fixed;
+  width: 100vw;
+  height: 1.2rem;
+  bottom:0;
+  left: 0;
+  background-color: #ccc;
+}
+.bot_nav_boxbot_nav_box ul{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.bot_nav_boxbot_nav_box li{
+  flex: 1;
+  height: 100%;
+}
+.bot_nav_boxbot_nav_box li a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 1.2rem;
+}
+.bot_nav_boxbot_nav_box li a.active{
+  background-color: red;
+  color:#fff
+}

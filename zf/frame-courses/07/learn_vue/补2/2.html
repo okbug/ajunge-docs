@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model='name'>
+    <h1>{{name}}</h1>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      name: "珠峰",
+      obj: {
+        a: 123
+      }
+    },
+    /* 
+      watch 适用于那种一对多的场景
+        当A发生改变的时候，  B, C ,D,E F这几个属性都要改变，
+        这时 我们用 watch A  
+
+      computed  适用于  多对一的场景
+        不管是B, C ,D,E F这几个属性哪一个改变， A 都要有所变化，
+        这时 我们用 计算属性；
+    */
+    watch: {
+      name() {
+        // 监听name  只要name发生改变的时候 就会触发这个函数
+      },
+      obj(newV, oldV) {
+        console.log('watch', newV)
+      },
+      obj: {
+        deep: true,
+        immediate: true,
+        handler(newV, oldV) {
+          console.log('watch', newV)
+        }
+      },
+      name: 'qqq'
+    },
+    methods: {
+      qqq() {
+        console.log('name')
+      }
+    },
+  })
+</script>

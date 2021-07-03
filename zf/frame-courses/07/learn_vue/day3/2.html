@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model='name'>
+    <h1>{{name|a(age)|b}}</h1>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  //  过滤器 ;   |:管道符  一般是用来格式化数据的
+  Vue.filter('b', function (val) {
+    return 'b-' + val + '-b'
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      name: "珠峰",
+      age: 100
+    },
+    filters: {
+      a(val, age) {
+        // val 永远是|前边的哪个值
+        // 试图更新  过滤器就会执行 这点跟 直接在模板里边是应用methods一样
+        console.log(age)
+        return 'a-' + val + '-a'
+      }
+    }
+  })
+</script>

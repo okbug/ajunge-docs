@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model='name'>
+    <h1>{{name}}</h1>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let el = document.getElementById('#app')
+  let vm = new Vue({
+    // el: '#app',
+    // template: "<i>{{name}}</i>",
+    data: {
+      name: "珠峰"
+    },
+    beforeCreate() {
+
+    },
+    created() {
+      // 一般用来做一些ajax请求
+    },
+    beforeMount() {
+
+    },
+    mounted() {
+      // 可以获取渲染好的真实DOM
+      console.log(this.$el === el)
+      this.timer = setInterval(() => {
+        console.log('hahaha')
+      }, 1000);
+    },
+    beforeDestroy() {
+      // 一般在销毁的钩子当中 做一些清楚的操作
+      clearInterval(this.timer)
+    },
+  }).$mount('#app')
+</script>

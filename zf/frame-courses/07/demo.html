@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>母线</title>
+  <style>
+    .min-box {
+      min-width: 200px;
+      max-width: 820px;
+      height: 500px;
+      overflow-y: scroll;
+    }
+
+    .min-box .echarts-box {
+      width: 800px;
+      height: 500px;
+    }
+
+    .min-box .echarts-box #box {
+      width: auto;
+      height: 500px;
+      background-color: #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="min-box">
+    <div class="echarts-box">
+      <div id="box"></div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
+<script src="./node_modules/echarts/dist/echarts.min.js"></script>
+<script>
+  let tData = [
+    "火车站",
+    "汽车站",
+    "佛山中医院",
+    "旋宫酒店•仁寿寺",
+    "祖庙A站",
+    "环球国际广场",
+    "海关",
+    "佛山科技学院",
+    "弼唐",
+    "茶亭",
+    "石湾客运站",
+    "中国陶瓷城",
+    "石湾公园",
+    "陶都",
+    "柏林艺术馆",
+    "美术陶瓷厂",
+    "华榕宫",
+    "沙岗",
+    "潭清里",
+    "佛山家博城南门",
+    "澜石大桥西",
+    "佛山家博城",
+    "澜石一路东",
+    "银苑市场",
+    "澜石中学",
+    "省纺院",
+    "石头村"
+  ];
+  let arr = [],
+    maxNum = 0,
+    num = 0;
+  for (let i = 0; i < tData.length; i++) {
+    arr.push(tData[i].length)
+  }
+  maxNum = Math.max(...arr);
+  for (let i = 0; i < tData.length; i++) {
+    if (tData[i].length < maxNum) {
+      num = maxNum - tData[i].length;
+      for (let j = 0; j < num; j++) {
+        tData[i] = ' ' + tData[i];
+      }
+    }
+  }
+  let charts = echarts.init(document.getElementById('box'));
+
+  let option = {
+    // grid: {
+    //   containLabel: true
+    // },
+    // dataZoom: [{
+    //   type: 'slider',
+    //   show: true,
+    //   xAxisIndex: [0],
+    //   // left: '9%',
+    //   // top: 15,
+    //   height: 30,
+    //   bottom: 16,
+    //   start: 0,
+    //   end: 50 
+    // }],
+    dataZoom: [{
+        show: true,
+        realtime: true,
+        singleAxisIndex: [0, 1],
+        start: 0,
+        bottom: 56,
+        end: tData.length
+      },
+      // {
+      //   show: true,
+      //   realtime: true,
+      //   singleAxisIndex: 0,
+      //   start: 0,
+
+      //   end: tData.length
+      // },
+      // {
+      //   type: 'inside',
+      //   realtime: true,
+      //   start: 0,
+      //   end: tData.length
+      // }
+    ],
+    singleAxis: [{
+        type: "category",
+        boundaryGap: false,
+        top: "180",
+        height: "20",
+        splitLine: {
+          show: false
+        },
+        interval: 1,
+        label: {
+
+        },
+        axisLabel: {
+          show: true,
+          margin: 30,
+          inside: false, // 坐标轴朝里朝外
+          textStyle: {
+            fontSize: 14
+          },
+          formatter: function (value, index) {
+            return value ? value.split("").join('\n') : ""; //竖排文字
+          }
+        },
+        axisTick: {
+          inside: false, // 坐标轴朝里朝外
+          length: 20, // 控制刻度长度
+        },
+        data: ['周一', '周二', '周三',
+          "旋宫酒店•仁寿寺",
+          "祖庙A站",
+          "环球国际广场",
+          "海关",
+          "佛山科技学院",
+          "弼唐",
+          "茶亭",
+          "石湾客运站",
+          "中国陶瓷城",
+          "石湾公园",
+          "陶都",
+          "柏林艺术馆",
+          "美术陶瓷厂",
+          "华榕宫",
+          "沙岗",
+          "潭清里",
+          "佛山家博城南门",
+          "澜石大桥西",
+          "佛山家博城",
+          "澜石一路东",
+          "银苑市场",
+          "澜石中学",
+          "省纺院",
+          "石头村"
+        ]
+      },
+      {
+        type: "category",
+        boundaryGap: false,
+        distance: 15,
+        top: "30",
+        height: "20",
+        splitLine: {
+          show: false
+        },
+        axisLabel: {
+          interval: 0,
+          textStyle: {
+            fontSize: 16
+          },
+          formatter: function (value, index) {
+            return value ? value.split("").join('\n') : ""; //竖排文字
+          }
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          show: false
+        },
+        data: tData
+      }
+    ],
+    series: [{
+        singleAxisIndex: 0,
+        coordinateSystem: "singleAxis",
+        type: "scatter",
+        formatter: function (value, index) {
+          console.log(arguments);
+        }
+      },
+      {
+        singleAxisIndex: 1,
+        coordinateSystem: "singleAxis",
+        type: "scatter",
+      }
+    ]
+  };
+  charts.setOption(option);
+</script>

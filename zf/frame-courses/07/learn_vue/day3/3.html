@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model='name'>
+    <input type="text" v-model='age'>
+    <h1>{{name}}</h1>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      name: "珠峰",
+      age: 100,
+      obj: {
+        a: 123
+      }
+    },
+    watch: {
+      //监听name 就要name发生改变  就会触发 对应的函数
+      name(newV, oldV) {
+        console.log(newV, 'nameb变了', oldV)
+      },
+      // obj(newV, oldV) {
+      //   console.log(newV, oldV)
+      // },
+      obj: {
+        deep: true, // 深度监听
+        immediate: true, // 页面加载的时候先执行一次
+        handler(newV, oldV) {
+          console.log(newV, oldV)
+        }
+      },
+      'obj.a': function () {
+        console.log('a变了')
+      }
+    }
+  })
+  /* 
+    计算属性合侦听器的区别？
+    计算属性不好写异步，watch无所谓
+
+    当 B，C,D,E,F 这几个属性中只要有一个发生改变 就去执行某个操作
+    A(){console.log(B，C,D,E,F)}
+
+
+    当 A 发生改变的时候   B，C,D,E,F  这几个属性都要有多动作，这时我们选择使用 watch
+    watch A (){
+      B，C,D,E,F = 123
+    }
+  */
+</script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{name}}</h1>
+    <input type="text" v-model='todo' @keydown.enter='submit'>
+    <ul>
+      <li v-for='(item,index) in todoList' :key='item.id'>
+        <img :src="img" alt="" :style='sty'>
+        <i>{{item.todo}}</i>
+        <button @click.stop='del(item,index)'>X</button>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      name: "珠峰",
+      sty: {
+        width: '30px',
+        height: '30px',
+      },
+      img: 'http://pic-bucket.ws.126.net/photo/0001/2021-01-20/G0QOK7OS00AO0001NOS.jpg?imageView&thumbnail=600y450',
+      todo: '',
+      todoList: [{
+        todo: "吃饭",
+        id: Math.random()
+      }]
+    },
+    methods: {
+      del(item, n) {
+        console.log(item)
+        // this.todoList.splice(n, 1)
+        this.todoList = this.todoList.filter(val => val.id !== item.id)
+      },
+      submit() {
+        this.todoList.unshift({
+          todo: this.todo,
+          id: Math.random()
+        })
+        this.todo = ''
+      }
+    },
+  })
+</script>

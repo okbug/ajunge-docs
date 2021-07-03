@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active {
+      background-color: red;
+      color: #fff
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 
+    v-bind 专门用来处理行内属性   简写成 :
+    vue 对于 类名 和行内样式专门做了加强
+
+    v-on 专门用来处理事件的指令 简写成@
+   -->
+  <div id="app">
+    <h1>{{name}}</h1>
+    <input type="text" v-model='name'>
+    <img v-bind:src="src" alt="">
+    <img :src="src" alt="">
+    <div :class='cla'></div>
+    <!-- 意思 就是 active这个类名要不要加上去  取决于 active对应的属性值是否是true -->
+    <div :class='{active:54,avtive2:true,active3:false,active4:name.length>2}'>111</div>
+    <div :class='ary'></div>
+    <div :class='ary2'></div>
+
+    <h2 :style="'color:'+(name.length > 2 ? 'red' : 'blue')">22</h2>
+    <h2 :style="{color:name.length > 2 ? 'red' : 'blue',background:name}">werwer</h2>
+    <h2 :style='sty'>333</h2>
+    <!--  若行内样式后跟的是一个数组  那么  数组中仿制的都是一些样式对象-->
+
+
+    <button v-on:click='fn'>按钮</button>
+    <button v-on:click='fn(1,2,3,4,5)'>按钮</button>
+    <!-- $event  是 vue规定死的一个字符 -->
+    <button v-on:click.stop='fn($event,1,$event,2,$event)'>按钮</button>
+
+
+    <input type="text" v-model='name' @keydown.13='submit'>
+    <input type="text" v-model.lazy='name' @keydown.13='submit'>
+    <input type="text" v-model.number.trim='name' @keydown.13='submit'>
+
+    <!-- 
+      v-for  循环 可以循环 数字 字符串  **数组**  对象 
+      key 可以提升vue的编译效率   就是每一个元素的一个身份证； 最合适的key就是这条数据的唯一的一个ID
+      当把 索引用作 key的时候 有可能会出现不可预知的bug(bug的原因 就是 vue的就地服用策略导致的)
+
+
+      当 v-if和 v-for同时使用的时候  v-for的优先级较高(2.0)  
+      3.0的是 v-if的优先级比较高
+    -->
+    <ul>
+      <li v-for='(item,index) in ary' :key="index" v-if='index>1'>
+        <input type="checkbox">{{item}} {{index}} <button @click='del(index)'>X</button>
+      </li>
+    </ul>
+
+    <input type="text" v-model='name'>
+    <div v-if='name.length > 2'>
+      密码：<input key=1 type="text">
+    </div>
+    <div v-else>
+      性别：<input key=5 type="text">
+    </div>
+
+
+    <!-- 
+      v-show和v-if的表象是一样的
+      v-show只+是单纯的做了一个display none的操作   
+      v-if 是整个结构的不加载
+
+      v-show 有比较大的初始加载开销
+      v-if 有比较大的切换开销
+
+     -->
+    <div v-show='name.length < 2'>v-show</div>
+    <!--   fn() -->
+    <!-- 
+        .stop         阻止冒泡
+        .prevent      阻止默认事件
+        .capture      函数执行在捕获阶段
+        .self         只有当前点击到元素本身的时候才会执行
+        .once         就执行一次 以后不再执行了
+        .passive      先执行默认行为还是先执行绑定的函数
+
+
+      // 案件修饰符
+        .enter
+        .tab
+        .delete (捕获“删除”和“退格”键)
+        .esc
+        .space
+        .up
+        .down
+        .left
+        .right
+
+      、、 系统修饰符
+        .ctrl
+        .alt
+        .shift
+        .meta
+
+      // v-model 是 value属性和 input事件的合体
+      v-model修饰符
+      .lazy  加上在合格修饰符 意思就是不适用input事件 改用 change事件
+      .number  原理就是利用parseFloat 处理input框的参数
+      .trim   自动去除数据的首尾空格
+
+      .sync 组件
+     -->
+
+    <button v-for='i in 3' :class="{active:i == activeIndex}" @click='change(i)'>{{i}}</button>
+  </div>
+</body>
+
+</html>
+<script src=" ../node_modules/vue/dist/vue.js"> </script>
+<script>
+  // 'use strict'
+  let vm = new Vue({
+    el: '#app',
+    // data methods 中的属性会被挂载到当前实例上
+    data: {
+      activeIndex: 1,
+      // fn() {
+      //   console.log(this)
+      // },
+      name: "珠峰",
+      src: 'https://baidu.com',
+      cla: 'hello',
+      ary: ['box1', 'box2', 'box3'],
+      str: 'color:red',
+      sty: {
+        color: 'red',
+        background: 'blue'
+      },
+      ary2: [{
+        box1: true,
+        box2: false,
+        box3: 1
+      }, {
+        box4: true
+      }]
+    },
+    methods: {
+      // 这里不能写箭头函数？ 因为箭头函数中的this是直向上级作用域的
+      //  vue处理的时候保证了 这里的方法中的this都是当前实例
+      fn(e, n, e2, m, e3) {
+        console.log(e, n, e2, m, e3)
+        this.name = 666
+      },
+      submit(e) {
+        // if (e.keyCode == 13) {
+        console.log(e, '提交')
+        // }
+
+      },
+      del(n) {
+        this.ary.splice(n, 1)
+      },
+      change(n) {
+        this.activeIndex = n
+      }
+    },
+  })
+</script>

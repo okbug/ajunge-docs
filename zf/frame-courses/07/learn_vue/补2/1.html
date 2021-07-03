@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model='age'>
+    <input type="text" v-model='name'>
+    <h1>{{name|money(age)}}</h1>
+    <h1>{{name.split('').reverse().join('')}}</h1>
+    <h1>{{fn()}}</h1>
+    <h1>{{reverName|qqq|money}}</h1>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  Vue.filter('qqq', function (val) {
+    return val + 'qqq'
+  })
+  let vm = new Vue({
+    el: '#app',
+    qqq: 123,
+    data: {
+      name: "珠峰",
+      age: 10
+    },
+    filters: {
+      // 过滤器
+      money(val, age) {
+        // val 就是管道符前边的哪个值
+        // console.log(this) // 这里的this不是当前实例
+        console.log(age)
+        return val + 666
+      }
+    },
+    methods: {
+      fn() {
+        console.log('methods')
+        return this.name.split('').reverse().join('')
+      }
+    },
+    computed: {
+      // 1 减少模板的复杂度
+      // 2 节省性能
+      // reverName() {
+      //   // 只有依赖发生改变的时候  这个计算属性才会重新计算
+      //   // 依赖 ：  只要是在计算的时候同步用到的属性 都属于依赖
+      //   console.log('computed')
+      //   return this.name.split('').reverse().join('')
+
+      //   // 当这个函数第一次执行的时候， 函数中调用 vue中的某个属性的时候 会触发对应对应属性的
+      //   // 依赖手机 把这个函数放到对应的依赖收集中， 以后 每当这个属性发生改变的时候  就会触发
+      //   // 依赖收集中的函数
+      // }
+      reverName: {
+        get() {
+          return this.name.split('').reverse().join('')
+        },
+        set(val) {
+          console.log(val)
+          this.name = val.split('').reverse().join('')
+        }
+      }
+    }
+  })
+</script>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model='name'>
+    <h1 v-if='name.length < 5'>{{name}}</h1>
+    <!-- <i v-else-if='name.length > 10 '>{{name}}</i>
+    <h2 v-else>{{name}}</h2> -->
+    <h1 v-show='name.length < 5'>{{name}}</h1>
+
+    <!-- 
+      v-if 是控制整个结构的加不加载；有比较大的切换开销，有比较小的初始加载开销
+      v-show 只是淡出的控制了 显示和隐藏；有比较大的初始加载开销；有比较小的切换开销
+    -->
+
+    <!-- 
+      v-for 可以用来循环 数组  对象  字符串和数字
+      v-for='item in ary'   v-for='item of ary'
+     -->
+
+    <!-- 
+        v-bind 专门用来处理行内属性的一个指令  简写就是一个 :
+          类名 class   id   style   src  href ...
+
+      -->
+
+    <!-- <ul>
+      <li v-for='(item123,index) in ary'>
+        索引{{index}}:{{item123}}
+        <h2>
+          <h3 v-for='q in 3'>
+            {{q}};
+          </h3>
+        </h2>
+      </li>
+    </ul> -->
+    <div v-for='(item,index) in obj' :key='index'>{{index}}:{{item}}</div>
+    <!--  最理想的key 是这条数据的唯一的id; index； key可以提升虚拟DOM的编译效率 -->
+
+    <img v-bind:src="img" alt="">
+    <img :src="img" alt="">
+
+    <h3 :class='cla'>leiming</h3>
+    <h3 class='www' :class='{active:name.length > 5,active2:name.length < 2,qqq:true}'>leiming</h3>
+    <!--   :class='{active:name.length > 5}'       属性名是要添加的类名  属性值 是控制这个类名能不能加上去的 -->
+    <h2 :style='sty'>hahaha </h2>
+
+
+    <input type="text" v-model='name'>
+
+    <div v-if='name.length<3'>
+      密码<input key=1 type="text" placeholder="密码">
+    </div>
+    <div v-else>
+      年龄<input key=2 type="text" placeholder="年龄">
+    </div>
+
+
+
+
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      name: "珠峰",
+      cla: ['q', 'w', 'e'],
+      sty: {
+        color: 'red'
+      },
+      ary: [10, 20, 30, 40, 50, 60, 70, 80],
+      obj: {
+        q: 123,
+        w: 234,
+        e: 345
+      },
+      img: 'https://pics3.baidu.com/feed/d009b3de9c82d158a557c1e11d40ecdfbd3e425f.jpeg'
+    }
+  })
+</script>

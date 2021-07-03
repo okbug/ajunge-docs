@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model='temp'>
+    <input type="text" v-model='name'>
+    <input type="number" v-model='age'>
+    <input type="radio" name="sex" value=0 v-model='sex'>男
+    <input type="radio" name="sex" value=1 v-model='sex'>女
+    <h1>{{name}}</h1>
+    <h2>{{age}}</h2>
+    <h2>{{sex}}</h2>
+
+
+    <h1>这个人{{'姓名是：'+name}}；{{'年纪是：'+age}};{{'性别是：'+(sex==1 ? '女':"男")}}</h1>
+    <h1>{{fn()}}</h1>
+    <h2>{{res}}</h2>
+    <!-- res 是计算的结果，什么时候 才会重新结算  不是说 试图更新就会重新结算 
+    
+      而是当依赖发生改变的时候才会重新计算
+    -->
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      name: "珠峰",
+      age: 10,
+      sex: 0,
+      temp: ''
+    },
+    methods: {
+      fn() {
+        console.log('methods')
+        // console.log(this.res)
+        return `这个人姓名是：${this.name}；年纪是：${this.age};性别是：${this.sex==1 ? '女':"男"}`
+      }
+    },
+    computed: {
+      // res() {
+      //   // 依赖  就是当前函数同步使用的变量
+      //   // 虽然说在这个位置我们编写的是一个函数  但是实际使用的时候 我们获取到的是这个函数的执行结果
+      //   console.log('computed')
+      //   let _this = this;
+      //   // setTimeout(() => {
+      //   //   console.log(_this.temp)
+      //   // }, 1000);
+      //   return `这个人姓名是：${this.name}；年纪是：${this.age};性别是：${this.sex==1 ? '女':"男"}`
+      // }
+      res: {
+        get() {
+          return `这个人姓名是：${this.name}；年纪是：${this.age};性别是：${this.sex==1 ? '女':"男"}`
+        },
+        set(val) {
+
+        }
+      }
+    }
+  })
+</script>

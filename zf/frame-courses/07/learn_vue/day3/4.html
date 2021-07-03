@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{name}}</h1>
+    <button @click='fn'>qq</button>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let app = document.querySelector('#app');
+  let vm = new Vue({
+    // el: '#app',
+    // template: '<b>{{name}}</b>',
+    data: {
+      name: "珠峰",
+      age: 20
+    },
+    methods: {
+      fn() {
+        this.name = 100
+      }
+    },
+    beforeCreate() {
+      //一般会结合  混入 使用
+    },
+    created() {
+      // 可以使用  vue数据
+      // 一般可以用来做一些ajax的请求
+    },
+    mounted() {
+      console.log(this.$el === app)
+      this.timer = setInterval(() => {
+        console.log(++this.age)
+      }, 1000);
+      // 可以获取到真实DOM元素、　　ｅｃｈａｒｔｓ　ｓｗｉｐｅｒ　　ｂｍａｐ　　
+    },
+    beforeUpdate() {
+      console.log('beforeUpdate')
+    },
+    updated() {
+      console.log('updated')
+    },
+    // 销毁的钩子函数中 我们一般会做一些清楚地动作
+    // 组件销毁之后 是 切断了数据的双向绑定
+    beforeDestroy() {
+      clearInterval(this.timer)
+    },
+
+    // 父子组建的钩子函数的执行顺序
+  })
+  vm.$mount('#app')
+</script>

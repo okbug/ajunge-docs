@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  var obj = {
+    name: 333,
+    age: 11
+  };
+  // Object.defineProperty(obj, 'name', {
+  //   get() {
+  //     console.log('name属性被调用了')
+  //     return 333
+  //   },
+  //   set(val) {
+  //     console.log('name属性被赋值了')
+  //   }
+  // })
+  // Object.defineProperty(obj, 'sex', {
+  //   value: 1,
+  //   enumerable: false, // 可枚举
+  //   configurable: false, //可删除
+  //   writable: false // 可写
+  // })
+
+  function defineP(obj, key, value) {
+    Object.defineProperty(obj, key, {
+      get: function proxyGetter() {
+        console.log(key + '属性被调用了')
+        return value
+      },
+      set(val) {
+        console.log(val)
+        console.log(key + '属性被赋值了')
+        value = val
+      }
+    })
+  }
+  // for (let k in obj) {
+  //   defineP(obj, k, obj[k])
+  // }
+  var obj2 = new Proxy(obj, {
+    get(target, key) {
+      // console.log(obj === target)
+      // console.log(key)
+      return target[key]
+    },
+    set(target, key, val) {
+      // console.log(obj === target)
+      // console.log(key, val)
+      target[key] = val
+    }
+  })
+</script>

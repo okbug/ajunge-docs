@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{obj}}</h1>
+    <button @click='add'>+</button>
+    <span v-show='false'>{{t}}</span>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  // shift  unshift pop  push sort splice  reverse  这几个方法称为数组的变异方法
+  // 也就是说 像操作数组  不要直接通过索引控制 
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      name: "珠峰",
+      t: 0,
+      obj: {
+        a: 123
+      }
+    },
+    methods: {
+      add() {
+        // this.obj.a = 222
+        this.obj.b = 666
+        // this.t = Math.random();
+        this.$forceUpdate()
+        console.log(this.$set)
+
+        // this.obj = {
+        //   ...this.obj,
+        //   b: 666
+        // }
+
+        // this.$set(this.obj, 'b', 666)
+
+        // this.obj = Object.assign({
+        //   b: 666
+        // }, this.obj)
+
+        // this.obj = Object.assign(this.obj, {
+        //   b: 666
+        // })
+
+      }
+    },
+  })
+</script>

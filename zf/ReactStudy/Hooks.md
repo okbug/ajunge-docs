@@ -89,6 +89,7 @@ function App() {
 
 
 ## useReducer的实现
+
 ```js
 let lastState
 function useReducer(reducer, initialState) {
@@ -112,15 +113,30 @@ function useState(initialState) {
 
 # useEffect or useLayoutEffect
 
-使用：
-不必多说，每次渲染的时候执行回调
+## useEffect
+使用:
+
+function useEffect(fn, deps)
+fn Function
+deps any[]
+
+每次渲染完成的时候（也就是有DOM的时候）执行内部传的回调回调
 useEffect在每次页面渲染后执行 包括 首次渲染和每次更新结束
 依赖项改变了会重新执行useEffect函数
+
 第二个参数：依赖项数组
 回调的返回值：是一个函数或者不返回
 返回的函数类似类数组中的willUNMount 会执行销毁所需要的东西
 销毁函数会在每次重新执行函数前被执行
 
+
+## useLayoutEffect
+useEffect相当于在宏任务中放入一个回调
+useLayoutEffect相当于在微任务中放入一个回调
+useLayoutEffect会在所有的 DOM 变更之后同步调用 effect
+用它来读取 DOM 布局并同步触发重渲染
+useLayoutEffect里面的callback函数会在DOM更新完成后立即执行
+但是会在浏览器进行任何绘制之前运行完成,阻塞了浏览器的绘制
 
 
 # 竞态
@@ -137,6 +153,8 @@ useEffect(() => {
     const result = await http()
     if(!didCancel) setState(result) // 看是否可以去接收请求
   })()
-  return () => {didCancel = true}
+  return () => {
+    didCancel = true
+  }
 })
 ```

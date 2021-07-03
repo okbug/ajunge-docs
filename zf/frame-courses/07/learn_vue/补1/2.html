@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- v-on  专门用来处理事件的指令   简写是一个  @-->
+  <div id="app">
+    <h1>{{name}}</h1>
+    <button @click='fn'>按钮</button>
+    <button @click='fn2'>按钮2</button>
+    <ul>
+      <li v-for='item in list' :key='item.id'>
+        {{item.text}}
+        <button @click.stop='fn3'>按钮fn3</button>
+        <button @click='fn3()'>按钮fn3()</button>
+        <button @click='fn3(item)'>按钮fn3(item)</button>
+        <button @click='fn3($event,item,$event)'>按钮fn3(item,$event)</button>
+      </li>
+    </ul>
+
+    <input type="text" v-model='name' @keydown.myq='submit'>
+    <input type="text" v-model.lazy='name' @keydown.myq='submit'>
+    <input type="text" v-model.number='name' @keydown.myq='submit'>
+    <input type="text" v-model.trim='name' @keydown.myq='submit'>
+    <!-- 没有lazy 走的是 input事件 ； 加上 走的是 change事件 -->
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  /* 
+    .stop       阻止冒泡
+    .prevent    阻止默认事件
+    .capture    在捕获阶段执行   默认是在冒泡阶段执行的
+    .self       只有在点击当前元素的时候 才会执行； 冒泡传过来的 不会执行
+    .once       只会执行一次
+    .passive    优先执行默认行为还是绑定的事件
+
+
+    案件修饰符
+    .enter
+    .tab
+    .delete (捕获“删除”和“退格”键)
+    .esc
+    .space
+    .up
+    .down
+    .left
+    .right
+  
+  */
+  Vue.config.keyCodes.myq = 81 // 自定义案件修饰符
+  let vm = new Vue({
+    el: '#app',
+    // data中的属性和 methods中的属性是不能重复
+    data: {
+      name: "珠峰",
+      list: [{
+        text: 'nihao',
+        id: 1
+      }, {
+        text: 'nihao2',
+        id: 2
+      }, {
+        text: 'nihao3',
+        id: 3
+      }]
+      // fn() {
+      //   vm.name = 888
+      //   console.log(666)
+      // }
+    },
+    methods: {
+      fn: function fn(e) {
+        // 这里的this都是当前实例
+        this.name = 999
+        console.log(this, e)
+      },
+      fn2: () => {
+        console.log(this)
+      },
+      fn3(item, e) {
+        console.log(item, e)
+      },
+      submit(e) {
+        // if (e.keyCode == 13) {
+        //   console.log('提交')
+        // }
+        console.log('提交')
+        console.log(e)
+      }
+    },
+  })
+</script>

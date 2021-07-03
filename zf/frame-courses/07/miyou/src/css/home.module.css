@@ -1,0 +1,6 @@
+.home_box{
+  width: 10rem;
+  height: 10rem;
+  /* 加入设计稿是 750px  ；量出一个100px的盒子 那么我们这写rem的话 就是 (100/750)*10 rem */
+  background-color: #ccc;
+}

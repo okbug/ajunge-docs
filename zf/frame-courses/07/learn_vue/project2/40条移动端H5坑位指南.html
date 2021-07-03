@@ -1,0 +1,4895 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042) -->
+<html lang="zh" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22zh%22%7D%7D">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>中高级前端必须注意的40条移动端H5坑位指南 | 网易三年实践</title>
+  <style
+    data-vue-ssr-id="6d4e8b07:0 580fe052:0 19f03031:0 7cf82662:0 08cf5acc:0 a90e209a:0 0094bb9d:0 14b6ad9e:0 f351a500:0 5abf4b8a:0 0df5c402:0 af49960c:0 451eb286:0 f2f33ef2:0 65b20c7a:0 2fe42084:0 6bf9867a:0 aef2b4be:0 784ca4cd:0 8fbb5e38:0 74da3a18:0 bf2a2c0e:0 511b30fb:0 91e31860:0 e54e8fc2:0">
+    html {
+      font-family: sans-serif;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%
+    }
+
+    body {
+      margin: 0
+    }
+
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    main,
+    menu,
+    nav,
+    section,
+    summary {
+      display: block
+    }
+
+    audio,
+    canvas,
+    progress,
+    video {
+      display: inline-block
+    }
+
+    audio:not([controls]) {
+      display: none;
+      height: 0
+    }
+
+    progress {
+      vertical-align: baseline
+    }
+
+    [hidden],
+    template {
+      display: none
+    }
+
+    a {
+      background-color: transparent;
+      -webkit-text-decoration-skip: objects
+    }
+
+    a:active,
+    a:hover {
+      outline-width: 0
+    }
+
+    abbr[title] {
+      border-bottom: none;
+      text-decoration: underline;
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted
+    }
+
+    b,
+    strong {
+      font-weight: inherit;
+      font-weight: bolder
+    }
+
+    dfn {
+      font-style: italic
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: .67em 0
+    }
+
+    mark {
+      background-color: #ff0;
+      color: #000
+    }
+
+    small {
+      font-size: 80%
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline
+    }
+
+    sub {
+      bottom: -.25em
+    }
+
+    sup {
+      top: -.5em
+    }
+
+    img {
+      border-style: none
+    }
+
+    svg:not(:root) {
+      overflow: hidden
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: monospace, monospace;
+      font-size: 1em
+    }
+
+    figure {
+      margin: 1em 40px
+    }
+
+    hr {
+      box-sizing: content-box;
+      height: 0;
+      overflow: visible
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+      margin: 0
+    }
+
+    optgroup {
+      font-weight: 700
+    }
+
+    button,
+    input {
+      overflow: visible
+    }
+
+    button,
+    select {
+      text-transform: none
+    }
+
+    [type=reset],
+    [type=submit],
+    button,
+    html [type=button] {
+      -webkit-appearance: button
+    }
+
+    [type=button]::-moz-focus-inner,
+    [type=reset]::-moz-focus-inner,
+    [type=submit]::-moz-focus-inner,
+    button::-moz-focus-inner {
+      border-style: none;
+      padding: 0
+    }
+
+    [type=button]:-moz-focusring,
+    [type=reset]:-moz-focusring,
+    [type=submit]:-moz-focusring,
+    button:-moz-focusring {
+      outline: 1px dotted ButtonText
+    }
+
+    fieldset {
+      border: 1px solid silver;
+      margin: 0 2px;
+      padding: .35em .625em .75em
+    }
+
+    legend {
+      box-sizing: border-box;
+      color: inherit;
+      display: table;
+      max-width: 100%;
+      padding: 0;
+      white-space: normal
+    }
+
+    textarea {
+      overflow: auto
+    }
+
+    [type=checkbox],
+    [type=radio] {
+      box-sizing: border-box;
+      padding: 0
+    }
+
+    [type=number]::-webkit-inner-spin-button,
+    [type=number]::-webkit-outer-spin-button {
+      height: auto
+    }
+
+    [type=search] {
+      -webkit-appearance: textfield;
+      outline-offset: -2px
+    }
+
+    [type=search]::-webkit-search-cancel-button,
+    [type=search]::-webkit-search-decoration {
+      -webkit-appearance: none
+    }
+
+    ::-webkit-input-placeholder {
+      color: inherit;
+      opacity: .54
+    }
+
+    ::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      font: inherit
+    }
+
+    @font-face {
+      font-family: "iconfont";
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358);
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358#iefix) format("embedded-opentype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.woff?t=1470110358) format("woff"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.ttf?t=1470110358) format("truetype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.svg?t=1470110358#iconfont) format("svg")
+    }
+
+    .iconfont {
+      font-family: "iconfont" !important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    }
+
+    .icon-xlcollection:before {
+      content: "\e600"
+    }
+
+    .icon-xlchatbox:before {
+      content: "\e601"
+    }
+
+    .markdown-body embed,
+    .markdown-body iframe,
+    .markdown-body img:not(.equation),
+    .markdown-body video {
+      max-width: 100% !important;
+      margin: 0
+    }
+
+    .markdown-body li {
+      list-style: disc outside none;
+      list-style: initial
+    }
+
+    .markdown-body img.lazyload {
+      visibility: hidden
+    }
+
+    .markdown-body img.inited {
+      background-color: #f8f9fa;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      visibility: visible
+    }
+
+    .markdown-body img.loaded {
+      background-image: none;
+      background-color: transparent
+    }
+
+    .markdown-body img.error {}
+
+    .markdown-body img.equation {
+      margin: 0 .1em;
+      max-width: 100% !important;
+      vertical-align: middle
+    }
+
+    .markdown-body img:not(.equation) {
+      cursor: zoom-in
+    }
+
+    .markdown-body blockquote.warning {
+      position: relative;
+      border-left-color: #f75151;
+      margin-left: 8px
+    }
+
+    .markdown-body blockquote.warning:before {
+      position: absolute;
+      top: 14px;
+      left: -12px;
+      background: #f75151;
+      border-radius: 50%;
+      content: "!";
+      width: 20px;
+      height: 20px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .markdown-body pre {
+      position: relative
+    }
+
+    .markdown-body pre>code.hljs[lang]:before {
+      content: attr(lang);
+      position: absolute;
+      right: 15px;
+      top: 2px;
+      color: hsla(0, 0%, 54.9%, .8)
+    }
+
+    .markdown-body pre>code.hljs[lang][lang=bash]:before {
+      content: ""
+    }
+
+    .markdown-body pre>code.copyable .copy-code-btn {
+      position: absolute;
+      top: 6px;
+      right: 15px;
+      font-size: 12px;
+      line-height: 1;
+      cursor: pointer;
+      color: hsla(0, 0%, 54.9%, .8);
+      transition: color .1s
+    }
+
+    .markdown-body pre>code.copyable .copy-code-btn:hover {
+      color: #8c8c8c
+    }
+
+    .markdown-body pre>code.copyable.hljs[lang]:before {
+      right: 70px
+    }
+
+    .markdown-body pre pre>code .copy-code-btn {
+      display: none
+    }
+
+    .markdown-body pre pre>code.hljs[lang]:before {
+      top: 2px;
+      right: 15px
+    }
+
+    @media (max-width:720px) {
+      .markdown-body pre>code.copyable.hljs[lang]:before {
+        right: 1rem
+      }
+    }
+
+    #nprogress {
+      pointer-events: none
+    }
+
+    #nprogress .bar {
+      background: #007fff;
+      position: fixed;
+      z-index: 1031;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px
+    }
+
+    #nprogress .peg {
+      display: block;
+      position: absolute;
+      right: 0;
+      width: 100px;
+      height: 100%;
+      box-shadow: 0 0 10px #007fff, 0 0 5px #007fff;
+      opacity: 1;
+      transform: rotate(3deg) translateY(-4px)
+    }
+
+    .nprogress-custom-parent {
+      overflow: hidden;
+      position: relative
+    }
+
+    .nprogress-custom-parent #nprogress .bar,
+    .nprogress-custom-parent #nprogress .spinner {
+      position: absolute
+    }
+
+    @-webkit-keyframes nprogress-spinner {
+      0% {
+        transform: rotate(0deg)
+      }
+
+      to {
+        transform: rotate(1turn)
+      }
+    }
+
+    @keyframes nprogress-spinner {
+      0% {
+        transform: rotate(0deg)
+      }
+
+      to {
+        transform: rotate(1turn)
+      }
+    }
+
+    body {
+      font-size: 12px;
+      line-height: normal
+    }
+
+    a,
+    button,
+    input {
+      margin: initial
+    }
+
+    img {
+      width: auto;
+      height: auto
+    }
+
+    #juejin {
+      overflow-x: visible;
+      overflow-x: initial
+    }
+
+    html {
+      font-size: 12px;
+      font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial;
+      word-break: break-word;
+      text-rendering: optimizeLegibility;
+      color: #333;
+      background-color: #f4f5f5
+    }
+
+    html.white {
+      background-color: #fff
+    }
+
+    body {
+      word-break: break-word;
+      overflow-y: scroll
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      color: #909090
+    }
+
+    a:hover {
+      color: #007fff
+    }
+
+    button {
+      list-style: 1
+    }
+
+    button:disabled {
+      cursor: not-allowed
+    }
+
+    button.disabled,
+    button.disabled:hover {
+      background-color: #d2d2d2;
+      cursor: not-allowed
+    }
+
+    ul {
+      padding: 0;
+      margin: 0
+    }
+
+    li {
+      list-style: none
+    }
+
+    #juejin-seo-meta {
+      display: none
+    }
+
+    .container {
+      position: relative;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 960px
+    }
+
+    .container:after {
+      display: table;
+      content: "";
+      clear: both
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .root-view-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: -1
+    }
+
+    .shadow {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05)
+    }
+
+    .align-center {
+      text-align: center
+    }
+
+    .align-right {
+      text-align: right
+    }
+
+    .align-middle {
+      vertical-align: middle
+    }
+
+    .center {
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .text-normal {
+      color: #333
+    }
+
+    .text-muted {
+      color: #666
+    }
+
+    .text-muted1 {
+      color: #909090
+    }
+
+    .text-muted2 {
+      color: #838383
+    }
+
+    .text-gray {
+      color: #909090
+    }
+
+    .text-light {
+      color: #d2d2d2
+    }
+
+    .text-blue {
+      color: #007fff
+    }
+
+    .text-blue-hover {
+      color: #0371df
+    }
+
+    .text-green {
+      color: #37c700
+    }
+
+    .text-green-hover {
+      color: #3cb40e
+    }
+
+    .text-orange {
+      color: #ff8900
+    }
+
+    .text-red {
+      color: #e22323
+    }
+
+    .text-a,
+    .text-link {
+      cursor: pointer;
+      color: #333
+    }
+
+    @include transition(color $speed-normal);
+
+    .text-a:active,
+    .text-a:hover,
+    .text-link:active,
+    .text-link:hover {
+      color: #275b8c
+    }
+
+    .text-link {
+      color: #259
+    }
+
+    .text-pointer {
+      cursor: pointer
+    }
+
+    .line-wrap {
+      white-space: pre-wrap;
+      word-break: break-all
+    }
+
+    .ellipsis {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .text-bold,
+    b,
+    strong {
+      font-weight: 700
+    }
+
+    .view-nav {
+      position: fixed;
+      top: 5rem;
+      width: 100%;
+      height: 3.833rem;
+      z-index: 100;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+      transition: all .2s;
+      transform: translateZ(0)
+    }
+
+    .view-nav,
+    .view-nav:before {
+      left: 0;
+      background-color: #fff
+    }
+
+    .view-nav:before {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 200%;
+      z-index: -1
+    }
+
+    .view-nav.top {
+      transform: translate3d(0, -5rem, 0)
+    }
+
+    .view-nav .nav-list {
+      max-width: 960px;
+      height: 100%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      line-height: 1
+    }
+
+    .view-nav .nav-list .nav-item {
+      height: 100%;
+      align-items: center;
+      display: flex;
+      flex-shrink: 0;
+      font-size: 1.16rem;
+      color: #71777c;
+      padding: 0 1rem
+    }
+
+    .view-nav .nav-list .nav-item:first-child {
+      padding: 0 1rem 0 0
+    }
+
+    .view-nav .nav-list .nav-item:last-child {
+      padding: 0 0 0 1rem
+    }
+
+    .view-nav .nav-list .nav-item.active,
+    .view-nav .nav-list .nav-item:hover {
+      color: #007fff
+    }
+
+    .view-nav .nav-list .nav-item a {
+      color: inherit
+    }
+
+    .nav-item {
+      position: relative;
+      cursor: pointer
+    }
+
+    .nav-item>a:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0
+    }
+
+    @media (max-width:980px) {
+      .view-nav .nav-list {
+        width: auto;
+        overflow-x: auto
+      }
+
+      .view-nav .nav-list .nav-item:first-child,
+      .view-nav .nav-list .nav-item:last-child {
+        padding: 0 1.5rem
+      }
+    }
+
+    .list-header {
+      padding: 1.3rem 1rem;
+      border-bottom: 1px solid hsla(0, 0%, 59.2%, .1)
+    }
+
+    .list-header .list-nav,
+    .list-header .nav-list {
+      display: flex;
+      justify-content: space-between
+    }
+
+    .list-header .nav-list {
+      align-items: center;
+      line-height: 1
+    }
+
+    .list-header .nav-list .nav-item.active a,
+    .list-header .nav-list .nav-item a:hover {
+      color: #007fff
+    }
+
+    .list-header .left .nav-item {
+      padding: 0 1.2rem;
+      font-size: 1.16rem;
+      border-right: 1px solid hsla(0, 0%, 59.2%, .2)
+    }
+
+    .list-header .left .nav-item:last-child {
+      border: none
+    }
+
+    .list-header .right .nav-item {
+      font-size: 1.16rem;
+      padding: 0 .7rem;
+      position: relative
+    }
+
+    .list-header .right .nav-item:not(:last-child):after {
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      content: "";
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      background-color: #2b445d;
+      transform: translateY(-50%);
+      opacity: .5
+    }
+
+    @media (max-width:600px) {
+      .list-header .right {
+        display: none
+      }
+    }
+
+    .button,
+    button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: #007fff;
+      color: #fff;
+      border-radius: 2px;
+      border: none;
+      padding: .5rem 1.3rem;
+      outline: none;
+      transition: background-color .3s, color .3s;
+      cursor: pointer
+    }
+
+    .button:hover,
+    button:hover {
+      background-color: #0371df;
+      color: #fff
+    }
+
+    i+span {
+      margin-left: .6rem
+    }
+
+    button+button {
+      margin-left: .8rem
+    }
+
+    .subscribe-btn {
+      border: 1px solid #37c700;
+      background-color: #fff;
+      color: #37c700;
+      margin: 1rem auto;
+      font-size: 1.1rem
+    }
+
+    .subscribe-btn:hover {
+      background-color: #fff;
+      color: #3cb40e;
+      border-color: #3cb40e
+    }
+
+    .subscribe-btn.subscribed {
+      background-color: #37c700;
+      color: #fff
+    }
+
+    .subscribe-btn.subscribed:hover {
+      background-color: #3cb40e
+    }
+
+    .radio-group {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 14px
+    }
+
+    .radio-group .radio-label {
+      margin-left: 6px
+    }
+
+    input[type=radio] {
+      width: 16px;
+      height: 16px;
+      border: 1px solid #bfcbd9;
+      border-radius: 50%;
+      background-color: #fff;
+      cursor: pointer;
+      box-sizing: border-box;
+      position: relative;
+      outline: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none
+    }
+
+    input[type=radio]:after {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #fff;
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform .15s cubic-bezier(.71, -.46, .88, .6)
+    }
+
+    input[type=radio]:checked {
+      border-color: #20a0ff;
+      background: #3a9afc
+    }
+
+    input[type=radio]:checked:after {
+      transform: translate(-50%, -50%) scale(1)
+    }
+
+    input[type=radio]:disabled {
+      background-color: #eef1f6;
+      border-color: #d1dbe5;
+      cursor: not-allowed
+    }
+
+    input[type=radio]:disabled:checked {
+      border-color: #d1dbe5;
+      background-color: #d1dbe5
+    }
+
+    input[name=registerSmsCode]::-webkit-contacts-auto-fill-button {
+      display: none;
+      visibility: hidden
+    }
+
+    .editable,
+    input[type=password],
+    input[type=text],
+    input[type=url],
+    textarea {
+      resize: none;
+      outline: none;
+      width: 100%;
+      display: block;
+      box-shadow: none;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      transition: border .3s;
+      background-color: #fff;
+      box-sizing: border-box
+    }
+
+    .aside-top-section {
+      background-color: #fff;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+      border-radius: 2px;
+      margin-bottom: 1.3rem;
+      font-size: 1.16rem;
+      line-height: 1.29;
+      color: #333
+    }
+
+    .aside-top-section .aside-header {
+      padding: 1rem 1.3rem;
+      border-bottom: 1px solid hsla(0, 0%, 59.2%, .1);
+      color: #333;
+      font-size: 1.16rem
+    }
+
+    .aside-top-section .aside-list {
+      padding: 1rem 1.3rem
+    }
+
+    .aside-top-section .aside-list .item {
+      margin-bottom: 1.5rem
+    }
+
+    .busy-icon:before {
+      -webkit-animation: busy-ani 1s linear infinite;
+      animation: busy-ani 1s linear infinite
+    }
+
+    @-webkit-keyframes busy-ani {
+      to {
+        transform: rotate(1turn)
+      }
+    }
+
+    @keyframes busy-ani {
+      to {
+        transform: rotate(1turn)
+      }
+    }
+
+    .request-health-alert[data-v-ded0787a] {
+      position: fixed;
+      left: 2rem;
+      bottom: 2rem;
+      padding: 1rem;
+      max-width: 50%;
+      color: #e33;
+      background-color: #f6e3e3;
+      border: 1px solid #e99;
+      z-index: 10000
+    }
+
+    @media (max-width:600px) {
+      .request-health-alert[data-v-ded0787a] {
+        display: none
+      }
+    }
+
+    .title[data-v-ded0787a] {
+      margin: 0 0 .4em;
+      font-size: 1.5em
+    }
+
+    .content[data-v-ded0787a] {
+      line-height: 1.5
+    }
+
+    .btn[data-v-ded0787a] {
+      color: inherit;
+      text-decoration: underline;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    .close[data-v-ded0787a] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+      cursor: pointer;
+      opacity: .5
+    }
+
+    .close[data-v-ded0787a]:hover {
+      opacity: 1
+    }
+
+    .emoji-barrage .full-screen[data-v-68506677] {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1001;
+      overflow: hidden
+    }
+
+    .emoji-inner-screen[data-v-68506677] {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: translate3d(-100%, -100%, 0)
+    }
+
+    .emoji-inner-screen .template[data-v-68506677] {
+      position: relative;
+      width: 100%;
+      height: 100%
+    }
+
+    .emojin-inner-screen__0.animate[data-v-68506677] {
+      -webkit-animation: left-data-v-68506677 6s ease-in;
+      animation: left-data-v-68506677 6s ease-in
+    }
+
+    .emojin-inner-screen__1.animate[data-v-68506677] {
+      -webkit-animation: 6s ease-in normal-data-v-68506677;
+      animation: 6s ease-in normal-data-v-68506677
+    }
+
+    .emojin-inner-screen__2.animate[data-v-68506677] {
+      -webkit-animation: right-data-v-68506677 6s ease-in;
+      animation: right-data-v-68506677 6s ease-in
+    }
+
+    @-webkit-keyframes left-data-v-68506677 {
+      0% {
+        transform: translate3d(-50%, -100%, 0)
+      }
+
+      to {
+        transform: translate3d(0, 100%, 0)
+      }
+    }
+
+    @keyframes left-data-v-68506677 {
+      0% {
+        transform: translate3d(-50%, -100%, 0)
+      }
+
+      to {
+        transform: translate3d(0, 100%, 0)
+      }
+    }
+
+    @-webkit-keyframes normal-data-v-68506677 {
+      0% {
+        transform: translate3d(0, -100%, 0)
+      }
+
+      to {
+        transform: translate3d(0, 100%, 0)
+      }
+    }
+
+    @keyframes normal-data-v-68506677 {
+      0% {
+        transform: translate3d(0, -100%, 0)
+      }
+
+      to {
+        transform: translate3d(0, 100%, 0)
+      }
+    }
+
+    @-webkit-keyframes right-data-v-68506677 {
+      0% {
+        transform: translate3d(50%, -100%, 0)
+      }
+
+      to {
+        transform: translate3d(0, 100%, 0)
+      }
+    }
+
+    @keyframes right-data-v-68506677 {
+      0% {
+        transform: translate3d(50%, -100%, 0)
+      }
+
+      to {
+        transform: translate3d(0, 100%, 0)
+      }
+    }
+
+    .error-tip[data-v-a147b67e] {
+      margin: 10px 0;
+      font-size: 14px;
+      line-height: 22px;
+      color: #f03535
+    }
+
+    .modal-mask[data-v-a147b67e] {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .3);
+      z-index: 501
+    }
+
+    .bind-phone-number-form[data-v-a147b67e] {
+      position: fixed;
+      padding: 1.83rem 2.08rem;
+      width: 26.5rem;
+      max-width: 100%;
+      font-size: 1.167rem;
+      background-color: #fff;
+      border-radius: 3px;
+      box-sizing: border-box;
+      top: 50%;
+      left: 50%;
+      z-index: 501;
+      transform: translate(-50%, -60%);
+      box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .2)
+    }
+
+    .close-btn[data-v-a147b67e] {
+      float: right;
+      cursor: pointer;
+      opacity: .4
+    }
+
+    .close-btn[data-v-a147b67e]:hover {
+      opacity: 1
+    }
+
+    .title[data-v-a147b67e] {
+      font-size: 1.42rem;
+      color: #000;
+      font-weight: 600;
+      margin: 0 0 1rem
+    }
+
+    .hint[data-v-a147b67e] {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      font-weight: 400;
+      color: #000;
+      margin-bottom: 2rem
+    }
+
+    .hint>a[data-v-a147b67e] {
+      color: #007fff
+    }
+
+    .input-box[data-v-a147b67e] {
+      position: relative;
+      margin-bottom: .8rem
+    }
+
+    .dropdown-box[data-v-a147b67e] {
+      padding: 0 10px;
+      border: 1px solid #d9d9d9;
+      display: flex;
+      border-radius: 2px;
+      justify-content: center;
+      align-items: center
+    }
+
+    .dropdown-box .input[data-v-a147b67e] {
+      border: none
+    }
+
+    .dropdown-box.focus[data-v-a147b67e] {
+      border-color: #007fff
+    }
+
+    .input[data-v-a147b67e] {
+      width: 100%;
+      border: 1px solid #e9e9e9;
+      border-radius: 2px;
+      outline: none;
+      box-sizing: border-box;
+      padding: .67rem .67rem .67rem 4px
+    }
+
+    .input[data-v-a147b67e]:focus {
+      border-color: #007fff
+    }
+
+    .number-input[data-v-a147b67e] {
+      width: 74%
+    }
+
+    .btn[data-v-a147b67e] {
+      width: 100%;
+      height: 2.92rem;
+      color: #fff;
+      background-color: #007fff;
+      border-radius: 2px;
+      outline: none;
+      box-sizing: border-box;
+      cursor: pointer
+    }
+
+    .btn[data-v-a147b67e]:disabled {
+      background-color: #909090;
+      cursor: default
+    }
+
+    .vcode-box[data-v-a147b67e] {
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+
+    .vcode-box .input[data-v-a147b67e] {
+      width: auto;
+      flex-grow: 1;
+      overflow: hidden
+    }
+
+    .vcode-box .img-vcode[data-v-a147b67e] {
+      border: 1px solid #ddd;
+      position: relative;
+      box-sizing: border-box;
+      overflow: hidden;
+      z-index: 0;
+      width: 160px;
+      color: #333;
+      height: 40px;
+      margin-left: 15px;
+      flex-shrink: 0
+    }
+
+    .vcode-box .img-vcode img[data-v-a147b67e] {
+      max-height: 46px
+    }
+
+    .vcode-box .img-vcode .hint[data-v-a147b67e] {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: center
+    }
+
+    .send-vcode-btn[data-v-a147b67e] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      color: #007fff;
+      font-size: 1.25rem;
+      line-height: 1;
+      background-color: transparent
+    }
+
+    .send-vcode-btn[data-v-a147b67e]:disabled {
+      color: #909090;
+      cursor: default
+    }
+
+    .send-vcode-btn[data-v-a147b67e]:hover(:not(:disabled)) {
+      opacity: .8
+    }
+
+    .masker-fade-enter-active[data-v-a147b67e],
+    .masker-fade-leave-active[data-v-a147b67e] {
+      transition: opacity .3s
+    }
+
+    .masker-fade-enter[data-v-a147b67e],
+    .masker-fade-leave-to[data-v-a147b67e] {
+      opacity: 0
+    }
+
+    .form-fade-enter-active[data-v-a147b67e],
+    .form-fade-leave-active[data-v-a147b67e] {
+      transition: .3s
+    }
+
+    .form-fade-enter[data-v-a147b67e],
+    .form-fade-leave-to[data-v-a147b67e] {
+      transform: translate(-50%, -52%);
+      opacity: 0
+    }
+
+    .dropdown-input-container[data-v-02053067] {
+      height: 100%;
+      display: flex
+    }
+
+    .dropdown-input-container input[data-v-02053067] {
+      border: none;
+      outline: none;
+      width: 32px;
+      margin: 0;
+      padding: 0
+    }
+
+    .dropdown-input-container .dropdown-input-box[data-v-02053067]:before {
+      content: "+"
+    }
+
+    .dropdown-input-container .arrow[data-v-02053067] {
+      cursor: pointer;
+      transition: all .45s cubic-bezier(.8, .15, .15, .86)
+    }
+
+    .dropdown-input-container .dropdown-pannel[data-v-02053067] {
+      position: absolute;
+      width: 220px;
+      max-height: 188px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .08);
+      border: 1px solid #e8e8e8;
+      background-color: #fff;
+      overflow-y: auto;
+      z-index: 200;
+      top: 40px;
+      left: -2px
+    }
+
+    .dropdown-input-container li.item[data-v-02053067] {
+      padding: 8px 10px;
+      font-size: 14px;
+      line-height: 20px;
+      justify-content: space-between;
+      display: flex
+    }
+
+    .dropdown-input-container li.item[data-v-02053067]:hover {
+      cursor: pointer;
+      background-color: #f5f5f5
+    }
+
+    .dropdown-input-container li.item.selected[data-v-02053067] {
+      color: #007fff
+    }
+
+    .dropdown-input-container li>span[data-v-02053067]:last-child {
+      color: #999
+    }
+
+    @font-face {
+      font-family: "iconfont";
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358);
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358#iefix) format("embedded-opentype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.woff?t=1470110358) format("woff"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.ttf?t=1470110358) format("truetype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.svg?t=1470110358#iconfont) format("svg")
+    }
+
+    .iconfont[data-v-fd96002c] {
+      font-family: "iconfont" !important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    }
+
+    .icon-xlcollection[data-v-fd96002c]:before {
+      content: "\e600"
+    }
+
+    .icon-xlchatbox[data-v-fd96002c]:before {
+      content: "\e601"
+    }
+
+    .column-view[data-v-fd96002c] {
+      padding: 0 0 8rem
+    }
+
+    .main-area[data-v-fd96002c] {
+      position: relative;
+      width: 700px;
+      max-width: 100%;
+      background-color: #fff;
+      border-radius: 2px;
+      box-sizing: border-box
+    }
+
+    .main-area[data-v-fd96002c]:after {
+      display: table;
+      content: "";
+      clear: both
+    }
+
+    .article-area[data-v-fd96002c] {
+      margin-bottom: 1.5rem;
+      padding: 0 2rem
+    }
+
+    .article[data-v-fd96002c] {
+      margin-bottom: 3rem;
+      padding: 2rem 0 0
+    }
+
+    .article-placeholder[data-v-fd96002c] {
+      width: 100%
+    }
+
+    .author-info-block[data-v-fd96002c] {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem
+    }
+
+    .author-info-block .avatar-link[data-v-fd96002c] {
+      font-size: 0
+    }
+
+    .author-info-block .avatar[data-v-fd96002c] {
+      flex: 0 0 auto;
+      margin-right: 1rem;
+      width: 3.333rem;
+      height: 3.333rem;
+      border-radius: 50%
+    }
+
+    .author-info-block .author-info-box[data-v-fd96002c] {
+      min-width: 0;
+      flex-grow: 1;
+      flex: 1;
+      height: 43px
+    }
+
+    .author-info-block .author-info-box .activity-in-progress[data-v-fd96002c] {
+      width: 100px;
+      height: 19px;
+      display: inline-block;
+      background-size: contain;
+      background-repeat: no-repeat;
+      vertical-align: sub
+    }
+
+    .author-info-block .author-name[data-v-fd96002c] {
+      height: 22px
+    }
+
+    .author-info-block .author-name .username[data-v-fd96002c] {
+      display: inline-block;
+      width: 100%;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #333
+    }
+
+    @media (max-width:600px) {
+      .author-info-block .follow[data-v-fd96002c] {
+        margin-top: 12px
+      }
+    }
+
+    .meta-box[data-v-fd96002c] {
+      font-size: 1.1rem;
+      color: #909090;
+      margin-top: .25rem
+    }
+
+    .meta-box.team[data-v-fd96002c] {
+      font-size: 1.167rem;
+      line-height: 20px;
+      color: rgba(119, 34, 119, .467) B
+    }
+
+    @media (max-width:600px) {
+      .meta-box.team[data-v-fd96002c] {
+        font-size: 1rem;
+        line-height: 1.417rem
+      }
+    }
+
+    .meta-box .time[data-v-fd96002c] {
+      letter-spacing: 1px
+    }
+
+    .meta-box .views-count[data-v-fd96002c] {
+      margin-left: .5em
+    }
+
+    .meta-box .dot[data-v-fd96002c] {
+      margin: 0 .5em
+    }
+
+    @media (max-width:600px) {
+      .meta-box .dot[data-v-fd96002c] {
+        margin: 0 .2em
+      }
+    }
+
+    .meta-box .edit-btn[data-v-fd96002c] {
+      color: #1264b6;
+      cursor: pointer
+    }
+
+    .meta-box .edit-btn[data-v-fd96002c]:hover {
+      text-decoration: underline
+    }
+
+    .article-hero[data-v-fd96002c] {
+      margin-bottom: 2rem;
+      width: 100%
+    }
+
+    .article-hero[data-v-fd96002c]:after {
+      content: "";
+      display: block;
+      padding-top: 56.29%;
+      width: 100%;
+      pointer-events: none
+    }
+
+    .article-title[data-v-fd96002c] {
+      margin: .67em 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.5
+    }
+
+    @media (max-width:600px) {
+      .article-title[data-v-fd96002c] {
+        font-size: 2rem
+      }
+    }
+
+    .article-title .audit-tag-wrap[data-v-fd96002c] {
+      transform: translateY(-.5em)
+    }
+
+    .tag-list-box[data-v-fd96002c] {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e5e6eb
+    }
+
+    .tag-list-box .tag-list[data-v-fd96002c] {
+      display: flex;
+      font-size: 1.167rem;
+      line-height: 2.286
+    }
+
+    .tag-list-box .tag-list[data-v-fd96002c]:first-child:not(:last-child) {
+      margin-right: 1.42rem;
+      flex-shrink: 0
+    }
+
+    .tag-list-box .tag-list .tag-list-title[data-v-fd96002c] {
+      flex-shrink: 0;
+      margin-right: 1rem;
+      font-weight: 500
+    }
+
+    .tag-list-box .tag-list .tag-list-container[data-v-fd96002c] {
+      display: flex;
+      flex-wrap: wrap
+    }
+
+    .tag-list-box .tag-list .item[data-v-fd96002c] {
+      display: flex;
+      align-items: center;
+      margin: 0 .667rem 1rem 0;
+      padding: 0 .667rem;
+      border-radius: 2px;
+      background-color: #fafafa;
+      color: #4e5969
+    }
+
+    .tag-list-box .tag-list .item[data-v-fd96002c]:hover {
+      background-color: #f5f5f5;
+      color: #414a58
+    }
+
+    .tag-list-box .tag-list .tag-icon[data-v-fd96002c] {
+      width: 1.667rem;
+      height: 1.667rem;
+      margin-right: .667rem;
+      border-radius: 2px;
+      -o-object-fit: contain;
+      object-fit: contain
+    }
+
+    .tag-list-box .tag-list .tag-title[data-v-fd96002c] {
+      white-space: nowrap;
+      line-height: 2.667rem
+    }
+
+    .wechat-banner[data-v-fd96002c] {
+      margin-bottom: 2rem
+    }
+
+    @media (min-width:960px) {
+      .wechat-banner[data-v-fd96002c] {
+        display: none
+      }
+    }
+
+    .book-box[data-v-fd96002c] {
+      margin-bottom: 2rem
+    }
+
+    @media (min-width:960px) {
+      .book-box[data-v-fd96002c] {
+        display: none
+      }
+    }
+
+    .footer-author-block[data-v-fd96002c] {
+      padding: 15px 17px;
+      border-radius: 2px;
+      background-color: #f4f5f5;
+      margin-bottom: 2rem
+    }
+
+    @media (max-width:600px) {
+      .footer-author-block[data-v-fd96002c] {
+        padding: 15px 1rem
+      }
+    }
+
+    .article-banner[data-v-fd96002c] {
+      margin-bottom: 2.5rem;
+      padding: 0 0 0 2rem;
+      border-left: 6px solid #ddd
+    }
+
+    .article-banner .banner-title[data-v-fd96002c] {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: #007fff
+    }
+
+    .article-banner .banner-content[data-v-fd96002c] {
+      margin-top: .2rem;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      color: #909090
+    }
+
+    .comment-box[data-v-fd96002c] {
+      padding: 0 2rem
+    }
+
+    .comment-box.extended[data-v-fd96002c] {
+      padding-bottom: 2rem
+    }
+
+    @media (max-width:600px) {
+      .comment-box[data-v-fd96002c] {
+        padding: 0
+      }
+    }
+
+    .comment-box .comment-title[data-v-fd96002c] {
+      margin-bottom: 1.3rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      text-align: center;
+      color: #909090
+    }
+
+    .comment-box .comment-form[data-v-fd96002c] {
+      margin-bottom: 1rem
+    }
+
+    .recommended-entry-list-title[data-v-fd96002c] {
+      padding: 1.3rem 2rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #909090;
+      border-bottom: 1px solid rgba(178, 186, 194, .15)
+    }
+
+    .sidebar[data-v-fd96002c] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20rem
+    }
+
+    .article-suspended-panel[data-v-fd96002c] {
+      position: fixed;
+      margin-left: -7rem;
+      top: 16rem
+    }
+
+    .action-bar[data-v-fd96002c] {
+      position: fixed;
+      z-index: 1;
+      bottom: 0;
+      width: 100%;
+      left: 0
+    }
+
+    @media (max-width:960px) {
+      .sidebar[data-v-fd96002c] {
+        display: none
+      }
+
+      .main-area[data-v-fd96002c] {
+        width: 100%
+      }
+
+      .article-area[data-v-fd96002c] {
+        margin-bottom: 0
+      }
+
+      .open-in-app[data-v-fd96002c] {
+        bottom: 6rem
+      }
+    }
+
+    .border[data-v-fd96002c] {
+      border-bottom: 1px solid rgba(178, 186, 194, .15)
+    }
+
+    .originalUrl[data-v-fd96002c] {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .originalUrl a[data-v-fd96002c] {
+      color: #259
+    }
+
+    .team-follow[data-v-fd96002c] {
+      margin-bottom: 2rem
+    }
+
+    .team-user[data-v-fd96002c] {
+      display: flex;
+      align-items: center
+    }
+
+    .team-user .avatar[data-v-fd96002c] {
+      flex: none;
+      width: 1.667rem;
+      height: 1.667rem;
+      border-radius: 50%;
+      margin-right: .3rem
+    }
+
+    .team-user .username[data-v-fd96002c] {
+      flex-shrink: 1;
+      font-size: 14px;
+      line-height: 16px;
+      color: #8a9aa9;
+      max-width: calc(100% - 10rem);
+      display: flex
+    }
+
+    .team-user .username[data-v-fd96002c] a {
+      flex: none
+    }
+
+    .team-user .username[data-v-fd96002c] .name {
+      flex: auto;
+      font-weight: 400
+    }
+
+    .team-user .position[data-v-fd96002c] {
+      flex-shrink: 2;
+      margin-left: 1rem;
+      font-size: 14px;
+      line-height: 16px;
+      color: #8a9aa9
+    }
+
+
+    .main-header[data-v-6a3e47cf] {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      transition: all .2s;
+      transform: translate3d(0, -100%, 0)
+    }
+
+    .main-header.visible[data-v-6a3e47cf] {
+      transform: translateZ(0)
+    }
+
+    .main-container>.view[data-v-6a3e47cf] {
+      margin-top: 1.767rem
+    }
+
+    .main-container.with-view-nav>.view[data-v-6a3e47cf] {
+      margin-top: 4.67rem
+    }
+
+    .main-container.tight>.view[data-v-6a3e47cf] {
+      margin-top: 0
+    }
+
+    .main-container.tight.with-view-nav>.view[data-v-6a3e47cf] {
+      margin-top: 3.833rem
+    }
+
+    @font-face {
+      font-family: "iconfont";
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358);
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358#iefix) format("embedded-opentype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.woff?t=1470110358) format("woff"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.ttf?t=1470110358) format("truetype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.svg?t=1470110358#iconfont) format("svg")
+    }
+
+    .iconfont[data-v-1ecf1f8d] {
+      font-family: "iconfont" !important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    }
+
+    .icon-xlcollection[data-v-1ecf1f8d]:before {
+      content: "\e600"
+    }
+
+    .icon-xlchatbox[data-v-1ecf1f8d]:before {
+      content: "\e601"
+    }
+
+    .logo[data-v-1ecf1f8d] {
+      min-width: 98px;
+      margin-right: 2rem
+    }
+
+    .nav-item a[data-v-1ecf1f8d] {
+      color: #71777c
+    }
+
+    .nav-item.active>.icon[data-v-1ecf1f8d],
+    .nav-item.active>a[data-v-1ecf1f8d] {
+      color: #007fff
+    }
+
+    .nav-item.discount[data-v-1ecf1f8d]:after {
+      content: "";
+      position: absolute;
+      width: 35px;
+      height: 28px;
+      background-size: 35px 28px;
+      right: -14px;
+      top: 10px
+    }
+
+    .nav-menu-item>a[data-v-1ecf1f8d] {
+      display: block;
+      color: #71777c
+    }
+
+    .avatar[data-v-1ecf1f8d] {
+      width: 2.5rem;
+      height: 2.5rem;
+      position: relative
+    }
+
+    .avatar[data-v-1ecf1f8d],
+    .badge[data-v-1ecf1f8d] {
+      border-radius: 50%
+    }
+
+    .badge[data-v-1ecf1f8d] {
+      position: absolute;
+      top: 10px;
+      right: -5px;
+      width: 11px;
+      height: 11px;
+      background-color: #2f74e9
+    }
+
+    .main-header[data-v-1ecf1f8d] {
+      background: #fff;
+      border-bottom: 1px solid #f1f1f1;
+      color: #909090;
+      height: 5rem;
+      z-index: 250
+    }
+
+    .main-header .container[data-v-1ecf1f8d] {
+      max-width: 960px;
+      margin: auto
+    }
+
+    .container[data-v-1ecf1f8d] {
+      display: flex;
+      align-items: center;
+      height: 100%
+    }
+
+    .main-nav[data-v-1ecf1f8d] {
+      height: 100%;
+      flex: 1 0 auto
+    }
+
+    .main-nav-list[data-v-1ecf1f8d] {
+      display: flex
+    }
+
+    .phone-show-menu[data-v-1ecf1f8d] {
+      cursor: pointer;
+      display: none
+    }
+
+    .phone-hide[data-v-1ecf1f8d] {
+      display: flex
+    }
+
+    .nav-list[data-v-1ecf1f8d] {
+      justify-content: flex-end;
+      position: relative
+    }
+
+    .nav-item[data-v-1ecf1f8d],
+    .nav-list[data-v-1ecf1f8d] {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      margin: 0
+    }
+
+    .nav-item[data-v-1ecf1f8d] {
+      color: #71777c;
+      padding: 0 1.2rem;
+      font-size: 1.33rem;
+      justify-content: center;
+      cursor: pointer
+    }
+
+    .nav-item.activities .tip[data-v-1ecf1f8d] {
+      z-index: 2;
+      cursor: auto;
+      width: 17rem;
+      background: #fff;
+      padding: 1rem;
+      display: flex;
+      justify-content: flex-start;
+      position: absolute;
+      top: 4.5rem;
+      left: -50%;
+      margin-left: -3.7rem;
+      color: #17181a;
+      font-size: 15px;
+      border-radius: 2px;
+      box-shadow: 0 2px 20px 0 rgba(0, 0, 0, .12)
+    }
+
+    .nav-item.activities .tip .panfish[data-v-1ecf1f8d] {
+      height: 63px;
+      width: 57px;
+      flex: 0 0 auto;
+      background-repeat: no-repeat;
+      background-size: contain
+    }
+
+    .nav-item.activities .tip .content[data-v-1ecf1f8d] {
+      display: flex;
+      flex-direction: column;
+      padding: .5rem 0 0 .5rem;
+      color: #17181a
+    }
+
+    .nav-item.activities .tip .content button[data-v-1ecf1f8d] {
+      padding: 0;
+      width: 6.41rem;
+      height: 2rem;
+      color: #fff;
+      font-size: 13px;
+      border-radius: 12px;
+      margin-top: .5rem
+    }
+
+    .nav-item.activities .tip .triangle[data-v-1ecf1f8d] {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 1rem;
+      height: 1rem;
+      transform: translate(-50%, -50%) rotate(45deg);
+      background: #fff;
+      border-top: 1px solid #f4f5f5;
+      border-left: 1px solid #f4f5f5
+    }
+
+    .nav-item.activities .tip .close[data-v-1ecf1f8d] {
+      cursor: pointer;
+      width: 1rem;
+      height: 1rem;
+      position: absolute;
+      top: .5rem;
+      right: .5rem;
+      border-radius: 50%;
+      background: #fff;
+      transform: rotate(45deg)
+    }
+
+    .nav-item.activities .tip .close[data-v-1ecf1f8d]:after,
+    .nav-item.activities .tip .close[data-v-1ecf1f8d]:before {
+      content: "";
+      width: .8rem;
+      height: 2px;
+      display: block;
+      position: absolute;
+      background: #c5c5c5;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%)
+    }
+
+    .nav-item.activities .tip .close[data-v-1ecf1f8d]:after {
+      transform: translate(-50%, -50%) rotate(90deg)
+    }
+
+    .nav-item.activities .tip .close[data-v-1ecf1f8d]:hover {
+      opacity: .8
+    }
+
+    .nav-item .login-button[data-v-1ecf1f8d] {
+      border: 1px solid #007fff;
+      background-color: #fff;
+      padding: .3rem 1.6rem;
+      color: #007fff;
+      line-height: 1.9rem
+    }
+
+    .nav-item:hover>a[data-v-1ecf1f8d] {
+      color: #007fff
+    }
+
+    .nav-item[data-v-1ecf1f8d]:last-child {
+      padding-right: 0
+    }
+
+    .nav-item.link-item[data-v-1ecf1f8d] {
+      padding: 0 1.5rem;
+      height: 5rem
+    }
+
+    .nav-item.book.new-year a[data-v-1ecf1f8d]:after {
+      left: 0;
+      top: 0;
+      position: absolute;
+      content: "";
+      background-position: 50%;
+      background-repeat: no-repeat;
+      background-size: 60px auto;
+      width: 100%;
+      height: 100%
+    }
+
+    .nav-item a.activity-entry[data-v-1ecf1f8d] {
+      display: inline-block;
+      width: 132px;
+      height: 18px;
+      background-repeat: no-repeat;
+      background-size: contain
+    }
+
+    .nav-item a.activity-entry-mobile[data-v-1ecf1f8d] {
+      display: none;
+      color: #e6b644
+    }
+
+    .nav-item.search[data-v-1ecf1f8d] {
+      flex: 1 1 auto;
+      justify-content: flex-end;
+      cursor: auto
+    }
+
+    .nav-item.add[data-v-1ecf1f8d] {
+      cursor: default
+    }
+
+    .nav-item.notification:hover .icon[data-v-1ecf1f8d] {
+      color: #007fff
+    }
+
+    .nav-item.menu[data-v-1ecf1f8d],
+    .nav-item.submit[data-v-1ecf1f8d] {
+      position: relative
+    }
+
+    .nav-item.submit[data-v-1ecf1f8d] {
+      color: #007fff
+    }
+
+    .nav-item.submit[data-v-1ecf1f8d]:hover {
+      color: #0371df
+    }
+
+    .nav-item.submit[data-v-1ecf1f8d]:after {
+      content: "|";
+      position: absolute;
+      top: 20px;
+      left: 100%;
+      color: hsla(0, 0%, 59.2%, .4)
+    }
+
+    .nav-item.submit .submit-panel[data-v-1ecf1f8d] {
+      position: absolute;
+      top: 101%;
+      left: -123px;
+      width: 326px;
+      box-sizing: border-box;
+      padding: 2.5rem 2rem;
+      border-radius: 2px;
+      color: #909090;
+      font-size: 1.1rem;
+      background-color: #fff;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+      border: 1px solid rgba(178, 181, 187, .5);
+      cursor: default;
+      z-index: 11
+    }
+
+    .nav-item.submit .submit-panel[data-v-1ecf1f8d]:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 1rem;
+      height: 1rem;
+      border-top: 1px solid rgba(178, 181, 187, .5);
+      border-left: 1px solid rgba(178, 181, 187, .5);
+      background-color: #fff;
+      transform: rotate(45deg) translate(-50%, -50%);
+      transform-origin: 0 0
+    }
+
+    .nav-item.submit .submit-panel .title[data-v-1ecf1f8d] {
+      font-size: 1.4rem;
+      line-height: 1;
+      font-weight: 700;
+      color: #000;
+      text-align: center;
+      margin-bottom: 2rem
+    }
+
+    .nav-item.submit .submit-panel .benefit-list[data-v-1ecf1f8d] {
+      margin-left: 2rem
+    }
+
+    .nav-item.submit .submit-panel .item[data-v-1ecf1f8d] {
+      list-style: disc outside none;
+      list-style: initial;
+      margin-bottom: 1rem
+    }
+
+    .nav-item.submit .submit-panel .link[data-v-1ecf1f8d] {
+      color: #6cbd45;
+      text-decoration: underline
+    }
+
+    .nav-item.submit .submit-panel button[data-v-1ecf1f8d] {
+      display: block;
+      margin: 2rem auto 0;
+      background-color: #83c73a;
+      font-size: 1.2rem;
+      padding: 1rem 4rem
+    }
+
+    .nav-item.auth[data-v-1ecf1f8d] {
+      color: #007fff;
+      padding: 0
+    }
+
+    .nav-item.auth span[data-v-1ecf1f8d]:hover {
+      color: #0371df
+    }
+
+    .nav-item.auth .login[data-v-1ecf1f8d]:after {
+      content: "·";
+      margin: 0 .4rem
+    }
+
+    .nav-item .icon[data-v-1ecf1f8d] {
+      font-size: 2rem;
+      color: #71777c
+    }
+
+    .nav-item .icon[data-v-1ecf1f8d]:hover {
+      color: #007fff
+    }
+
+    .submit-fixed-bg[data-v-1ecf1f8d] {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      z-index: 10
+    }
+
+    .search-form[data-v-1ecf1f8d] {
+      border: 1px solid hsla(0, 0%, 59.2%, .2);
+      background-color: rgba(227, 231, 236, .2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 2px;
+      position: relative
+    }
+
+    .search-form.active[data-v-1ecf1f8d] {
+      background-color: #fff;
+      border: 1px solid #007fff
+    }
+
+    .search-form .search-icon[data-v-1ecf1f8d] {
+      padding: 0 .5rem;
+      cursor: pointer
+    }
+
+    .search-form .search-input[data-v-1ecf1f8d] {
+      border: none;
+      width: 11rem;
+      padding: .6rem 0 .6rem 1rem;
+      box-shadow: none;
+      outline: none;
+      font-size: 1.1rem;
+      color: #666;
+      background-color: transparent
+    }
+
+    .nav-menu[data-v-1ecf1f8d] {
+      position: absolute;
+      width: 11rem;
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: #fff;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+      border: 1px solid rgba(177, 180, 185, .45);
+      border-radius: 4px;
+      font-size: 1.2rem
+    }
+
+    .nav-menu .nav-menu-item-group[data-v-1ecf1f8d] {
+      padding: 1rem 0
+    }
+
+    .nav-menu .nav-menu-item[data-v-1ecf1f8d] {
+      font-size: 1.3rem;
+      cursor: pointer;
+      white-space: nowrap
+    }
+
+    .nav-menu .nav-menu-item[data-v-1ecf1f8d]:hover {
+      background-color: hsla(0, 0%, 94.9%, .5)
+    }
+
+    .nav-menu .nav-menu-item>a[data-v-1ecf1f8d] {
+      display: flex;
+      align-items: center;
+      padding: .5rem 1rem
+    }
+
+    .nav-menu .nav-menu-item>a>span[data-v-1ecf1f8d] {
+      margin-left: 0;
+      flex-grow: 1
+    }
+
+    .nav-menu .nav-menu-item>a.link-icon[data-v-1ecf1f8d] {
+      padding-right: .5rem
+    }
+
+    .nav-menu .nav-menu-item .collect[data-v-1ecf1f8d],
+    .nav-menu .nav-menu-item .zan[data-v-1ecf1f8d] {
+      margin-right: .8rem;
+      width: 18.72px;
+      height: 18px
+    }
+
+    .nav-menu .nav-menu-item .icon-2018[data-v-1ecf1f8d] {
+      width: 38px;
+      height: 20px;
+      border-radius: 1rem;
+      margin-left: 2px;
+      background-image: url(https://gold-cdn.xitu.io/asset/2018/2018-icon.png);
+      background-size: 102% 100%;
+      background-repeat: no-repeat;
+      box-shadow: 3px 3px 6px -3px #999
+    }
+
+    .nav-menu .nav-menu-item .icon-2018[data-v-1ecf1f8d]:hover {
+      opacity: .9
+    }
+
+    .nav-menu .more[data-v-1ecf1f8d] {
+      position: relative
+    }
+
+    .nav-menu .more:hover .more-dropdown-list[data-v-1ecf1f8d] {
+      display: block
+    }
+
+    .nav-menu .more .more-icon[data-v-1ecf1f8d] {
+      float: right;
+      color: #b2bac2;
+      font-size: 1.2rem;
+      line-height: 2rem
+    }
+
+    .nav-menu.user-dropdown-list[data-v-1ecf1f8d] {
+      width: -webkit-fit-content;
+      width: -moz-fit-content;
+      width: fit-content;
+      min-width: 13.1rem;
+      right: 0;
+      left: auto;
+      transform: translateX(0)
+    }
+
+    .nav-menu.user-dropdown-list .nav-menu-item-group[data-v-1ecf1f8d]:not(:last-child) {
+      border-bottom: 1px solid rgba(0, 0, 0, .04)
+    }
+
+    .add-group[data-v-1ecf1f8d] {
+      display: flex;
+      align-items: center;
+      position: relative;
+      height: 2.667rem;
+      cursor: pointer
+    }
+
+    .add-group.active .more-list[data-v-1ecf1f8d] {
+      display: block
+    }
+
+    .add-group .add-btn[data-v-1ecf1f8d],
+    .add-group .more[data-v-1ecf1f8d] {
+      height: 100%;
+      color: #fff;
+      background-color: #007fff;
+      border-radius: 3px
+    }
+
+    .add-group .add-btn.active[data-v-1ecf1f8d],
+    .add-group .add-btn[data-v-1ecf1f8d]:hover,
+    .add-group .more.active[data-v-1ecf1f8d],
+    .add-group .more[data-v-1ecf1f8d]:hover {
+      background-color: #0876e4
+    }
+
+    .add-group .add-btn[data-v-1ecf1f8d] {
+      padding: 0 .9rem;
+      font-size: 1.167rem;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0
+    }
+
+    .add-group .more[data-v-1ecf1f8d] {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.25rem;
+      border-left: 1px solid hsla(0, 0%, 100%, .1);
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0
+    }
+
+    .add-group .more .more-icon[data-v-1ecf1f8d] {
+      margin-top: .2rem;
+      font-size: 1rem
+    }
+
+    .add-group .more-list[data-v-1ecf1f8d] {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      padding: .417rem 0;
+      font-size: 1.167rem;
+      color: #3b76c5;
+      background-color: #fff;
+      border: 1px solid #ebebeb;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+      display: none;
+      z-index: 1
+    }
+
+    .add-group .more-list .item[data-v-1ecf1f8d] {
+      padding: 0 0 0 .8rem;
+      line-height: 1.9
+    }
+
+    .add-group .more-list .item[data-v-1ecf1f8d]:hover {
+      background-color: #f9f9f9
+    }
+
+    .more-dropdown-list[data-v-1ecf1f8d] {
+      position: absolute;
+      left: auto;
+      top: 0;
+      right: 102%;
+      transform: translateX(0);
+      display: none
+    }
+
+    .more-dropdown-list[data-v-1ecf1f8d]:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 1.3rem;
+      height: 4rem
+    }
+
+    .notification[data-v-1ecf1f8d] {
+      position: relative
+    }
+
+    .notification.active .icon[data-v-1ecf1f8d] {
+      color: #007fff
+    }
+
+    .notification .count[data-v-1ecf1f8d] {
+      position: absolute;
+      left: 50%;
+      bottom: 43%;
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1;
+      text-align: center;
+      background-color: #007fff;
+      border-radius: 3rem;
+      word-break: normal;
+      display: inline-block;
+      color: #f1f1f1;
+      transform: scale(.8);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 3px 6px;
+      background: #f03535;
+      border-radius: 100px;
+      border: 2px solid #fff
+    }
+
+    .fengwei[data-v-1ecf1f8d] {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      margin-right: .8rem;
+      font-size: 1.2em;
+      vertical-align: middle;
+      color: #b2bac2
+    }
+
+    .fix-bg[data-v-1ecf1f8d] {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 0
+    }
+
+    .mobile[data-v-1ecf1f8d] {
+      display: none
+    }
+
+    @media (max-width:980px) {
+      .logo[data-v-1ecf1f8d] {
+        margin-right: 0;
+        margin-left: .67rem
+      }
+
+      .container[data-v-1ecf1f8d] {
+        width: 96%
+      }
+
+      .main-nav-list[data-v-1ecf1f8d] {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+        z-index: 1
+      }
+
+      .phone-show-menu[data-v-1ecf1f8d] {
+        height: 5rem;
+        display: flex;
+        align-items: center;
+        color: #007fff;
+        font-size: 1.33rem;
+        justify-content: center;
+        padding: 0;
+        width: 5.66rem
+      }
+
+      .phone-show-menu span[data-v-1ecf1f8d] {
+        margin-right: .6rem
+      }
+
+      .phone-hide[data-v-1ecf1f8d] {
+        display: none;
+        background-color: #fff;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+        border: 1px solid rgba(177, 180, 185, .45);
+        border-radius: 4px;
+        font-size: 1.2rem
+      }
+
+      .phone-hide.show[data-v-1ecf1f8d] {
+        display: block
+      }
+
+      .phone-hide .nav-item a.activity-entry[data-v-1ecf1f8d] {
+        display: none
+      }
+
+      .phone-hide .nav-item .activity-entry-mobile[data-v-1ecf1f8d] {
+        display: inline-block
+      }
+
+      .nav-item.link-item[data-v-1ecf1f8d] {
+        height: 4rem
+      }
+
+      .nav-item.add[data-v-1ecf1f8d],
+      .nav-item.submit[data-v-1ecf1f8d],
+      .pinTip[data-v-1ecf1f8d] {
+        display: none
+      }
+
+      .tip[data-v-1ecf1f8d] {
+        display: none !important
+      }
+
+      .nav-menu .nav-menu-item .icon-2018[data-v-1ecf1f8d] {
+        width: 35px;
+        margin-left: 0
+      }
+    }
+
+    @media (max-width:700px) {
+      .nav-item.search[data-v-1ecf1f8d] {
+        display: flex;
+        padding-right: 1.2rem
+      }
+
+      .nav-item .search-form .search-input[data-v-1ecf1f8d] {
+        width: 11rem;
+        padding: .6rem
+      }
+
+      .nav-item .search-form .search-icon[data-v-1ecf1f8d] {
+        display: none
+      }
+
+      .logo[data-v-1ecf1f8d] {
+        min-width: 3.75rem
+      }
+
+      .logo-img[data-v-1ecf1f8d] {
+        display: none
+      }
+
+      .mobile[data-v-1ecf1f8d] {
+        display: block
+      }
+
+      .notification[data-v-1ecf1f8d] {
+        padding: 0 .8rem
+      }
+    }
+
+    @media (max-width:375px) {
+      .nav-item .search-form .search-input[data-v-1ecf1f8d] {
+        width: 10rem
+      }
+    }
+
+    @media (max-width:330px) {
+      .nav-item.search[data-v-1ecf1f8d] {
+        display: none
+      }
+
+      .nav-item.search .search-form .search-input[data-v-1ecf1f8d] {
+        width: 5rem
+      }
+    }
+
+    .tip-fade-enter-active[data-v-1ecf1f8d],
+    .tip-fade-leave-active[data-v-1ecf1f8d] {
+      transition: .3s
+    }
+
+    .tip-fade-enter[data-v-1ecf1f8d],
+    .tip-fade-leave-to[data-v-1ecf1f8d] {
+      transform: translateY(-10px);
+      opacity: 0
+    }
+
+    .typehead[data-v-1ecf1f8d] {
+      width: 100%;
+      position: absolute;
+      top: 105%;
+      line-height: 2rem;
+      left: 0;
+      z-index: 1000;
+      min-width: 6rem;
+      font-size: 1rem;
+      color: #869aab;
+      list-style: none;
+      text-align: left;
+      border-radius: .17rem;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+      border: 1px solid #ebebeb;
+      background-color: #fff
+    }
+
+    .typehead .title[data-v-1ecf1f8d] {
+      border-bottom: 1px solid #ebebeb;
+      margin: .2rem 1rem;
+      display: flex;
+      justify-content: space-between
+    }
+
+    .typehead .title .clear[data-v-1ecf1f8d] {
+      cursor: pointer
+    }
+
+    .typehead .list[data-v-1ecf1f8d] {
+      cursor: pointer;
+      color: #5e6369
+    }
+
+    .typehead .list div[data-v-1ecf1f8d] {
+      padding: .2rem 1rem
+    }
+
+    .typehead .list div[data-v-1ecf1f8d]:hover {
+      background: #eff2f5
+    }
+
+    .avatar[data-v-a84d9704] {
+      display: inline-block;
+      position: relative;
+      background-size: cover;
+      background-color: #eee
+    }
+
+    .avatar[data-v-a84d9704],
+    .avatar.xmas[data-v-a84d9704]:after {
+      background-position: 50%;
+      background-repeat: no-repeat
+    }
+
+    .avatar.xmas[data-v-a84d9704]:after {
+      content: "";
+      position: absolute;
+      left: 25%;
+      bottom: 30%;
+      width: 90%;
+      height: 90%;
+      background-size: contain;
+      transform: rotate(15deg);
+      transform-origin: bottom right;
+      transition: all .2s
+    }
+
+    .avatar.xmas[data-v-a84d9704]:hover:after {
+      transform: rotate(20deg)
+    }
+
+    .lazy[data-v-fd37d0ac] {
+      position: relative;
+      -o-object-fit: cover;
+      object-fit: cover
+    }
+
+    .lazy[data-v-fd37d0ac]:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: inherit;
+      border-radius: inherit
+    }
+
+    .lazy[data-v-fd37d0ac]:not(.immediate):before {
+      transition: opacity .2s
+    }
+
+    .username[data-v-1b6b7cba] {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #2e3135
+    }
+
+    .username .name[data-v-1b6b7cba] {
+      display: inline-block;
+      vertical-align: top;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .recommend-author-block .username .name[data-v-1b6b7cba] {
+      max-width: 130px
+    }
+
+    .recommendation-index-view .username .name[data-v-1b6b7cba] {
+      max-width: 200px
+    }
+
+    .follow-button[data-v-f766bcb0] {
+      margin: 0 0 0 auto;
+      padding: 0;
+      width: 55px;
+      height: 26px;
+      font-size: 13px;
+      border: 1px solid #6cbd45;
+      color: #6cbd45;
+      background-color: #fff
+    }
+
+    .follow-button[data-v-f766bcb0]:hover {
+      opacity: .8
+    }
+
+    .follow-button.followed[data-v-f766bcb0] {
+      color: #fff;
+      border-color: #6cbd45;
+      background-color: #6cbd45
+    }
+
+    [data-v-78c9b824] .image-viewer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10000
+    }
+
+    [data-v-78c9b824] .image-viewer.loading:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 100%;
+      width: 50%;
+      height: .2rem;
+      background-color: #007fff;
+      z-index: 1;
+      -webkit-animation: pro-data-v-78c9b824 1s ease-in-out infinite;
+      animation: pro-data-v-78c9b824 1s ease-in-out infinite;
+      -webkit-animation-delay: 1s;
+      animation-delay: 1s
+    }
+
+    @-webkit-keyframes pro-data-v-78c9b824 {
+      0% {
+        transform: translateZ(0)
+      }
+
+      to {
+        transform: translate3d(300%, 0, 0)
+      }
+    }
+
+    @keyframes pro-data-v-78c9b824 {
+      0% {
+        transform: translateZ(0)
+      }
+
+      to {
+        transform: translate3d(300%, 0, 0)
+      }
+    }
+
+    .entry-list[data-v-3dab0ba4] {
+      width: 100%;
+      background-color: #fff
+    }
+
+    .empty[data-v-3dab0ba4] {
+      padding: 2rem 0;
+      width: 100%;
+      font-size: 1.2rem;
+      text-align: center
+    }
+
+    .item[data-v-3dab0ba4]:not(:last-child) {
+      border-bottom: 1px solid rgba(178, 186, 194, .15)
+    }
+
+    @-webkit-keyframes xitu-skeleton-animation-data-v-7e037fb6 {
+      0% {
+        background-position: 0 0
+      }
+
+      to {
+        background-position: 480px 0
+      }
+    }
+
+    @keyframes xitu-skeleton-animation-data-v-7e037fb6 {
+      0% {
+        background-position: 0 0
+      }
+
+      to {
+        background-position: 480px 0
+      }
+    }
+
+    .xitu-skeleton-animated .xitu-skeleton-avatar[data-v-7e037fb6],
+    .xitu-skeleton-animated .xitu-skeleton-line[data-v-7e037fb6] {
+      background: linear-gradient(90deg, #fff, #edeff1, #fff);
+      background-size: 480px 480px;
+      -webkit-animation: xitu-skeleton-animation-data-v-7e037fb6 .6s linear infinite;
+      animation: xitu-skeleton-animation-data-v-7e037fb6 .6s linear infinite
+    }
+
+    .xitu-skeleton[data-v-7e037fb6] {
+      width: 100%;
+      background-color: #fff
+    }
+
+    .xitu-skeleton-avatar[data-v-7e037fb6] {
+      float: left;
+      margin-right: 12px;
+      background-color: #f3f3f3;
+      display: block
+    }
+
+    .xitu-skeleton-avatar-circle[data-v-7e037fb6] {
+      border-radius: 50%
+    }
+
+    .xitu-skeleton-avatar-square[data-v-7e037fb6] {
+      border-radius: 15%
+    }
+
+    .xitu-skeleton-item[data-v-7e037fb6] {
+      padding-bottom: 21px;
+      margin-bottom: 21px;
+      border-bottom: 1px solid #f3f3f3
+    }
+
+    .xitu-skeleton-item[data-v-7e037fb6]:last-child {
+      padding: 0;
+      margin: 0;
+      border: none
+    }
+
+    .xitu-skeleton-content[data-v-7e037fb6] {
+      overflow: hidden;
+      padding: 20px
+    }
+
+    .xitu-skeleton-line[data-v-7e037fb6] {
+      width: 100%;
+      margin-bottom: 16px;
+      height: 14px;
+      background: #f3f3f3
+    }
+
+    .xitu-skeleton-line[data-v-7e037fb6]:first-child {
+      width: 40%;
+      margin-top: 8px
+    }
+
+    .xitu-skeleton-line[data-v-7e037fb6]:nth-child(3) {
+      width: 80%
+    }
+
+    .xitu-skeleton-line[data-v-7e037fb6]:last-child {
+      width: 60%;
+      margin-bottom: 0
+    }
+
+    @font-face {
+      font-family: "iconfont";
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358);
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358#iefix) format("embedded-opentype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.woff?t=1470110358) format("woff"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.ttf?t=1470110358) format("truetype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.svg?t=1470110358#iconfont) format("svg")
+    }
+
+    .iconfont[data-v-74c20297] {
+      font-family: "iconfont" !important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    }
+
+    .icon-xlcollection[data-v-74c20297]:before {
+      content: "\e600"
+    }
+
+    .icon-xlchatbox[data-v-74c20297]:before {
+      content: "\e601"
+    }
+
+    @font-face {
+      font-family: "iconfont";
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358);
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358#iefix) format("embedded-opentype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.woff?t=1470110358) format("woff"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.ttf?t=1470110358) format("truetype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.svg?t=1470110358#iconfont) format("svg")
+    }
+
+    .iconfont[data-v-d878d58e] {
+      font-family: "iconfont" !important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    }
+
+    .icon-xlcollection[data-v-d878d58e]:before {
+      content: "\e600"
+    }
+
+    .icon-xlchatbox[data-v-d878d58e]:before {
+      content: "\e601"
+    }
+
+    a[data-v-d878d58e] {
+      color: inherit
+    }
+
+    .entry .entry-link[data-v-d878d58e] {
+      cursor: pointer
+    }
+
+    .entry[data-v-d878d58e]:hover {
+      background-color: rgba(0, 0, 0, .01)
+    }
+
+    .entry:hover .action-list>.item.hover[data-v-d878d58e] {
+      visibility: visible
+    }
+
+    .content-box[data-v-d878d58e] {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem 2rem
+    }
+
+    .info-box[data-v-d878d58e] {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0
+    }
+
+    .meta-row[data-v-d878d58e] {
+      font-size: 1rem;
+      color: #b2bac2
+    }
+
+    .meta-list[data-v-d878d58e] {
+      display: flex;
+      align-items: baseline;
+      white-space: nowrap
+    }
+
+    .meta-list .item[data-v-d878d58e]:not(:last-child):after {
+      content: "·";
+      margin: 0 .4em;
+      color: #b2bac2
+    }
+
+    .meta-list .item.recommended[data-v-d878d58e] {
+      font-weight: 500;
+      color: #f70
+    }
+
+    .meta-list .item.hot[data-v-d878d58e] {
+      font-weight: 500;
+      color: red
+    }
+
+    .meta-list .item.post[data-v-d878d58e] {
+      font-weight: 500;
+      color: #b71ed7
+    }
+
+    .meta-list .item.entry[data-v-d878d58e] {
+      color: #007fff
+    }
+
+    .meta-list .item.unparsed[data-v-d878d58e] {
+      font-weight: 500;
+      color: #007fff
+    }
+
+    .meta-list .item.username[data-v-d878d58e] {
+      display: flex;
+      align-items: baseline
+    }
+
+    .meta-list .item.tag[data-v-d878d58e] {
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .meta-list .item.clickable[data-v-d878d58e]:hover {
+      color: #007fff
+    }
+
+    .meta-list .item .tag[data-v-d878d58e]:not(:last-child):after {
+      content: "/";
+      margin: 0 .2em;
+      color: #b2bac2
+    }
+
+    .meta-list .item .tag[data-v-d878d58e]:hover {
+      color: #007fff
+    }
+
+    .action-list[data-v-d878d58e] {
+      display: inline-flex;
+      white-space: nowrap
+    }
+
+    .action-list:not(.active)>.item.hover[data-v-d878d58e] {
+      visibility: hidden
+    }
+
+    .action-list>.item[data-v-d878d58e] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 0 .8rem;
+      height: 2rem;
+      font-size: 1.083rem;
+      line-height: 1;
+      white-space: nowrap;
+      color: #b2bac2;
+      border-radius: 1px;
+      border: 1px solid #edeeef
+    }
+
+    @media (max-width:600px) {
+      .action-list>.item[data-v-d878d58e] {
+        height: 1.5rem;
+        font-size: 1rem
+      }
+    }
+
+    .action-list>.item .title-box[data-v-d878d58e] {
+      display: flex;
+      align-items: center;
+      padding: 0 .8rem;
+      height: 100%
+    }
+
+    .action-list>.item.like[data-v-d878d58e] {
+      padding: 0
+    }
+
+    .action-list>.item.like.liked[data-v-d878d58e] {
+      color: #1dc400
+    }
+
+    .action-list>.item.like .count.active[data-v-d878d58e] {
+      color: #6cbd45
+    }
+
+    .action-list>.item.comment[data-v-d878d58e] {
+      margin-left: -1px;
+      padding: 0
+    }
+
+    .action-list>.item.share[data-v-d878d58e] {
+      margin-left: -1px
+    }
+
+    .action-list>.item.share.active .share-panel[data-v-d878d58e] {
+      display: block
+    }
+
+    .action-list>.item.share .share-panel[data-v-d878d58e] {
+      position: absolute;
+      top: 100%;
+      left: -1px;
+      margin-top: 1rem;
+      width: 11rem;
+      font-size: 1.167rem;
+      color: #8f969c;
+      background-color: #fff;
+      box-shadow: 0 1px 2px 0 #e0e4e9;
+      border: 1px solid rgba(217, 222, 224, .99);
+      display: none;
+      z-index: 10
+    }
+
+    .action-list>.item.share .share-panel[data-v-d878d58e]:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 100%;
+      height: 1rem
+    }
+
+    .action-list>.item.share .share-panel .share-item[data-v-d878d58e] {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: .6rem .8rem
+    }
+
+    .action-list>.item.share .share-panel .share-item .icon[data-v-d878d58e] {
+      margin-right: .6rem
+    }
+
+    .action-list>.item.share .share-panel .share-item[data-v-d878d58e]:hover {
+      background-color: #f7f8fa
+    }
+
+    .action-list>.item.share .share-panel .share-item.weibo[data-v-d878d58e] {
+      border-bottom: 1px solid rgba(178, 186, 194, .15)
+    }
+
+    .action-list>.item.share .share-panel .share-item.wechat .qr-code-box[data-v-d878d58e] {
+      margin: .8rem .4rem .7rem;
+      width: 100%;
+      box-sizing: border-box
+    }
+
+    .action-list>.item.share .share-panel .share-item.wechat .qr-code-box .qr-code[data-v-d878d58e] {
+      width: 100%;
+      -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: pixelated
+    }
+
+    .action-list>.item.more[data-v-d878d58e],
+    .action-list>.item.share.close[data-v-d878d58e] {
+      margin-left: -1px
+    }
+
+    .action-list>.item.more.active .more-list[data-v-d878d58e] {
+      display: block
+    }
+
+    .action-list>.item.more .more-list[data-v-d878d58e] {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 1rem;
+      min-width: 8rem;
+      font-size: .9em;
+      white-space: nowrap;
+      color: #8f969c;
+      background-color: #fff;
+      box-shadow: 0 1px 2px 0 #e0e4e9;
+      border: 1px solid rgba(217, 222, 224, .99);
+      display: none;
+      z-index: 10
+    }
+
+    .action-list>.item.more .more-list[data-v-d878d58e]:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 100%;
+      height: 1rem
+    }
+
+    .action-list>.item.more .more-list .item[data-v-d878d58e] {
+      padding: .8rem .9rem
+    }
+
+    .action-list>.item.clickable[data-v-d878d58e]:hover,
+    .action-list>.item.more .more-list .item[data-v-d878d58e]:hover {
+      background-color: #f7f8fa
+    }
+
+    .action-list>.item .count[data-v-d878d58e] {
+      color: #b2bac2;
+      margin-left: .2em;
+      font-weight: 700
+    }
+
+    .title-row[data-v-d878d58e] {
+      margin: .5rem 0 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .title[data-v-d878d58e] {
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #2e3135
+    }
+
+    .title[data-v-d878d58e]:hover {
+      text-decoration: underline
+    }
+
+    .title[data-v-d878d58e]:visited {
+      color: #909090
+    }
+
+    @media (max-width:600px) {
+      .title[data-v-d878d58e] {
+        font-size: 1.2rem
+      }
+    }
+
+    .thumb[data-v-d878d58e] {
+      flex: 0 0 auto;
+      width: 5rem;
+      height: 5rem;
+      margin-left: 2rem;
+      background-color: #fff;
+      border-radius: 2px
+    }
+
+    @media (max-width:600px) {
+      .thumb[data-v-d878d58e] {
+        display: none
+      }
+    }
+
+    .user-popover-box[data-v-7ed5cb74] {
+      display: inline
+    }
+
+    .user-popover[data-v-7ed5cb74] {
+      position: fixed;
+      top: 20rem;
+      left: 2rem;
+      padding: 1.333rem 1.333rem 1.833rem;
+      width: 267px;
+      max-height: 160px;
+      font-weight: 400;
+      line-height: 1.2;
+      background-color: #fff;
+      border: 1px solid #ebebeb;
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .08);
+      box-sizing: border-box;
+      border-radius: 2px;
+      cursor: default;
+      z-index: 250
+    }
+
+    @media (max-width:$width-small) {
+      .user-popover[data-v-7ed5cb74] {
+        display: none
+      }
+    }
+
+    .info-row[data-v-7ed5cb74] {
+      display: flex
+    }
+
+    .info-row .avatar[data-v-7ed5cb74] {
+      margin-right: 1rem;
+      width: 4.833rem;
+      height: 4.833rem;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .15)
+    }
+
+    .info-row .user-info[data-v-7ed5cb74] {
+      line-height: 1
+    }
+
+    .info-row .user-info .username[data-v-7ed5cb74] {
+      margin-top: .333rem;
+      font-size: 1.25rem;
+      line-height: 1.2;
+      font-weight: 500;
+      color: #333;
+      display: inline-block;
+      vertical-align: middle
+    }
+
+    .info-row .user-info .position[data-v-7ed5cb74] {
+      margin: 1.5rem 0 0;
+      font-size: 1.083rem;
+      line-height: 1.2;
+      max-width: 165px;
+      color: #8f969c;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .meta-row[data-v-7ed5cb74] {
+      display: flex;
+      align-items: flex-end;
+      margin-top: 1.5rem
+    }
+
+    .meta-row .meta-list[data-v-7ed5cb74] {
+      flex: 1 1 auto;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none
+    }
+
+    .meta-row .meta-list .item[data-v-7ed5cb74] {
+      flex: 1 1 auto;
+      cursor: pointer
+    }
+
+    .meta-row .meta-list .item .count[data-v-7ed5cb74] {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #17181a
+    }
+
+    .meta-row .meta-list .item .title[data-v-7ed5cb74] {
+      margin-top: .666rem;
+      font-size: 13px;
+      color: #8f969c
+    }
+
+    .meta-row .follow-btn[data-v-7ed5cb74] {
+      flex: 0 0 auto;
+      margin: 0 0 0 1rem;
+      padding: 0;
+      width: 6.167rem;
+      height: 2.5rem;
+      font-size: 1.25rem;
+      letter-spacing: normal;
+      color: #37c701;
+      background-color: #fff;
+      border: 1px solid #37c701;
+      border-radius: 2px
+    }
+
+    .meta-row .follow-btn[data-v-7ed5cb74]:hover:not(:disabled) {
+      opacity: .8
+    }
+
+    .meta-row .follow-btn.followed[data-v-7ed5cb74] {
+      color: #fff;
+      background-color: #1fd200
+    }
+
+    .meta-row .follow-btn[data-v-7ed5cb74]:disabled {
+      color: #ccc;
+      border-color: #ccc
+    }
+
+    .triangle-bottom[data-v-7ed5cb74] {
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      margin-left: -5px
+    }
+
+    .triangle-bottom.container[data-v-7ed5cb74] {
+      transform: rotate(0deg)
+    }
+
+    .triangle-bottom.isTop[data-v-7ed5cb74] {
+      bottom: 158px
+    }
+
+    .triangle-bottom.isTop.container[data-v-7ed5cb74] {
+      transform: rotate(180deg)
+    }
+
+    .fade-enter-active[data-v-7ed5cb74],
+    .fade-leave-active[data-v-7ed5cb74] {
+      transition: opacity .2s
+    }
+
+    .fade-enter[data-v-7ed5cb74],
+    .fade-leave-to[data-v-7ed5cb74] {
+      opacity: 0
+    }
+
+    @font-face {
+      font-family: "iconfont";
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358);
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358#iefix) format("embedded-opentype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.woff?t=1470110358) format("woff"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.ttf?t=1470110358) format("truetype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.svg?t=1470110358#iconfont) format("svg")
+    }
+
+    .iconfont[data-v-dccfa72e] {
+      font-family: "iconfont" !important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    }
+
+    .icon-xlcollection[data-v-dccfa72e]:before {
+      content: "\e600"
+    }
+
+    .icon-xlchatbox[data-v-dccfa72e]:before {
+      content: "\e601"
+    }
+
+    .sidebar.sticky .sticky-block-box[data-v-dccfa72e] {
+      position: fixed;
+      top: 6.766999999999999rem;
+      width: inherit;
+      transition: top .2s
+    }
+
+    .sidebar.sticky.top .sticky-block-box[data-v-dccfa72e] {
+      top: 1.767rem
+    }
+
+    @font-face {
+      font-family: "iconfont";
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358);
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358#iefix) format("embedded-opentype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.woff?t=1470110358) format("woff"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.ttf?t=1470110358) format("truetype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.svg?t=1470110358#iconfont) format("svg")
+    }
+
+    .iconfont[data-v-012a434c] {
+      font-family: "iconfont" !important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    }
+
+    .icon-xlcollection[data-v-012a434c]:before {
+      content: "\e600"
+    }
+
+    .icon-xlchatbox[data-v-012a434c]:before {
+      content: "\e601"
+    }
+
+    .item[data-v-012a434c] {
+      display: flex;
+      align-items: center
+    }
+
+    .user-item[data-v-012a434c] {
+      padding: 1.3rem
+    }
+
+    .user-item .avatar[data-v-012a434c] {
+      flex: 0 0 auto;
+      margin-right: 1rem;
+      width: 4.167rem;
+      height: 4.167rem;
+      border-radius: 50%
+    }
+
+    .user-item .info-box[data-v-012a434c] {
+      flex: 1 1 auto;
+      min-width: 0
+    }
+
+    .user-item .info-box .username[data-v-012a434c] {
+      font-size: 1.333rem;
+      font-weight: 600;
+      color: #000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: pre-wrap
+    }
+
+    .user-item .info-box .position[data-v-012a434c] {
+      margin-top: .8rem;
+      font-size: 1.25rem;
+      color: #72777b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .stat-item[data-v-012a434c] {
+      margin-bottom: .8rem;
+      padding: 0 1.3rem
+    }
+
+    .stat-item[data-v-012a434c]:last-child {
+      margin-bottom: 1.3rem
+    }
+
+    .stat-item .icon[data-v-012a434c] {
+      flex: 0 0 auto
+    }
+
+    .stat-item .icon[data-v-012a434c],
+    .stat-item .zan[data-v-012a434c] {
+      margin-right: 1rem
+    }
+
+    .stat-item .content[data-v-012a434c] {
+      font-size: 1.25rem;
+      color: #000
+    }
+
+    .stat-item .content .count[data-v-012a434c] {
+      margin: 0 .3em;
+      font-weight: 500
+    }
+
+    .banner[data-v-012a434c] {
+      display: block;
+      height: 48px;
+      background-image: url(https://gold-cdn.xitu.io/asset/2018/post-banner.png);
+      background-size: cover;
+      background-position: 50%;
+      background-repeat: no-repeat
+    }
+
+    @font-face {
+      font-family: "iconfont";
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358);
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358#iefix) format("embedded-opentype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.woff?t=1470110358) format("woff"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.ttf?t=1470110358) format("truetype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.svg?t=1470110358#iconfont) format("svg")
+    }
+
+    .iconfont[data-v-71f2d09e] {
+      font-family: "iconfont" !important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    }
+
+    .icon-xlcollection[data-v-71f2d09e]:before {
+      content: "\e600"
+    }
+
+    .icon-xlchatbox[data-v-71f2d09e]:before {
+      content: "\e601"
+    }
+
+    .sidebar-block[data-v-71f2d09e] {
+      position: relative;
+      margin-bottom: 1.5rem;
+      border-radius: 2px
+    }
+
+    .sidebar-block[data-v-71f2d09e]:after {
+      display: table;
+      content: "";
+      clear: both
+    }
+
+    .sidebar-block[data-v-71f2d09e]:not(.pure) {
+      background-color: #fff
+    }
+
+    .sidebar-block:not(.pure) .block-title[data-v-71f2d09e] {
+      padding: 1rem 1.3rem;
+      font-size: 1.16rem;
+      color: #333;
+      border-bottom: 1px solid hsla(0, 0%, 58.8%, .1)
+    }
+
+    .item[data-v-f8cfda96] {
+      display: block;
+      padding: .8rem 1.3rem
+    }
+
+    .item[data-v-f8cfda96]:hover {
+      background-color: hsla(0, 0%, 85.1%, .1)
+    }
+
+    .entry-title[data-v-f8cfda96] {
+      font-size: 1.16rem;
+      color: #333
+    }
+
+    .entry-meta-box[data-v-f8cfda96] {
+      margin-top: .4rem
+    }
+
+    .entry-meta[data-v-f8cfda96] {
+      display: inline-block;
+      margin-right: 1.5rem;
+      font-size: 1.1rem;
+      color: #c2c2c2
+    }
+
+    .entry-meta .count[data-v-f8cfda96] {
+      color: #b2bac2;
+      margin-left: .4rem
+    }
+
+    .entry-meta .icon[data-v-f8cfda96] {
+      vertical-align: sub
+    }
+
+    @font-face {
+      font-family: "iconfont";
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358);
+      src: url(https://b-gold-cdn.xitu.io/fonts/iconfont.eot?t=1470110358#iefix) format("embedded-opentype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.woff?t=1470110358) format("woff"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.ttf?t=1470110358) format("truetype"), url(https://b-gold-cdn.xitu.io/fonts/iconfont.svg?t=1470110358#iconfont) format("svg")
+    }
+
+    .iconfont[data-v-411504a4] {
+      font-family: "iconfont" !important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    }
+
+    .icon-xlcollection[data-v-411504a4]:before {
+      content: "\e600"
+    }
+
+    .icon-xlchatbox[data-v-411504a4]:before {
+      content: "\e601"
+    }
+
+    .catalog-title[data-v-411504a4] {
+      font-size: 1.167rem;
+      color: #000
+    }
+
+    .catalog-body[data-v-411504a4] {
+      margin: 6px 0;
+      overflow: hidden
+    }
+
+    .catalog-body[data-v-411504a4],
+    .catalog-list[data-v-411504a4] {
+      position: relative
+    }
+
+    .catalog-list[data-v-411504a4]:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 7px;
+      bottom: 0;
+      width: 2px;
+      background-color: #ebedef;
+      opacity: .5
+    }
+
+    .catalog-list[data-v-411504a4] a {
+      color: inherit
+    }
+
+    .catalog-list[data-v-411504a4] .sub-list {
+      margin: 0;
+      padding: 0
+    }
+
+    .catalog-list[data-v-411504a4] .item {
+      margin: 0;
+      padding: 0;
+      font-size: 1.167rem;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #333;
+      list-style: none
+    }
+
+    .catalog-list[data-v-411504a4] .item a {
+      display: block;
+      position: relative;
+      padding: 4px 0 4px 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .catalog-list[data-v-411504a4] .item a:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      margin-top: -2px;
+      width: 4px;
+      height: 4px;
+      background-color: currentColor;
+      border-radius: 50%
+    }
+
+    .catalog-list[data-v-411504a4] .item a:hover {
+      background-color: #ebedef
+    }
+
+    .catalog-list[data-v-411504a4] .item.d1 {
+      font-weight: 600;
+      color: #000
+    }
+
+    .catalog-list[data-v-411504a4] .item.d1>a {
+      margin: 6px 0;
+      padding: 4px 0 4px 21px
+    }
+
+    .catalog-list[data-v-411504a4] .item.d1>a:before {
+      left: 5px;
+      margin-top: -3px;
+      width: 6px;
+      height: 6px
+    }
+
+    .catalog-list[data-v-411504a4] .item.d1:first-child>a {
+      margin-top: 0
+    }
+
+    .catalog-list[data-v-411504a4] .item.d2>a {
+      padding-left: 36px
+    }
+
+    .catalog-list[data-v-411504a4] .item.d2>a:before {
+      left: 24px
+    }
+
+    .catalog-list[data-v-411504a4] .item.d3>a {
+      padding-left: 51px
+    }
+
+    .catalog-list[data-v-411504a4] .item.d3>a:before {
+      left: 39px
+    }
+
+    .catalog-list[data-v-411504a4] .item.active>a {
+      color: #007fff;
+      background-color: #ebedef
+    }
+
+    .panel-btn[data-v-c29ee1d8] {
+      position: relative;
+      margin-bottom: .75rem;
+      width: 3rem;
+      height: 3rem;
+      background-color: #fff;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .04);
+      cursor: pointer
+    }
+
+    .panel-btn:not(.share-btn).active.with-badge[data-v-c29ee1d8]:after {
+      background-color: #74ca46
+    }
+
+    .panel-btn.with-badge[data-v-c29ee1d8]:after {
+      content: attr(badge);
+      position: absolute;
+      top: 0;
+      left: 75%;
+      padding: .1rem .4rem;
+      font-size: 1rem;
+      text-align: center;
+      line-height: 1;
+      white-space: nowrap;
+      color: #fff;
+      background-color: #b2bac2;
+      border-radius: .7rem;
+      transform-origin: left top;
+      transform: scale(.75)
+    }
+
+    .panel-btn.like-btn[data-v-c29ee1d8] {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDE2IDE1Ij4KICAgIDxwYXRoIGZpbGw9IiNCMkJBQzIiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIuODc0IDYuMDQ0VjE1aC0xLjczQy41MTMgMTUgMCAxNC4zODIgMCAxMy42MjRWNy41MjljMC0uNzkuNTM1LTEuNDg1IDEuMTQzLTEuNDg1aDEuNzMxek03LjYwNyAxLjI1QzcuNzIuNTA3IDguMzQ0LS4wMTMgOS4wMyAwYy45OC4wMTkgMS41NjMuODMzIDEuNzY2IDEuMjM1LjM3LjczNS4zOCAxLjk0Ni4xMjYgMi43MjQtLjIzLjcwNC0uNzYxIDEuNjI5LS43NjEgMS42MjloMy45ODJjLjQyIDAgLjgxMS4yMDYgMS4wNzIuNTYzYTEuNSAxLjUgMCAwIDEgLjIzMiAxLjI3MmwtMS44MDEgNi41MTNjLS4xNjQuNjI3LS43MDcgMS4wNjQtMS4zMiAxLjA2NEg0LjVWNS44OThDNi4yOTkgNS41MSA3LjQwNCAyLjU5IDcuNjA3IDEuMjQ5eiIvPgo8L3N2Zz4K)
+    }
+
+    .panel-btn.like-btn[data-v-c29ee1d8]:hover {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDE2IDE1Ij4KICAgIDxwYXRoIGZpbGw9IiM4QTkzQTAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIuODc0IDYuMDQ0VjE1aC0xLjczQy41MTMgMTUgMCAxNC4zODIgMCAxMy42MjRWNy41MjljMC0uNzkuNTM1LTEuNDg1IDEuMTQzLTEuNDg1aDEuNzMxek03LjYwNyAxLjI1QzcuNzIuNTA3IDguMzQ0LS4wMTMgOS4wMyAwYy45OC4wMTkgMS41NjMuODMzIDEuNzY2IDEuMjM1LjM3LjczNS4zOCAxLjk0Ni4xMjYgMi43MjQtLjIzLjcwNC0uNzYxIDEuNjI5LS43NjEgMS42MjloMy45ODJjLjQyIDAgLjgxMS4yMDYgMS4wNzIuNTYzYTEuNSAxLjUgMCAwIDEgLjIzMiAxLjI3MmwtMS44MDEgNi41MTNjLS4xNjQuNjI3LS43MDcgMS4wNjQtMS4zMiAxLjA2NEg0LjVWNS44OThDNi4yOTkgNS41MSA3LjQwNCAyLjU5IDcuNjA3IDEuMjQ5eiIvPgo8L3N2Zz4K)
+    }
+
+    .panel-btn.like-btn.active[data-v-c29ee1d8] {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDE2IDE1Ij4KICAgIDxwYXRoIGZpbGw9IiM2Q0JENDUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIuODc0IDYuMDQ0VjE1aC0xLjczQy41MTMgMTUgMCAxNC4zODIgMCAxMy42MjRWNy41MjljMC0uNzkuNTM1LTEuNDg1IDEuMTQzLTEuNDg1aDEuNzMxek03LjYwNyAxLjI1QzcuNzIuNTA3IDguMzQ0LS4wMTMgOS4wMyAwYy45OC4wMTkgMS41NjMuODMzIDEuNzY2IDEuMjM1LjM3LjczNS4zOCAxLjk0Ni4xMjYgMi43MjQtLjIzLjcwNC0uNzYxIDEuNjI5LS43NjEgMS42MjloMy45ODJjLjQyIDAgLjgxMS4yMDYgMS4wNzIuNTYzYTEuNSAxLjUgMCAwIDEgLjIzMiAxLjI3MmwtMS44MDEgNi41MTNjLS4xNjQuNjI3LS43MDcgMS4wNjQtMS4zMiAxLjA2NEg0LjVWNS44OThDNi4yOTkgNS41MSA3LjQwNCAyLjU5IDcuNjA3IDEuMjQ5eiIvPgo8L3N2Zz4K)
+    }
+
+    .panel-btn.like-btn.like-adjust[data-v-c29ee1d8] {
+      background-position: 53% 46%
+    }
+
+    .panel-btn.comment-btn[data-v-c29ee1d8] {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDE0IDEzIj4KICAgIDxwYXRoIGZpbGw9IiNCMkJBQzIiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTE0IDB2OS4yM0g4LjgxNUwzLjM3IDEzVjkuMjNIMFYweiIvPgo8L3N2Zz4K)
+    }
+
+    .panel-btn.comment-btn[data-v-c29ee1d8]:hover {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDE0IDEzIj4KICAgIDxwYXRoIGZpbGw9IiM4QTkzQTAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTE0IDB2OS4yM0g4LjgxNUwzLjM3IDEzVjkuMjNIMFYweiIvPgo8L3N2Zz4K)
+    }
+
+    .panel-btn.comment-btn.comment-adjust[data-v-c29ee1d8] {
+      background-position: 50% 55%
+    }
+
+    .panel-btn.collect-btn[data-v-c29ee1d8] {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE3IDE3Ij4KICAgIDxwYXRoIGZpbGw9IiNCMkJBQzIiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTkuMzMyIDE0Ljk2OGMtLjQ2LS4yNTUtMS4yMDUtLjI1NS0xLjY2NiAwTDQuMzUgMTYuNzk0Yy0uOTIxLjUwNi0xLjUyMy4wNDQtMS4zNDktMS4wMjdsLjYzNS0zLjg2N2MuMDg4LS41MzctLjE0Mi0xLjI4LS41MTYtMS42NkwuNDM2IDcuNWMtLjc0NS0uNzYtLjUxMS0xLjUwNC41MTYtMS42NmwzLjcwNy0uNTY0Yy41MTQtLjA4IDEuMTE5LS41MzggMS4zNDgtMS4wMjdMNy42NjUuNzMxYy40NjItLjk3NiAxLjIwOC0uOTczIDEuNjY3IDBsMS42NiAzLjUxOWMuMjMuNDg5LjgzMy45NSAxLjM0OSAxLjAyN2wzLjcwOC41NjRjMS4wMjkuMTU2IDEuMjU4LjkwMi41MTUgMS42NmwtMi42ODUgMi43MzljLS4zNzIuMzgtLjYwMyAxLjEyMy0uNTE1IDEuNjZsLjYzNCAzLjg2N2MuMTc2IDEuMDc0LS40MyAxLjUzMy0xLjM0OCAxLjAyN2wtMy4zMTgtMS44MjZ6Ii8+Cjwvc3ZnPgo=)
+    }
+
+    .panel-btn.collect-btn[data-v-c29ee1d8]:hover {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE3IDE3Ij4KICAgIDxwYXRoIGZpbGw9IiM4QTkzQTAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTkuMzMyIDE0Ljk2OGMtLjQ2LS4yNTUtMS4yMDUtLjI1NS0xLjY2NiAwTDQuMzUgMTYuNzk0Yy0uOTIxLjUwNi0xLjUyMy4wNDQtMS4zNDktMS4wMjdsLjYzNS0zLjg2N2MuMDg4LS41MzctLjE0Mi0xLjI4LS41MTYtMS42NkwuNDM2IDcuNWMtLjc0NS0uNzYtLjUxMS0xLjUwNC41MTYtMS42NmwzLjcwNy0uNTY0Yy41MTQtLjA4IDEuMTE5LS41MzggMS4zNDgtMS4wMjdMNy42NjUuNzMxYy40NjItLjk3NiAxLjIwOC0uOTczIDEuNjY3IDBsMS42NiAzLjUxOWMuMjMuNDg5LjgzMy45NSAxLjM0OSAxLjAyN2wzLjcwOC41NjRjMS4wMjkuMTU2IDEuMjU4LjkwMi41MTUgMS42NmwtMi42ODUgMi43MzljLS4zNzIuMzgtLjYwMyAxLjEyMy0uNTE1IDEuNjZsLjYzNCAzLjg2N2MuMTc2IDEuMDc0LS40MyAxLjUzMy0xLjM0OCAxLjAyN2wtMy4zMTgtMS44MjZ6Ii8+Cjwvc3ZnPgo=)
+    }
+
+    .panel-btn.collect-btn.active[data-v-c29ee1d8] {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE3IDE3Ij4KICAgIDxwYXRoIGZpbGw9IiNGRkMzNDciIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTkuMzMyIDE0Ljk2OGMtLjQ2LS4yNTUtMS4yMDUtLjI1NS0xLjY2NiAwTDQuMzUgMTYuNzk0Yy0uOTIxLjUwNi0xLjUyMy4wNDQtMS4zNDktMS4wMjdsLjYzNS0zLjg2N2MuMDg4LS41MzctLjE0Mi0xLjI4LS41MTYtMS42NkwuNDM2IDcuNWMtLjc0NS0uNzYtLjUxMS0xLjUwNC41MTYtMS42NmwzLjcwNy0uNTY0Yy41MTQtLjA4IDEuMTE5LS41MzggMS4zNDgtMS4wMjdMNy42NjUuNzMxYy40NjItLjk3NiAxLjIwOC0uOTczIDEuNjY3IDBsMS42NiAzLjUxOWMuMjMuNDg5LjgzMy45NSAxLjM0OSAxLjAyN2wzLjcwOC41NjRjMS4wMjkuMTU2IDEuMjU4LjkwMi41MTUgMS42NmwtMi42ODUgMi43MzljLS4zNzIuMzgtLjYwMyAxLjEyMy0uNTE1IDEuNjZsLjYzNCAzLjg2N2MuMTc2IDEuMDc0LS40MyAxLjUzMy0xLjM0OCAxLjAyN2wtMy4zMTgtMS44MjZ6Ii8+Cjwvc3ZnPgo=)
+    }
+
+    .panel-btn.report-btn[data-v-c29ee1d8] {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxOCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik05LjY1MTE4IDEuMTM5NTdDOS4zNjMyNiAwLjYzNTcwOCA4LjYzNjc0IDAuNjM1NzA4IDguMzQ4ODIgMS4xMzk1N0wwLjY0MTIwMiAxNC42Mjc5QzAuMzU1NDkyIDE1LjEyNzkgMC43MTY1MTggMTUuNzUgMS4yOTIzOCAxNS43NUgxNi43MDc2QzE3LjI4MzUgMTUuNzUgMTcuNjQ0NSAxNS4xMjc5IDE3LjM1ODggMTQuNjI3OUw5LjY1MTE4IDEuMTM5NTdaIiBmaWxsPSIjQjJCQUMyIi8+CjxjaXJjbGUgY3g9IjkiIGN5PSIxMi4zNzUiIHI9IjEuMTI1IiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOSA2LjE3ODU3VjkuODIxNDMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==);
+      background-position: 50% 45%
+    }
+
+    .panel-btn.report-btn[data-v-c29ee1d8]:hover {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxOCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik05LjY1MTE4IDEuMTM5NTdDOS4zNjMyNiAwLjYzNTcwOCA4LjYzNjc0IDAuNjM1NzA4IDguMzQ4ODIgMS4xMzk1N0wwLjY0MTIwMiAxNC42Mjc5QzAuMzU1NDkyIDE1LjEyNzkgMC43MTY1MTggMTUuNzUgMS4yOTIzOCAxNS43NUgxNi43MDc2QzE3LjI4MzUgMTUuNzUgMTcuNjQ0NSAxNS4xMjc5IDE3LjM1ODggMTQuNjI3OUw5LjY1MTE4IDEuMTM5NTdaIiBmaWxsPSIjOEE5M0EwIi8+CjxjaXJjbGUgY3g9IjkiIGN5PSIxMi4zNzUiIHI9IjEuMTI1IiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOSA2LjE3ODU3VjkuODIxNDMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==)
+    }
+
+
+
+    .panel-btn.qq-btn[data-v-c29ee1d8] {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE1IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiNCMkJBQzIiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTE0LjQ2OCAxMC4zMTJjLS4wMS0uOTU3LS4zOC0xLjQ3Ni0uODA3LTIuMTUzLS4xOTEtLjI4My0uNDEzLS40NzMtLjYwNS0uNzU1LS4wMy0uMTU0LjAzMy0uMjY4LS4wMTItLjY3MS0uMDQyLS42MDQtLjI2My0uODM4LS4zMS0uOTEyLjAyLS4xNi0uMDQzLTEuNDg1LS41MjMtMi4yNjhDMTAuNzUxLjk0MSA3Ljk4Mi44NDYgNy42NDMuODQ0SDcuNjRjLS4zMzkuMDAyLTMuMTA3LjA5Ny00LjU2OCAyLjcxLS40NzkuNzgyLS41NDMgMi4xMDYtLjUyMyAyLjI2Ny0uMDQ2LjA3NC0uMjY3LjMwOC0uMzEuOTEyLS4wNDQuNDAzLjAxOC41MTctLjAxMi42Ny0uMTkyLjI4NC0uNDEzLjQ3My0uNjA1Ljc1Ni0uNDI2LjY3Ny0uNzk3IDEuMTk2LS44MDYgMi4xNTMtLjAwNy43MTQuMTYyIDEuNjg3LjY2MyAxLjcuMTU4LS4wMTIuMjkyLS4xMTcuNTY2LS40MjQuMDgyLS4wOTIuMzctLjQ4LjQyOS0uNTg3LjA1Ni4xNDguMTkgMS4xODMgMS4xMiAxLjcyMy0uOTU2LjQ1LTEuNDI0LjczNS0xLjQ0IDEuMzE5LjAyLjMzOC40MjMuNzg3IDEuMTY1Ljk5NmE2LjA1IDYuMDUgMCAwIDAgMi45MjcuMDVjLjUzNS0uMTMuNjk2LS4yNiAxLjM5Ni0uNjQ0LjcuMzg1Ljg2LjUxNCAxLjM5NS42NDNhNi4wNTIgNi4wNTIgMCAwIDAgMi45MjctLjA0OWMuNzQyLS4yMDkgMS4xNDYtLjY1OCAxLjE2Ni0uOTk2LS4wMTYtLjU4NC0uNDg0LS44Ny0xLjQ0LTEuMzIuOTMtLjUzOCAxLjA2My0xLjU3NCAxLjEyLTEuNzIyLjA1OC4xMDcuMzQ2LjQ5NS40MjguNTg3LjI3NC4zMDcuNDA5LjQxMi41NjcuNDI0LjUtLjAxMy42Ny0uOTg2LjY2My0xLjd6Ii8+Cjwvc3ZnPgo=)
+    }
+
+    .panel-btn.qq-btn[data-v-c29ee1d8]:hover {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE1IDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM1NUIyRjEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTE0LjQ2OCAxMC4zMTJjLS4wMS0uOTU3LS4zOC0xLjQ3Ni0uODA3LTIuMTUzLS4xOTEtLjI4My0uNDEzLS40NzMtLjYwNS0uNzU1LS4wMy0uMTU0LjAzMy0uMjY4LS4wMTItLjY3MS0uMDQyLS42MDQtLjI2My0uODM4LS4zMS0uOTEyLjAyLS4xNi0uMDQzLTEuNDg1LS41MjMtMi4yNjhDMTAuNzUxLjk0MSA3Ljk4Mi44NDYgNy42NDMuODQ0SDcuNjRjLS4zMzkuMDAyLTMuMTA3LjA5Ny00LjU2OCAyLjcxLS40NzkuNzgyLS41NDMgMi4xMDYtLjUyMyAyLjI2Ny0uMDQ2LjA3NC0uMjY3LjMwOC0uMzEuOTEyLS4wNDQuNDAzLjAxOC41MTctLjAxMi42Ny0uMTkyLjI4NC0uNDEzLjQ3My0uNjA1Ljc1Ni0uNDI2LjY3Ny0uNzk3IDEuMTk2LS44MDYgMi4xNTMtLjAwNy43MTQuMTYyIDEuNjg3LjY2MyAxLjcuMTU4LS4wMTIuMjkyLS4xMTcuNTY2LS40MjQuMDgyLS4wOTIuMzctLjQ4LjQyOS0uNTg3LjA1Ni4xNDguMTkgMS4xODMgMS4xMiAxLjcyMy0uOTU2LjQ1LTEuNDI0LjczNS0xLjQ0IDEuMzE5LjAyLjMzOC40MjMuNzg3IDEuMTY1Ljk5NmE2LjA1IDYuMDUgMCAwIDAgMi45MjcuMDVjLjUzNS0uMTMuNjk2LS4yNiAxLjM5Ni0uNjQ0LjcuMzg1Ljg2LjUxNCAxLjM5NS42NDNhNi4wNTIgNi4wNTIgMCAwIDAgMi45MjctLjA0OWMuNzQyLS4yMDkgMS4xNDYtLjY1OCAxLjE2Ni0uOTk2LS4wMTYtLjU4NC0uNDg0LS44Ny0xLjQ0LTEuMzIuOTMtLjUzOCAxLjA2My0xLjU3NCAxLjEyLTEuNzIyLjA1OC4xMDcuMzQ2LjQ5NS40MjguNTg3LjI3NC4zMDcuNDA5LjQxMi41NjcuNDI0LjUtLjAxMy42Ny0uOTg2LjY2My0xLjd6Ii8+Cjwvc3ZnPgo=)
+    }
+
+
+
+    .panel-btn.wechat-btn:hover .wechat-qr-code-img[data-v-c29ee1d8] {
+      display: block
+    }
+
+    .share-title[data-v-c29ee1d8] {
+      margin: 2.5rem 0 1rem;
+      font-size: 1rem;
+      text-align: center;
+      color: #c6c6c6;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    .wechat-qr-code-img[data-v-c29ee1d8] {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 8rem;
+      height: 8rem;
+      margin-top: 1rem;
+      border: .5rem solid #fff;
+      transform: translateX(-50%);
+      display: none
+    }
+
+    .extension[data-v-b900bb90] {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      height: 180px;
+      cursor: pointer;
+      display: none
+    }
+
+    .extension[data-v-b900bb90]:before {
+      display: flex;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      z-index: 0;
+      height: 148px;
+      z-index: -1;
+      content: "";
+      background-color: #fff
+    }
+
+    .extension .link[data-v-b900bb90] {
+      width: 100%;
+      height: 100%;
+      color: #000;
+      background-repeat: no-repeat;
+      background-position: bottom;
+      background-size: auto 180px;
+      image-rendering: -webkit-optimize-contrast
+    }
+
+    .extension .link .price[data-v-b900bb90] {
+      margin-left: 5px;
+      margin-right: 5px;
+      color: #007fff
+    }
+
+    .extension .link .description[data-v-b900bb90],
+    .extension .link .title[data-v-b900bb90] {
+      font-size: 26px;
+      padding-top: 50px;
+      box-sizing: border-box;
+      width: 960px;
+      margin: 0 auto;
+      padding-left: 22px
+    }
+
+    .extension .link .description[data-v-b900bb90] {
+      color: rgba(0, 0, 0, .7);
+      font-size: 13px;
+      padding-top: 8px
+    }
+
+    .extension .ion-close[data-v-b900bb90] {
+      position: absolute;
+      top: 45px;
+      right: 15px;
+      font-size: 12px;
+      color: #bbb
+    }
+
+    .extension .ion-close[data-v-b900bb90]:hover {
+      color: #999
+    }
+
+    .books[data-v-b900bb90] {
+      display: none;
+      left: 15px;
+      right: 15px;
+      position: fixed;
+      bottom: 15px;
+      z-index: 900
+    }
+
+    .books.book--mobile[data-v-b900bb90] {
+      bottom: 55px
+    }
+
+    .books .book-inner[data-v-b900bb90] {
+      width: 100%;
+      height: 50px;
+      padding-left: 15px;
+      padding-right: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fd4243;
+      box-sizing: border-box;
+      border-radius: 2px;
+      background: linear-gradient(108deg, #f87554, #f0232f);
+      background: -webkit-linear-gradient(-12deg, #f87554, #f0232f)
+    }
+
+    .books .book-inner .icon[data-v-b900bb90] {
+      width: 38px
+    }
+
+    .books .book-inner .icon img[data-v-b900bb90] {
+      width: 100%;
+      display: block
+    }
+
+    .books .book-inner .title[data-v-b900bb90] {
+      flex-grow: 1;
+      padding-left: 15px;
+      color: #fff;
+      font-size: 15px
+    }
+
+    .books .book-inner .btn-get[data-v-b900bb90] {
+      padding-left: 15px;
+      padding-right: 15px;
+      height: 26px;
+      line-height: 26px;
+      border-radius: 2px;
+      border: 1px solid #fff;
+      color: #fff
+    }
+
+    @media (max-width:960px) {
+      .books[data-v-b900bb90] {
+        display: block
+      }
+    }
+
+    @media (min-width:960px) {
+      .extension[data-v-b900bb90] {
+        display: block
+      }
+    }
+  </style>
+
+<body>
+  <div id="__nuxt">
+    <div id="__layout">
+      <div id="juejin">
+
+        <!---->
+        <div class="view-container" data-v-6a3e47cf="" data-v-fd96002c="">
+
+          <main class="container main-container" style="max-width:;" data-v-6a3e47cf="">
+            <div class="view column-view" data-v-6a3e47cf="" data-v-fd96002c="">
+              <div class="main-area article-area shadow" data-v-6a3e47cf="" data-v-fd96002c="">
+                <article itemscope="itemscope" itemtype="http://schema.org/Article" data-entry-id="6921886428158754829"
+                  data-draft-id="6921753523541508109" class="article" data-v-fd96002c="" data-v-6a3e47cf="">
+                  <!---->
+                  <!---->
+                  <!---->
+                  <div itemprop="articleBody" class="article-content" data-v-fd96002c="">
+                    <div class="markdown-body">
+                      <style>
+                        .markdown-body {
+                          word-break: break-word;
+                          line-height: 1.75;
+                          font-weight: 400;
+                          font-size: 15px;
+                          overflow-x: hidden;
+                          color: #333
+                        }
+
+                        .markdown-body h1,
+                        .markdown-body h2,
+                        .markdown-body h3,
+                        .markdown-body h4,
+                        .markdown-body h5,
+                        .markdown-body h6 {
+                          line-height: 1.5;
+                          margin-top: 35px;
+                          margin-bottom: 10px;
+                          padding-bottom: 5px
+                        }
+
+                        .markdown-body h1 {
+                          font-size: 30px;
+                          margin-bottom: 5px
+                        }
+
+                        .markdown-body h2 {
+                          padding-bottom: 12px;
+                          font-size: 24px;
+                          border-bottom: 1px solid #ececec
+                        }
+
+                        .markdown-body h3 {
+                          font-size: 18px;
+                          padding-bottom: 0
+                        }
+
+                        .markdown-body h4 {
+                          font-size: 16px
+                        }
+
+                        .markdown-body h5 {
+                          font-size: 15px
+                        }
+
+                        .markdown-body h6 {
+                          margin-top: 5px
+                        }
+
+                        .markdown-body p {
+                          line-height: inherit;
+                          margin-top: 22px;
+                          margin-bottom: 22px
+                        }
+
+                        .markdown-body img {
+                          max-width: 100%
+                        }
+
+                        .markdown-body hr {
+                          border: none;
+                          border-top: 1px solid #ddd;
+                          margin-top: 32px;
+                          margin-bottom: 32px
+                        }
+
+                        .markdown-body code {
+                          word-break: break-word;
+                          border-radius: 2px;
+                          overflow-x: auto;
+                          background-color: #fff5f5;
+                          color: #ff502c;
+                          font-size: .87em;
+                          padding: .065em .4em
+                        }
+
+                        .markdown-body code,
+                        .markdown-body pre {
+                          font-family: Menlo, Monaco, Consolas, Courier New, monospace
+                        }
+
+                        .markdown-body pre {
+                          overflow: auto;
+                          position: relative;
+                          line-height: 1.75
+                        }
+
+                        .markdown-body pre>code {
+                          font-size: 12px;
+                          padding: 15px 12px;
+                          margin: 0;
+                          word-break: normal;
+                          display: block;
+                          overflow-x: auto;
+                          color: #333;
+                          background: #f8f8f8
+                        }
+
+                        .markdown-body a {
+                          text-decoration: none;
+                          color: #0269c8;
+                          border-bottom: 1px solid #d1e9ff
+                        }
+
+                        .markdown-body a:active,
+                        .markdown-body a:hover {
+                          color: #275b8c
+                        }
+
+                        .markdown-body table {
+                          display: inline-block !important;
+                          font-size: 12px;
+                          width: auto;
+                          max-width: 100%;
+                          overflow: auto;
+                          border: 1px solid #f6f6f6
+                        }
+
+                        .markdown-body thead {
+                          background: #f6f6f6;
+                          color: #000;
+                          text-align: left
+                        }
+
+                        .markdown-body tr:nth-child(2n) {
+                          background-color: #fcfcfc
+                        }
+
+                        .markdown-body td,
+                        .markdown-body th {
+                          padding: 12px 7px;
+                          line-height: 24px
+                        }
+
+                        .markdown-body td {
+                          min-width: 120px
+                        }
+
+                        .markdown-body blockquote {
+                          color: #666;
+                          padding: 1px 23px;
+                          margin: 22px 0;
+                          border-left: 4px solid #cbcbcb;
+                          background-color: #f8f8f8
+                        }
+
+                        .markdown-body blockquote:after {
+                          display: block;
+                          content: ""
+                        }
+
+                        .markdown-body blockquote>p {
+                          margin: 10px 0
+                        }
+
+                        .markdown-body ol,
+                        .markdown-body ul {
+                          padding-left: 28px
+                        }
+
+                        .markdown-body ol li,
+                        .markdown-body ul li {
+                          margin-bottom: 0;
+                          list-style: inherit
+                        }
+
+                        .markdown-body ol li .task-list-item,
+                        .markdown-body ul li .task-list-item {
+                          list-style: none
+                        }
+
+                        .markdown-body ol li .task-list-item ol,
+                        .markdown-body ol li .task-list-item ul,
+                        .markdown-body ul li .task-list-item ol,
+                        .markdown-body ul li .task-list-item ul {
+                          margin-top: 0
+                        }
+
+                        .markdown-body ol ol,
+                        .markdown-body ol ul,
+                        .markdown-body ul ol,
+                        .markdown-body ul ul {
+                          margin-top: 3px
+                        }
+
+                        .markdown-body ol li {
+                          padding-left: 6px
+                        }
+
+                        .markdown-body .contains-task-list {
+                          padding-left: 0
+                        }
+
+                        .markdown-body .task-list-item {
+                          list-style: none
+                        }
+
+                        @media (max-width:720px) {
+                          .markdown-body h1 {
+                            font-size: 24px
+                          }
+
+                          .markdown-body h2 {
+                            font-size: 20px
+                          }
+
+                          .markdown-body h3 {
+                            font-size: 18px
+                          }
+                        }
+                      </style>
+
+                      <h3 data-id="heading-1">HTML方向</h3>
+                      <h5 data-id="heading-2">调用系统功能</h5>
+                      <p>
+                        使用<code>&lt;a&gt;</code>能快速调用移动设备的<code>电话/短信/邮件</code>三大通讯功能，使用<code>&lt;input&gt;</code>能快速调用移动设备的的<code>图库/文件</code>。
+                      </p>
+                      <p>这些功能方便了页面与系统的交互，关键在于调用格式一定要准确，否则会被<code>移动端浏览器</code>忽略。</p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-comment">&lt;!-- 拨打电话 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"tel:10086"</span>&gt;</span>拨打电话给10086小姐姐<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 发送短信 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"sms:10086"</span>&gt;</span>发送短信给10086小姐姐<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 发送邮件 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"mailto:young.joway@aliyun.com"</span>&gt;</span>发送邮件给JowayYoung<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 选择照片或拍摄照片 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">accept</span>=<span class="hljs-string">"image/*"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 选择视频或拍摄视频 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">accept</span>=<span class="hljs-string">"video/*"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 多选文件 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">multiple</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-3">忽略自动识别</h5>
+                      <p>
+                        有些<code>移动端浏览器</code>会自动将数字字母符号识别为<code>电话/邮箱</code>并将其渲染成上述<strong>调用系统功能</strong>里的<code>&lt;a&gt;</code>。虽然很方便却有可能违背需求。
+                      </p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-comment">&lt;!-- 忽略自动识别电话 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"format-detection"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"telephone=no"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 忽略自动识别邮箱 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"format-detection"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"email=no"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 忽略自动识别电话和邮箱 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"format-detection"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"telephone=no, email=no"</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-4">弹出数字键盘</h5>
+                      <p>使用<code>&lt;input
+                          type="tel"&gt;</code>弹起数字键盘会带上<code>#</code>和<code>*</code>，适合输入电话。推荐使用<code>&lt;input
+                          type="number" pattern="\d*"&gt;</code>弹起数字键盘，适合输入验证码等纯数字格式。</p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-comment">&lt;!-- 纯数字带#和* --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"tel"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 纯数字 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">pattern</span>=<span class="hljs-string">"\d*"</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-5">唤醒原生应用</h5>
+                      <p>通过<code>location.href</code>与原生应用建立通讯渠道，这种页面与客户端的通讯方式称为<strong>URL
+                          Scheme</strong>，其基本格式为<code>scheme://[path][?query]</code>，笔者曾经发表过<a
+                          href="https://juejin.cn/post/6844904020201455624" target="_blank">《H5与App的通讯方式》</a>讲述<code>URL
+                          Scheme</code>的使用。</p>
+                      <ul>
+                        <li><strong>scheme</strong>：应用标识，表示应用在系统里的唯一标识</li>
+                        <li><strong>path</strong>：应用行为，表示应用某个页面或功能</li>
+                        <li><strong>query</strong>：应用参数，表示应用页面或应用功能所需的条件参数</li>
+                      </ul>
+                      <p><code>URL
+                          Scheme</code>一般由前端与客户端共同协商。唤醒原生应用的前提是必须在移动设备里安装了该应用，有些<code>移动端浏览器</code>即使安装了该应用也无法唤醒原生应用，因为它认为<code>URL
+                          Scheme</code>是一种潜在的危险行为而禁用它，像<code>Safari</code>和<code>微信浏览器</code>。还好<code>微信浏览器</code>可开启白名单让<code>URL
+                          Scheme</code>有效。</p>
+                      <p>若在页面引用第三方原生应用的<code>URL Schema</code>，可通过抓包第三方原生应用获取其<code>URL</code>。</p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-comment">&lt;!-- 打开微信 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"weixin://"</span>&gt;</span>打开微信<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 打开支付宝 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"alipays://"</span>&gt;</span>打开支付宝<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 打开支付宝的扫一扫 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"alipays://platformapi/startapp?saId=10000007"</span>&gt;</span>打开支付宝的扫一扫<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 打开支付宝的蚂蚁森林 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"alipays://platformapi/startapp?appId=60000002"</span>&gt;</span>打开支付宝的蚂蚁森林<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-6">禁止页面缩放</h5>
+                      <p>
+                        在智能手机的普及下，很多网站都具备<code>桌面端</code>和<code>移动端</code>两种浏览版本，因此无需双击缩放查看页面。禁止页面缩放可保障<code>移动端浏览器</code>能无遗漏地展现页面所有布局。
+                      </p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1"</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-7">禁止页面缓存</h5>
+                      <p><strong>Cache-Control</strong>指定请求和响应遵循的缓存机制，不想使用浏览器缓存就禁止呗！</p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Cache-Control"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"no-cache"</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-8">禁止字母大写</h5>
+                      <p>
+                        有时在输入框里输入文本会默认开启首字母大写纠正，就是输入首字母小写会被自动纠正成大写，特么的烦。直接声明<code>autocapitalize=off</code>关闭首字母大写功能和<code>autocorrect=off</code>关闭纠正功能。
+                      </p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">autocapitalize</span>=<span class="hljs-string">"off"</span> <span class="hljs-attr">autocorrect</span>=<span class="hljs-string">"off"</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-9">针对Safari配置</h5>
+                      <p>贴一些<code>Safari</code>较零散且少用的配置。</p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-comment">&lt;!-- 设置Safari全屏，在iOS7+无效 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"apple-mobile-web-app-capable"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"yes"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 改变Safari状态栏样式，可选default/black/black-translucent，需在上述全屏模式下才有效 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"apple-mobile-web-app-status-bar-style"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"black"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 添加页面启动占位图 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"apple-touch-startup-image"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"pig.jpg"</span> <span class="hljs-attr">media</span>=<span class="hljs-string">"(device-width: 375px)"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 保存网站到桌面时添加图标 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"apple-touch-icon"</span> <span class="hljs-attr">sizes</span>=<span class="hljs-string">"76x76"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"pig.jpg"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 保存网站到桌面时添加图标且清除默认光泽 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"apple-touch-icon-precomposed"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"pig.jpg"</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-10">针对其他浏览器配置</h5>
+                      <p>
+                        贴一些其他浏览器较零散且少用的配置，主要是常用的<code>QQ浏览器</code>、<code>UC浏览器</code>和<code>360浏览器</code>。从网易MTL的测试数据得知，新版的<code>QQ浏览器</code>和<code>UC浏览器</code>已不支持以下<code>&lt;meta&gt;</code>声明了。
+                      </p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-comment">&lt;!-- 强制QQ浏览器竖屏 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"x5-orientation"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"portrait"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 强制QQ浏览器全屏 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"x5-fullscreen"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"true"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 开启QQ浏览器应用模式 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"x5-page-mode"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"app"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 强制UC浏览器竖屏 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"screen-orientation"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"portrait"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 强制UC浏览器全屏 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"full-screen"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"yes"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 开启UC浏览器应用模式 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"browsermode"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"application"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 开启360浏览器极速模式 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"renderer"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"webkit"</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-11">让:active有效，让:hover无效</h5>
+                      <p>
+                        有些元素的<code>:active</code>可能会无效，而元素的<code>:hover</code>在点击后会一直处于点击状态，需点击其他位置才能解除点击状态。给<code>&lt;body&gt;</code>注册一个空的<code>touchstart事件</code>可将两种状态反转。
+                      </p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">ontouchstart</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h3 data-id="heading-12">CSS方向</h3>
+                      <h5 data-id="heading-13">自动适应布局</h5>
+                      <p>
+                        针对移动端，笔者通常会结合JS依据<code>屏幕宽度</code>与<code>设计图宽度</code>的比例动态声明<code>&lt;html&gt;</code>的<code>font-size</code>，以<code>rem</code>为长度单位声明所有节点的几何属性，这样就能做到大部分移动设备的页面兼容，兼容出入较大的地方再通过<code>媒体查询</code>做特别处理。
+                      </p>
+                      <p>
+                        笔者通常将<code>rem布局比例</code>设置成<code>1rem=100px</code>，即在设计图上<code>100px</code>长度在CSS代码上使用<code>1rem</code>表示。
+                      </p>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AutoResponse</span>(<span class="hljs-params">width = <span class="hljs-number">750</span></span>) </span>{
+    <span class="hljs-keyword">const</span> target = <span class="hljs-built_in">document</span>.documentElement;
+    <span class="hljs-keyword">if</span> (target.clientWidth &gt;= <span class="hljs-number">600</span>) {
+        target.style.fontSize = <span class="hljs-string">"80px"</span>;
+    } <span class="hljs-keyword">else</span> {
+        target.style.fontSize = target.clientWidth / width * <span class="hljs-number">100</span> + <span class="hljs-string">"px"</span>;
+    }
+}
+AutoResponse();
+<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"resize"</span>, <span class="hljs-function">() =&gt;</span> AutoResponse());
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <p>
+                        当然还可依据<code>屏幕宽度</code>与<code>设计图宽度</code>的比例使用<code>calc()</code>动态声明<code>&lt;html&gt;</code>的<code>font-size</code>，这样就能节省上述代码。不对，是完全代替上述代码。
+                      </p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-tag">html</span> {
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100vw</span> / <span class="hljs-number">7.5</span>);
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <p>若以<code>iPad
+                          Pro</code>分辨率<code>1024px</code>为移动端和桌面端的断点，还可结合<code>媒体查询</code>做断点处理。<code>1024px</code>以下使用<code>rem布局</code>，否则不使用<code>rem布局</code>。
+                      </p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>: <span class="hljs-number">1024px</span>) {
+    <span class="hljs-selector-tag">html</span> {
+        <span class="hljs-attribute">font-size</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100vw</span> / <span class="hljs-number">7.5</span>);
+    }
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-14">自动适应背景</h5>
+                      <p>
+                        使用<code>rem布局</code>声明一个元素背景，多数情况会将<code>background-size</code>声明为<code>cover</code>。可能在设计图对应分辨率的移动设备下，背景会完美贴合显示，但换到其他分辨率的移动设备下就会出现左右空出<code>1px</code>到<code>npx</code>的空隙。
+                      </p>
+                      <p>此时将<code>background-size</code>声明为<code>100%
+                          100%</code>，跟随<code>width</code>和<code>height</code>的变化而变化。反正<code>width</code>和<code>height</code>都是量好的实际尺寸。
+                      </p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-class">.elem</span> {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">1rem</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">1rem</span>;
+    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">"pig.jpg"</span>) no-repeat center/<span class="hljs-number">100%</span> <span class="hljs-number">100%</span>;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-15">监听屏幕旋转</h5>
+                      <p>你还在使用JS判断横屏竖屏调整样式吗？那就真的<code>Out</code>了。</p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-comment">/* 竖屏 */</span>
+<span class="hljs-keyword">@media</span> all <span class="hljs-keyword">and</span> (<span class="hljs-attribute">orientation</span>: portrait) {
+    <span class="hljs-comment">/* 自定义样式 */</span>
+}
+<span class="hljs-comment">/* 横屏 */</span>
+<span class="hljs-keyword">@media</span> all <span class="hljs-keyword">and</span> (<span class="hljs-attribute">orientation</span>: landscape) {
+    <span class="hljs-comment">/* 自定义样式 */</span>
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-16">支持弹性滚动</h5>
+                      <p>
+                        在苹果系统上非<code>&lt;body&gt;</code>元素的滚动操作可能会存在卡顿，但安卓系统不会出现该情况。通过声明<code>overflow-scrolling:touch</code>调用系统原生滚动事件优化<code>弹性滚动</code>，增加页面滚动的流畅度。
+                      </p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-tag">body</span> {
+    -webkit-<span class="hljs-attribute">overflow</span>-scrolling: touch;
+}
+<span class="hljs-selector-class">.elem</span> {
+    <span class="hljs-attribute">overflow</span>: auto;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-17">禁止滚动传播</h5>
+                      <p>
+                        与<code>桌面端浏览器</code>不一样，<code>移动端浏览器</code>有一个奇怪行为。当页面包含多个滚动区域时，滚完一个区域后若还存在滚动动量则会将这些剩余动量传播到下一个滚动区域，造成该区域也滚动起来。这种行为称为<strong>滚动传播</strong>。
+                      </p>
+                      <p>若不想产生这种奇怪行为可直接禁止。</p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-class">.elem</span> {
+    overscroll-behavior: contain;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-18">禁止屏幕抖动</h5>
+                      <p>
+                        对于一些突然出现滚动条的页面，可能会产生左右抖动的不良影响。在一个滚动容器里，打开弹窗就隐藏滚动条，关闭弹窗就显示滚动条，来回操作会让屏幕抖动起来。提前声明滚动容器的<code>padding-right</code>为滚动条宽度，就能有效消除这个不良影响。
+                      </p>
+                      <p>
+                        每个<code>移动端浏览器</code>的滚动条宽度都有可能不一致，甚至不一定占位置，通过以下方式能间接计算出滚动条的宽度。<code>100vw</code>为视窗宽度，<code>100%</code>为滚动容器内容宽度，相减就是滚动条宽度，妥妥的动态计算。
+                      </p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-tag">body</span> {
+    <span class="hljs-attribute">padding-right</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100vw</span> - <span class="hljs-number">100%</span>);
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-19">禁止长按操作</h5>
+                      <p>
+                        有时不想用户长按元素呼出菜单进行<code>点链接</code>、<code>打电话</code>、<code>发邮件</code>、<code>保存图片</code>或<code>扫描二维码</code>等操作，声明<code>touch-callout:none</code>禁止用户长按操作。
+                      </p>
+                      <p>有时不想用户<code>复制粘贴</code>盗文案，声明<code>user-select:none</code>禁止用户长按操作和选择复制。</p>
+                      <pre><code class="hljs language-css copyable" lang="css">* {
+    <span class="hljs-comment">/* pointer-events: none; */</span> <span class="hljs-comment">/* 微信浏览器还需附加该属性才有效 */</span>
+    user-select: none; <span class="hljs-comment">/* 禁止长按选择文字 */</span>
+    -webkit-touch-callout: none;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <p>
+                        但声明<code>user-select:none</code>会让<code>&lt;input&gt;</code>和<code>&lt;textarea&gt;</code>无法输入文本，可对其声明<code>user-select:auto</code>排除在外。
+                      </p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-tag">input</span>,
+<span class="hljs-selector-tag">textarea</span> {
+    user-select: auto;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-20">禁止字体调整</h5>
+                      <p>旋转屏幕可能会改变字体大小，声明<code>text-size-adjust:100%</code>让字体大小保持不变。</p>
+                      <pre><code class="hljs language-css copyable" lang="css">* {
+    text-size-adjust: <span class="hljs-number">100%</span>;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-21">禁止高亮显示</h5>
+                      <p>触摸元素会出现半透明灰色遮罩，不想要！</p>
+                      <pre><code class="hljs language-css copyable" lang="css">* {
+    -webkit-tap-highlight-<span class="hljs-attribute">color</span>: transparent;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-22">禁止动画闪屏</h5>
+                      <p>在移动设备上添加动画，多数情况会出现闪屏，给动画元素的父元素构造一个<code>3D环境</code>就能让动画稳定运行了。</p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-class">.elem</span> {
+    <span class="hljs-attribute">perspective</span>: <span class="hljs-number">1000</span>;
+    <span class="hljs-attribute">backface-visibility</span>: hidden;
+    <span class="hljs-attribute">transform-style</span>: preserve-<span class="hljs-number">3</span>d;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-23">美化表单外观</h5>
+                      <p>表单元素样式太丑希望自定义，<code>appearance:none</code>来帮你。</p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-tag">button</span>,
+<span class="hljs-selector-tag">input</span>,
+select,
+<span class="hljs-selector-tag">textarea</span> {
+    appearance: none;
+    <span class="hljs-comment">/* 自定义样式 */</span>
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-24">美化滚动占位</h5>
+                      <p>滚动条样式太丑希望自定义，<code>::-webkit-scrollbar-*</code>来帮你。记住以下三个关键词就能随机应变了。</p>
+                      <ul class="contains-task-list">
+                        <li class="task-list-item"><input type="checkbox" checked="" disabled="">
+                          <strong>::-webkit-scrollbar</strong>：滚动条整体部分</li>
+                        <li class="task-list-item"><input type="checkbox" checked="" disabled="">
+                          <strong>::-webkit-scrollbar-track</strong>：滚动条轨道部分</li>
+                        <li class="task-list-item"><input type="checkbox" checked="" disabled="">
+                          <strong>::-webkit-scrollbar-thumb</strong>：滚动条滑块部分</li>
+                      </ul>
+                      <pre><code class="hljs language-css copyable" lang="css">::-webkit-scrollbar {
+    width: <span class="hljs-number">6px</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">6px</span>;
+    <span class="hljs-attribute">background-color</span>: transparent;
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: <span class="hljs-number">3px</span>;
+    <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, <span class="hljs-number">#09f</span>, <span class="hljs-number">#3c9</span>);
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-25">美化输入占位</h5>
+                      <p>输入框占位文本太丑，<code>::-webkit-input-placeholder</code>来帮你。</p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-tag">input</span>::-webkit-input-placeholder {
+    color: <span class="hljs-number">#66f</span>;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-26">对齐输入占位</h5>
+                      <p>
+                        有强迫症的同学总会觉得输入框文本位置整体偏上，感觉未居中心里就痒痒的。<code>桌面端浏览器</code>里声明<code>line-height</code>等于<code>height</code>就能解决，但<code>移动端浏览器</code>里还是未能解决，需将<code>line-height</code>声明为<code>normal</code>才行。
+                      </p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-tag">input</span> {
+    <span class="hljs-attribute">line-height</span>: normal;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-27">对齐下拉选项</h5>
+                      <p>下拉框选项默认向左对齐，是时候改改向右对齐了。</p>
+                      <pre><code class="hljs language-css copyable" lang="css">select option {
+    <span class="hljs-attribute">direction</span>: rtl;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-28">修复点击无效</h5>
+                      <p>
+                        在苹果系统上有些情况下非可点击元素监听<code>click事件</code>可能会无效，针对该情况只需对不触发<code>click事件</code>的元素声明<code>cursor:pointer</code>就能解决。
+                      </p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-class">.elem</span> {
+    <span class="hljs-attribute">cursor</span>: pointer;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-29">识别文本换行</h5>
+                      <p>
+                        多数情况会使用JS换行文本，那就真的<code>Out</code>了。若接口返回字段包含<code>\n</code>或<code>&lt;br&gt;</code>，千万别替换掉，可声明<code>white-space:pre-line</code>交由浏览器做断行处理。
+                      </p>
+                      <pre><code class="hljs language-css copyable" lang="css">* {
+    <span class="hljs-attribute">white-space</span>: pre-line;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-30">开启硬件加速</h5>
+                      <p>想动画更流畅吗，开启<code>GPU硬件加速</code>呗！</p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-class">.elem</span> {
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate3d</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    <span class="hljs-comment">/* transform: translateZ(0); */</span>
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-31">描绘像素边框</h5>
+                      <p>万年话题，如何描绘<code>一像素边框</code>？</p>
+                      <pre><code class="hljs language-scss copyable" lang="scss"><span class="hljs-selector-class">.elem</span> {
+    <span class="hljs-attribute">position</span>: relative;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;
+    &amp;<span class="hljs-selector-pseudo">::after</span> {
+        <span class="hljs-attribute">position</span>: absolute;
+        <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#f66</span>;
+        <span class="hljs-attribute">width</span>: <span class="hljs-number">200%</span>;
+        <span class="hljs-attribute">height</span>: <span class="hljs-number">200%</span>;
+        <span class="hljs-attribute">content</span>: <span class="hljs-string">""</span>;
+        <span class="hljs-attribute">transform</span>: scale(.<span class="hljs-number">5</span>);
+        <span class="hljs-attribute">transform-origin</span>: left top;
+    }
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-32">控制溢出文本</h5>
+                      <p>万年话题，如何控制文本做<code>单行溢出</code>和<code>多行溢出</code>？</p>
+                      <pre><code class="hljs language-scss copyable" lang="scss"><span class="hljs-selector-class">.elem</span> {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;
+    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">30px</span>;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;
+    &amp;<span class="hljs-selector-class">.sl-ellipsis</span> {
+        <span class="hljs-attribute">overflow</span>: hidden;
+        <span class="hljs-attribute">text-overflow</span>: ellipsis;
+        <span class="hljs-attribute">white-space</span>: nowrap;
+    }
+    &amp;<span class="hljs-selector-class">.ml-ellipsis</span> {
+        <span class="hljs-attribute">display</span>: -webkit-box;
+        <span class="hljs-attribute">overflow</span>: hidden;
+        <span class="hljs-attribute">text-overflow</span>: ellipsis;
+        -webkit-line-clamp: <span class="hljs-number">3</span>;
+        -webkit-box-orient: vertical;
+    }
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h3 data-id="heading-33">JS方向</h3>
+                      <h5 data-id="heading-34">禁止点击穿透</h5>
+                      <p><code>移动端浏览器</code>里点击操作会存在<code>300ms</code>延迟，往往会造成点击延迟甚至点击无效，这个是众所周知的事情。</p>
+                      <p>
+                        <code>2007年</code>苹果发布首款<code>iPhone</code>搭载的<code>Safari</code>为了将桌面端网站能较好地展示在<code>移动端浏览器</code>上而使用了双击缩放。该方案就是上述<code>300ms</code>延迟的主要原因，当用户执行第一次单击后会预留<code>300ms</code>检测用户是否继续执行单击，若是则执行缩放操作，若否则执行点击操作。鉴于该方案的成功，其他<code>移动端浏览器</code>也复制了该方案，现在几乎所有<code>移动端浏览器</code>都配备该功能。而该方案引发的点击延迟被称为<strong>点击穿透</strong>。
+                      </p>
+                      <p>
+                        在前端领域里最早解决点击穿透是<code>jQuery时代</code>的<code>zepto</code>，估计现在大部分同学都未使用过<code>zepto</code>，其实它就是移动端版本的<code>jquery</code>。<code>zepto</code>封装<code>tap事件</code>能有效地解决点击穿透，通过监听<code>document</code>上的<code>touch事件</code>完成<code>tap事件</code>的模拟，并将<code>tap事件</code>冒泡到<code>document</code>上触发。
+                      </p>
+                      <p>
+                        在<code>移动端浏览器</code>上不使用<code>click事件</code>而使用<code>touch事件</code>是因为<code>click事件</code>有着明显的延迟，后续又出现<code>fastclick</code>。该解决方案监听用户是否做了双击操作，可正常使用<code>click事件</code>，而点击穿透就交给<code>fastclick</code>自动判断。更多<code>fastclick</code>原理可自行百度，在此不作过多介绍。
+                      </p>
+                      <p><a href="https://github.com/ftlabs/fastclick" target="_blank"
+                          rel="nofollow noopener noreferrer">fastclick</a>有现成的<code>NPM包</code>，可直接安装到项目里。引入<code>fastclick</code>可使用<code>click事件</code>代替<code>tap事件</code>，接入方式极其简单。
+                      </p>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">import</span> Fastclick <span class="hljs-keyword">from</span> <span class="hljs-string">"fastclick"</span>;
+
+FastClick.attach(<span class="hljs-built_in">document</span>.body);
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-35">禁止滑动穿透</h5>
+                      <p><code>移动端浏览器</code>里出现弹窗时，若在屏幕上滑动能触发弹窗底下的内容跟着滚动，这个是众所周知的事情。</p>
+                      <p>
+                        首先明确解决滑动穿透需保持哪些交互行为，那就是<code>除了弹窗内容能点击或滚动，其他内容都不能点击或滚动</code>。目前很多解决方案都无法做到这一点，全部解决方案都能禁止<code>&lt;body&gt;</code>的滚动行为却引发其他问题。
+                      </p>
+                      <ul>
+                        <li>弹窗打开后内部内容无法滚动</li>
+                        <li>弹窗关闭后页面滚动位置丢失</li>
+                        <li><code>Webview</code>能上下滑动露出底色</li>
+                      </ul>
+                      <p>
+                        当打开弹窗时给<code>&lt;body&gt;</code>声明<code>position:fixed;left:0;width:100%</code>并动态声明<code>top</code>。声明<code>position:fixed</code>会导致<code>&lt;body&gt;</code>滚动条消失，此时会发现虽然无滑动穿透，但页面滚动位置早已丢失。通过<code>scrollingElement</code>获取页面当前滚动条偏移量并将其取负值且赋值给<code>top</code>，那么在视觉上就无任何变化。当关闭弹窗时移除<code>position:fixed;left:0;width:100%</code>和动态<code>top</code>。
+                      </p>
+                      <p>
+                        <code>scrollingElement</code>可兼容地获取<code>scrollTop</code>和<code>scrollHeight</code>等属性，在<code>移动端浏览器</code>里屡试不爽。<code>document.scrollingElement.scrollHeight</code>可完美代替曾经的<code>document.documentElement.scrollHeight
+                          || document.body.scrollHeight</code>，一眼看上去就是代码减少了。</p>
+                      <p>
+                        该解决方案在视觉上无任何变化，完爆其他解决方案，其实就是一种反向思维和障眼法。该解决方案完美解决<code>固定弹窗</code>和<code>滚动弹窗</code>对<code>&lt;body&gt;</code>全局滚动的影响，当然也可用于局部滚动容器里，因此很值得推广。
+                      </p>
+                      <pre><code class="hljs language-css copyable" lang="css"><span class="hljs-selector-tag">body</span><span class="hljs-selector-class">.static</span> {
+    <span class="hljs-attribute">position</span>: fixed;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">const</span> body = <span class="hljs-built_in">document</span>.body;
+<span class="hljs-keyword">const</span> openBtn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"open-btn"</span>);
+<span class="hljs-keyword">const</span> closeBtn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"close-btn"</span>);
+openBtn.addEventListener(<span class="hljs-string">"click"</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+    e.stopPropagation();
+    <span class="hljs-keyword">const</span> scrollTop = <span class="hljs-built_in">document</span>.scrollingElement.scrollTop;
+    body.classList.add(<span class="hljs-string">"static"</span>);
+    body.style.top = <span class="hljs-string">`-<span class="hljs-subst">${scrollTop}</span>px`</span>;
+});
+closeBtn.addEventListener(<span class="hljs-string">"click"</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+    e.stopPropagation();
+    body.classList.remove(<span class="hljs-string">"static"</span>);
+    body.style.top = <span class="hljs-string">""</span>;
+});
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-36">支持往返刷新</h5>
+                      <p>
+                        点击<code>移动端浏览器</code>的<code>前进按钮</code>或<code>后退按钮</code>，有时不会自动执行旧页面的JS代码，这与<code>往返缓存</code>有关。这种情况在<code>Safari</code>上特别明显，简单概括就是往返页面无法刷新。
+                      </p>
+                      <p>
+                        <strong>往返缓存</strong>指浏览器为了在页面间执行前进后退操作时能拥有更流畅体验的一种策略，以下简称<code>BFCache</code>。该策略具体表现为：当用户前往新页面前将旧页面的DOM状态保存在<code>BFCache</code>里，当用户返回旧页面前将旧页面的DOM状态从<code>BFCache</code>里取出并加载。大部分<code>移动端浏览器</code>都会部署<code>BFCache</code>，可大大节省接口请求的时间和带宽。
+                      </p>
+                      <p>了解什么是<code>BFCache</code>再对症下药，解决方案就在<code>window.onunload</code>上做文章。</p>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-comment">// 在新页面监听页面销毁事件</span>
+<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"onunload"</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// 执行旧页面代码</span>
+});
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <p>若在<code>Vue
+                          SPA</code>上使用<code>keep-alive</code>也不能让页面刷新，可将接口请求放到<code>beforeRouteEnter()</code>里。</p>
+                      <p>
+                        当然还有另一种解决方案。<code>pageshow事件</code>在每次页面加载时都会触发，无论是首次加载还是再次加载都会触发，这就是它与<code>load事件</code>的区别。<code>pageshow事件</code>暴露的<code>persisted</code>可判断页面是否从<code>BFCache</code>里取出。
+                      </p>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"pageshow"</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> e.persisted &amp;&amp; location.reload());
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <p>若浏览器不使用<code>&lt;meta http-equiv="Cache-Control"
+                          content="no-cache"&gt;</code>禁用缓存，该解决方案还是很值得一用。</p>
+                      <h5 data-id="heading-37">解析有效日期</h5>
+                      <p>在苹果系统上解析<code>YYYY-MM-DD HH:mm:ss</code>这种日期格式会报错<code>Invalid
+                          Date</code>，但在安卓系统上解析这种日期格式完全无问题。</p>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">"2019-03-31 21:30:00"</span>); <span class="hljs-comment">// Invalid Date</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <p>查看<code>Safari</code>相关开发手册发现可用<code>YYYY/MM/DD
+                          HH:mm:ss</code>这种日期格式，简单概括就是年月日必须使用<code>/</code>衔接而不能使用<code>-</code>衔接。当然安卓系统也支持该格式，然而接口返回字段的日期格式通常是<code>YYYY-MM-DD
+                          HH:mm:ss</code>，那么需替换其中的<code>-</code>为<code>/</code>。</p>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">const</span> date = <span class="hljs-string">"2019-03-31 21:30:00"</span>;
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(date.replace(<span class="hljs-regexp">/\-/g</span>, <span class="hljs-string">"/"</span>));
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-38">修复高度坍塌</h5>
+                      <p>
+                        当页面同时出现以下三个条件时，键盘占位会把页面高度压缩一部分。当输入完成键盘占位消失后，页面高度有可能回不到原来高度，产生坍塌导致<code>Webview</code>底色露脸，简单概括就是输入框失焦后页面未回弹。
+                      </p>
+                      <ul>
+                        <li>页面高度过小</li>
+                        <li>输入框在页面底部或视窗中下方</li>
+                        <li>输入框聚焦输入文本</li>
+                      </ul>
+                      <p>只要保持前后滚动条偏移量一致就不会出现上述问题。在输入框聚焦时获取页面当前滚动条偏移量，在输入框失焦时赋值页面之前获取的滚动条偏移量，这样就能间接还原页面滚动条偏移量解决页面高度坍塌。
+                      </p>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">const</span> input = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"input"</span>);
+<span class="hljs-keyword">let</span> scrollTop = <span class="hljs-number">0</span>;
+input.addEventListener(<span class="hljs-string">"focus"</span>, <span class="hljs-function">() =&gt;</span> {
+    scrollTop = <span class="hljs-built_in">document</span>.scrollingElement.scrollTop;
+});
+input.addEventListener(<span class="hljs-string">"blur"</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-built_in">document</span>.scrollingElement.scrollTo(<span class="hljs-number">0</span>, scrollTop);
+});
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-39">修复输入监听</h5>
+                      <p>
+                        在苹果系统上的输入框输入文本，<code>keyup/keydown/keypress事件</code>可能会无效。当输入框监听<code>keyup事件</code>时，逐个输入英文和数字会有效，但逐个输入中文不会有效，需按回车键才会有效。
+                      </p>
+                      <p>此时可用<code>input事件</code>代替输入框的<code>keyup/keydown/keypress事件</code>。</p>
+                      <h5 data-id="heading-40">简化回到顶部</h5>
+                      <p>
+                        曾几何时编写一个<code>返回顶部</code>函数麻烦得要死，需<code>scrollTop</code>、<code>定时器</code>和<code>条件判断</code>三者配合才能完成。其实DOM对象里隐藏了一个很好用的函数可完成上述功能，一行核心代码就能搞定。
+                      </p>
+                      <p>该函数就是<a href="https://developer.mozilla.org/zh-cn/docs/web/api/element/scrollintoview"
+                          target="_blank"
+                          rel="nofollow noopener noreferrer">scrollIntoView</a>，它会滚动目标元素的父容器使之对用户可见，简单概括就是相对视窗让容器滚动到目标元素位置。它有三个可选参数能让<code>scrollIntoView</code>滚动起来更优雅。
+                      </p>
+                      <ul>
+                        <li><strong>behavior</strong>：动画过渡效果，默认<code>auto无</code>，可选<code>smooth平滑</code></li>
+                        <li>
+                          <strong>inline</strong>：水平方向对齐方式，默认<code>nearest就近对齐</code>，可选<code>start顶部对齐</code>、<code>center中间对齐</code>和<code>end底部对齐</code>
+                        </li>
+                        <li>
+                          <strong>block</strong>：垂直方向对齐方式，默认<code>start顶部对齐</code>，可选<code>center中间对齐</code>、<code>end底部对齐</code>和<code>nearest就近对齐</code>
+                        </li>
+                      </ul>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">const</span> gotopBtn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"gotop-btn"</span>);
+openBtn.addEventListener(<span class="hljs-string">"click"</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">document</span>.body.scrollIntoView({ <span class="hljs-attr">behavior</span>: <span class="hljs-string">"smooth"</span> }));
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <p>当然还可滚动到目标元素位置，只需将<code>document.body</code>修改成目标元素的DOM对象。一行核心代码就能搞掂的事情为何还编写那么多代码去完成，不累吗？</p>
+                      <h5 data-id="heading-41">简化懒性加载</h5>
+                      <p>
+                        与上述<strong>简化回到顶部</strong>一样，编写一个<code>懒性加载</code>函数也同样需<code>scrollTop</code>、<code>定时器</code>和<code>条件判断</code>三者配合才能完成。其实DOM对象里隐藏了一个很好用的函数可完成上述功能，该函数无需监听容器的<code>scroll事件</code>，通过浏览器自身机制完成滚动监听。
+                      </p>
+                      <p>该函数就是<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver"
+                          target="_blank"
+                          rel="nofollow noopener noreferrer">IntersectionObserver</a>，它提供一种异步观察目标元素及其祖先元素或顶级文档视窗交叉状态的方法。详情可参照<a
+                          href="https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver" target="_blank"
+                          rel="nofollow noopener noreferrer">MDN文档</a>，在此不作过多介绍。</p>
+                      <p>懒性加载的第一种使用场景：<strong>图片懒加载</strong>。只需确认图片进入可视区域就赋值加载图片，赋值完成还需对图片停止监听。</p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">data-src</span>=<span class="hljs-string">"pig.jpg"</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- 很多&lt;img&gt; --&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">const</span> imgs = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">"img.lazyload"</span>);
+<span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> IntersectionObserver(<span class="hljs-function"><span class="hljs-params">nodes</span> =&gt;</span> {
+    nodes.forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (v.isIntersecting) { <span class="hljs-comment">// 判断是否进入可视区域</span>
+            v.target.src = v.target.dataset.src; <span class="hljs-comment">// 赋值加载图片</span>
+            observer.unobserve(v.target); <span class="hljs-comment">// 停止监听已加载的图片</span>
+        }
+    });
+});
+imgs.forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> observer.observe(v));
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <p>懒性加载的第二种使用场景：<strong>下拉加载</strong>。在列表最底部部署一个占位元素且该元素无任何高度或实体外观，只需确认占位元素进入可视区域就请求接口加载数据。</p>
+                      <pre><code class="hljs language-html copyable" lang="html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 很多&lt;li&gt; --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- 也可将#bottom以&lt;li&gt;的形式插入到&lt;ul&gt;内部的最后位置 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"bottom"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">const</span> bottom = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"bottom"</span>);
+<span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> IntersectionObserver(<span class="hljs-function"><span class="hljs-params">nodes</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> tgt = nodes[<span class="hljs-number">0</span>]; <span class="hljs-comment">// 反正只有一个</span>
+    <span class="hljs-keyword">if</span> (tgt.isIntersecting) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"已到底部，请求接口"</span>);
+        <span class="hljs-comment">// 执行接口请求代码</span>
+    }
+})
+observer.observe(bottom);
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h5 data-id="heading-42">优化扫码识别</h5>
+                      <p>
+                        通常<code>移动端浏览器</code>都会配备<code>长按二维码图片识别链接</code>的功能，但长按二维码可能无法识别或错误识别。二维码表面看上去是一张图片，可二维码生成方式却五花八门，二维码生成方式有以下三种。
+                      </p>
+                      <ul class="contains-task-list">
+                        <li class="task-list-item"><input type="checkbox" checked="" disabled="">
+                          使用<code>&lt;img&gt;</code>渲染</li>
+                        <li class="task-list-item"><input type="checkbox" checked="" disabled="">
+                          使用<code>&lt;svg&gt;</code>渲染</li>
+                        <li class="task-list-item"><input type="checkbox" checked="" disabled="">
+                          使用<code>&lt;canvas&gt;</code>渲染</li>
+                      </ul>
+                      <p>
+                        从网易MTL的测试数据得知，大部分<code>移动端浏览器</code>只能识别<code>&lt;img&gt;</code>渲染的二维码，为了让全部<code>移动端浏览器</code>都能识别二维码，那只能使用<code>&lt;img&gt;</code>渲染二维码了。若使用<code>SVG</code>和<code>Canvas</code>的方式生成二维码，那就想方设法把二维码数据转换成<code>Base64</code>再赋值到<code>&lt;img&gt;</code>的<code>src</code>上。
+                      </p>
+                      <p>一个页面可能存在多个二维码，若长按二维码只能识别最后一个，那只能控制每个页面只存在一个二维码。</p>
+                      <h5 data-id="heading-43">自动播放媒体</h5>
+                      <p>
+                        常见媒体元素包括音频<code>&lt;audio&gt;</code>和视频<code>&lt;video&gt;</code>，为了让用户得到更好的媒体播放体验与不盲目浪费用户流量，大部分<code>移动端浏览器</code>都明确规定不能自动播放媒体或默认屏蔽<code>autoplay</code>。为了能让媒体在页面加载完成后自动播放，只能显式声明播放。
+                      </p>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">const</span> audio = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"audio"</span>);
+<span class="hljs-keyword">const</span> video = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"video"</span>);
+audio.play();
+video.play();
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <p>对于像微信浏览器这样的内置浏览器，还需监听其应用SDK加载完成才能触发上述代码，以保障<code>WebView</code>正常渲染。其他内置浏览器同理，在此不作过多介绍。</p>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"WeixinJSBridgeReady"</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// 执行上述媒体自动播放代码</span>
+});
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <p>在苹果系统上明确规定用户交互操作开始后才能播放媒体，未得到用户响应会被<code>Safari</code>自动拦截，因此需监听用户首次触摸操作并触发媒体自动播放，而该监听仅此一次。</p>
+                      <pre><code class="hljs language-js copyable" lang="js"><span class="hljs-built_in">document</span>.body.addEventListener(<span class="hljs-string">"touchstart"</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// 执行上述媒体自动播放代码</span>
+}, { <span class="hljs-attr">once</span>: <span class="hljs-literal">true</span> });
+<span class="copy-code-btn">复制代码</span></code></pre>
+                      <h3 data-id="heading-44">总结</h3>
+                      <p>若有未记录的坑位可提<a href="https://github.com/JowayYoung/mobile-devpit/pulls" target="_blank"
+                          rel="nofollow noopener noreferrer">PR</a>让笔者合并，我们一起记录更多的<strong>移动端坑位</strong>，让更多前端开发者少走弯路。本文也是笔者2021年在掘金社区的首篇文章，希望今年能产出更多高质量文章。从笔者角度上看，一篇文章不是技术多牛逼笔风多优雅才归纳为好文章，而是整体内容能帮助自己和更多人进步才算是好文章。向这个方向进发，为自己打Call。
+                      </p>
+                      <p>
+                        上述坑位按照<strong>HTML方向</strong>、<strong>CSS方向</strong>和<strong>JS方向</strong>三大类型划分，能更高效地区分出每个坑位的使用场景和解决方案，减少混乱记忆。当中提及了CSS方向的很多坑位，这些坑位也属于一些CSS开发技巧，若喜欢CSS的同学可了解笔者上架的掘金社区首本CSS小册<a
+                          href="https://juejin.cn/book/6850413616484040711" target="_blank">《玩转CSS的艺术之美》</a>做更深一步学习。</p>
+                      <p><strong>回看笔者往期高赞文章，也许能收获更多喔！</strong></p>
+                      <ul>
+                        <li><a href="https://juejin.cn/post/6844903959283367950"
+                            target="_blank">《1.5万字概括ES6全部特性》</a>：<code>4100+</code>点赞量，<code>15w+</code>阅读量</li>
+                        <li><a href="https://juejin.im/post/6844903926110617613" target="_blank"
+                            rel="nofollow noopener noreferrer">《灵活运用CSS开发技巧》</a>：<code>4200+</code>点赞量，<code>13w+</code>阅读量
+                        </li>
+                        <li><a href="https://juejin.cn/post/6844903838449664013"
+                            target="_blank">《灵活运用JS开发技巧》</a>：<code>1600+</code>点赞量，<code>5w+</code>阅读量</li>
+                        <li><a href="https://juejin.cn/post/6844904063729926152"
+                            target="_blank">《25个你不得不知道的数组reduce高级用法》</a>：<code>700+</code>点赞量，<code>2.2w+</code>阅读量</li>
+                        <li><a href="https://juejin.cn/post/6908879198933221383"
+                            target="_blank">《8个硬核技巧带你迅速提升CSS技术｜掘金直播总结》</a>：<code>600+</code>点赞量，<code>1.6w+</code>阅读量
+                        </li>
+                        <li><a href="https://juejin.im/post/6844904084936327182" target="_blank"
+                            rel="nofollow noopener noreferrer">《妙用CSS变量，让你的CSS变得更心动》</a>：<code>500+</code>点赞量，<code>1.5w+</code>阅读量
+                        </li>
+                      </ul>
+                      <p>最近笔者参加了<a href="https://rank.juejin.cn/?u=JowayYoung&amp;t=user"
+                          target="_blank">2020创作者榜单</a>，喜欢笔者可为笔者打Call喔！你一票我一票，居居上榜靠大家❤️！</p>
+                      <p><img alt="上榜" class="lazyload inited"
+                          data-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/06f84da84dd64f27a8eef2fe0dc899f8~tplv-k3u1fbpfcp-watermark.image"
+                          data-width="800" data-height="600"
+                          src="data:image/svg+xml;utf8,&lt;?xml version=&quot;1.0&quot;?&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot; width=&quot;800&quot; height=&quot;600&quot;&gt;&lt;/svg&gt;">
+                      </p>
+                      <h3 data-id="heading-45">结语</h3>
+                      <p><strong>❤️关注+点赞+收藏+评论+转发❤️</strong>，原创不易，鼓励笔者创作更多高质量文章</p>
+                      <p><strong>关注公众号<code>IQ前端</code>，一个专注于CSS/JS开发技巧的前端公众号，更多前端小干货等着你喔</strong></p>
+                      <ul>
+                        <li>关注后回复<code>资料</code>免费领取学习资料</li>
+                        <li>关注后回复<code>进群</code>拉你进技术交流群</li>
+                        <li>欢迎关注<code>IQ前端</code>，更多<strong>CSS/JS开发技巧</strong>只在公众号推送</li>
+                      </ul>
+                      <p><img alt="" class="lazyload inited"
+                          data-src="https://yangzw.vip/static/frontend/account/IQ%E5%89%8D%E7%AB%AF%E5%85%AC%E4%BC%97%E5%8F%B7.jpg"
+                          data-width="800" data-height="600"
+                          src="data:image/svg+xml;utf8,&lt;?xml version=&quot;1.0&quot;?&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot; width=&quot;800&quot; height=&quot;600&quot;&gt;&lt;/svg&gt;">
+                      </p>
+                    </div>
+                    <div class="image-viewer-box" data-v-78c9b824="">
+                      <!---->
+                    </div>
+                  </div>
+                </article>
+                <!---->
+              </div>
+
+            </div>
+          </main>
+        </div>
+        <!---->
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>
+
+</html>

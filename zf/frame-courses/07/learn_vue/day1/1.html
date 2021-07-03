@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    [v-cloak] {
+      opacity: 0;
+    }
+  </style>
+</head>
+<!-- 
+  虚拟DOM  就是用 普通的JS对象去模拟了 真实DOM
+  ｛
+    ｔａｇ：ｄｉｖ，
+    ｐｒｏｐｓ：｛ｃｌａｓｓ　ｉｄ　　．．．｝
+    ｃｈｉｌｄｒｅｎ：［
+      ｔａｇ：＇ｈ１＇
+      ｐｒｏｐｓ：ｎｕｌｌ，
+      ｃｈｉｌｄｒｅｎ：ｎｕｌｌ
+    ］
+  ｝
+ 指令  凡是 v- 开头的行内属性 我们都成为 vue指令
+ v-model  主要应用在表单元素或者组件上  value属性 和  input事件的一个合体
+ v-text  主要是为了解决小胡子的显示问题 90%用不上
+ v-html   等同于原生的innerHTML   60%用不上  一旦使用的时候 注意 后边跟的内容一定是可信任的内容
+ 
+ v-cloak  主要是为了解决小胡子的显示问题 90%用不上  需要配合css使用
+ v-pre  这是一个优化性的指令 
+ -->
+
+<body>
+  <div id="app">
+    <input type="text" v-model='name'>
+    <h1 v-cloak>{{name}}　{{age}}</h1>
+    <h1 v-text="i"></h1>
+    <div v-html='i'></div>
+
+    <ul v-pre>
+      <li>{{name}}</li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      name: "珠峰",
+      age: 10,
+      i: '<i>hello</i>'
+    }
+  })
+</script>

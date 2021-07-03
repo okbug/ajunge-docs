@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{name}}</h1>
+    <input type="text" v-model='todo' @keydown.enter='add'>
+    <ul>
+      <li v-for='(item,i) in todoList'>
+        {{item.todo}}<button @click='del(item,i)'>X</button>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let str = sessionStorage.getItem('mytodolist') || "[]"
+  let ary = JSON.parse(str)
+  let vm = new Vue({
+    el: '#app',
+    qqq: 123,
+    www: 1234,
+    data: {
+      name: "珠峰",
+      todo: '',
+      // todoList: [{
+      //   id: Math.random(),
+      //   todo: "睡觉"
+      // }]
+      todoList: ary
+    },
+    methods: {
+      add() {
+        this.todoList.unshift({
+          id: Math.random(),
+          todo: this.todo
+        })
+        this.todo = '';
+        sessionStorage.setItem('mytodolist', JSON.stringify(this.todoList))
+      },
+      del(item, i) {
+        this.todoList.splice(i, 1)
+        sessionStorage.setItem('mytodolist', JSON.stringify(this.todoList))
+      }
+    },
+  })
+</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model='name'>
+    <h1>{{name}}</h1>
+  </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      name: "珠峰"
+    },
+    render(h) {
+      // h ---> createElement
+      // return h('h2', '哈哈')
+      return h('div', {
+        attrs: {
+          id: 'app'
+        },
+        class: 'box'
+      }, [
+        h('input', {
+          domProps: {
+            value: this.name
+          },
+          on: {
+            input: (event) => {
+              this.name = event.target.value
+              // this.$emit('input', event.target.value)
+            }
+          }
+        }),
+        h('h1', this.name)
+      ])
+    }
+  })
+</script>
