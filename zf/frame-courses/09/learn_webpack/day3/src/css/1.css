@@ -1,0 +1,5 @@
+body{
+  background-color: red;
+  transition:all 1s;
+  background-image: url('../2.jpeg');
+}

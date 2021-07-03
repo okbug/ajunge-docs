@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    [v-cloak] {
+      color: red;
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <h2>哈哈哈 {{qqq}}</h2>
+    <input type="text" v-model='qqq'>
+    <aaa></aaa>
+    <bbb></bbb>
+    <router-link></router-link>
+    <router-view> </router-view>
+  </div>
+</body>
+
+</html>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+  let a = function (_vue) {
+    console.log(arguments)
+    _vue.component('aaa', {
+      template: '<h1>哈哈哈</h1>'
+    })
+  }
+  Vue.use(a)
+
+  let b = {
+    install(_vue) {
+      console.log('bbbb')
+      _vue.component('bbb', {
+        template: "<h2>呵呵呵呵</h2>"
+      })
+    }
+  }
+  Vue.use(b)
+
+  let VueRouter = function (options) {
+
+  }
+  VueRouter.install = function (_vue) {
+    _vue.component('router-view', {
+      template: "<h1>router-view</h1>"
+    })
+    _vue.component('router-link', {
+      template: "<h1>router-link</h1>"
+    })
+  }
+
+  Vue.use(VueRouter)
+  let vm = new Vue({
+    // el: "#app",
+    // template: `<h1>哈哈哈哈</h1>`
+    data: {
+      qqq: '珠峰配'
+    },
+    qqq: !23,
+    wwww: 234234
+  }).$mount('#app')
+</script>
+<!-- 
+  全局安装脚手架   yarn add -g @vue/cli
+
+  vue create  xxx
+
+
+  hash:  hashchange 事件
+  history: popstate事件 + pushstate和replacestate方法
+
+
+
+  父子组件的数据交互的几种方式
+  自定属性+props和 自定义事件+$emit
+
+  $parent  $children  $refs  原理都是直接获取到组件本身，那么组件中的所有的属性或者法方都能获取得到
+
+  provid/inject 通过provide给一个组件提供某些属性  那么他所有的后代组件 都可以通过  inject获取到对应属性
+
+  eventBus  $on $emit $off原理就是发布订阅，通过函数参数传递来进行数据交互的
+
+  vuex
+
+
+
+ -->
+
+
+<script src=''>
+  let obj = {
+    name: "珠峰", // dep [放的都是使用name的哪些watcher]
+    age: 10,
+    qqq: {
+      a: {
+        w: 234
+      }
+    }
+  }
+  fn(obj)
+
+  function fn(obj) {
+    for (let k in obj) {
+      defineProperty(obj, k, obj[k])
+    }
+  }
+
+  //  每一个被劫持的属性  都会有一个dep实例 
+  //  模板编译的时候 会给每一个使用到被劫持属性的地方添加一个watcher,
+  //  然后使用属性对应的指的时候 把这个watcher添加到 dep对应的subs中
+  //  当这个属性更新的时候 再去触发这个属性对应的dep的notify方法
+  function defineProperty(obj, key, value) {
+    if (typeof value === 'object') {
+      fn(value)
+    }
+    // let dep = new Dep(); dep {subs:[],addSub,notify}
+    Object.defineProperty(obj, key, {
+      get() {
+        console.log('get')
+        return value
+      },
+      set(val) {
+        console.log("set")
+        // dep.notify()
+        value = val;
+      }
+    })
+  }
+
+
+
+  let obj2 = {
+    name: 123,
+    age: 345
+  }
+  let mishu = new Proxy(obj2, {
+    get(target, key) {
+      console.log(`通过秘书调用了 ${key}属性`)
+      return target[key]
+    },
+    set(target, key, value) {
+      console.log(`通过秘书给 ${key}属性 附了一个值 ${value}`)
+      target[key] = value
+    }
+  })
+
+  // 那vue中是如何检测数组变化的呢？
+  //  vue自己创造一个地址  里边放7个自己的方法 
+  //  把数组__proto__ 指向了这个地址
+
+
+  Vue.use(a)
+  Vue.use(a)
+
+  /* Vue.use = function (plugin) {
+    const installedPlugins = (this._installedPlugins || (this._installedPlugins = []))
+    if (installedPlugins.indexOf(plugin) > -1) {
+      return this
+    }
+
+    // additional parameters
+    const args = toArray(arguments, 1)
+    args.unshift(this)
+    if (typeof plugin.install === 'function') {
+      plugin.install.apply(plugin, args)
+    } else if (typeof plugin === 'function') {
+      plugin.apply(null, args)
+    }
+    installedPlugins.push(plugin)
+    return this
+  } */
+</script>
