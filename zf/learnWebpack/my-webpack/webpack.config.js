@@ -56,7 +56,7 @@ module.exports = {
                 use: 'eslint-loader',
                 enforce: "pre", // 强制指定顺序，这个是之前的意思
                 // 这个会默认先触发，然后将转化后的代码传给下一个rule
-                options: {fix: true}, // 启动自动修复
+                // options: {fix: true}, // 启动自动修复
                 exclude: /node_modules/, // 排除不需要检验的代码
                 // 或者include: resolve("src") // 只检测这里的代码
             },

@@ -45,20 +45,45 @@ document.body.appendChild(image)
 // class Person {
 //     @readonly PI = 3.14
 // }
-let c = 1
-console.log(c === 1)
+
+
+// let c = 1
+// console.log(c === 1)
+
+
 // let p = new Person()
 // console.log(p)
 // p.PI = 3.15
 // console.log(p)
 
-require("@babel/polyfill")
-let p = new Promise((resolve) => {
-    resolve(1)
-    console.log(c === 1);
-})
-p.then((data) => {
-    console.log(data)
-})
 
 
+// require("@babel/polyfill")
+// let p = new Promise((resolve) => {
+//     resolve(1)
+//     console.log(c === 1);
+// })
+// p.then((data) => {
+//     console.log(data)
+// })
+
+
+import "./index.css";
+import "./less.less";
+import "./sass.scss";
+
+
+
+import React from 'react'
+
+import ReactDOM from 'react-dom';
+
+
+console.log(1);
+function App() {
+    return (<>
+        <h1>Hello App</h1>
+    </>)
+}
+
+ReactDOM.render(<App />, document.getElementById("app"))
