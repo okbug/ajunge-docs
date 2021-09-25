@@ -266,7 +266,7 @@ document.body.appendChild(image)
 babel-loader使用Babel和webpack转译JavaScript文件
 @babel / @babel/core Babel编译的核心包
 @babel/preset-env 为每个环境预设的配置
-@babel/@babel/preset-reactReact插件的Babel预设
+@babel/@babel/preset-react React插件的Babel预设
 @babel/plugin-proposal-decorators把类和对象装饰器编译成ES5
 @babel/plugin-proposal-class-properties转换静态类属性以及使用属性初始值化语法声明的属性
 
