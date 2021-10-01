@@ -33,3 +33,20 @@ class EventEmitter {
         this.on(eventName, fn);
     }
 }
+
+interface one {
+    name: string;
+}
+class One {
+    age: number = 1;
+    func1() {
+        console.log('one func1')
+    }
+}
+class Two implements One {
+    // constructor
+    age: number = 2;
+    func1() {
+        console.log('two func1')
+    }
+}
