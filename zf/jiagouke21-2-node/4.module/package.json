@@ -1,0 +1,23 @@
+{
+  "name": "zf-module",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "zm": "./main.js",
+    "zf-module": "./main.js"
+  },
+  "scripts": {
+    "mime":"mime a.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "mime": "^2.5.2"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "bootstrap": "^3.0.0"
+  }
+}

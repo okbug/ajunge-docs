@@ -1,0 +1,38 @@
+#! /usr/bin/env node
+
+// 我们的服务器要支持 可以改端口号 --port --directory 指定以哪个目录为基准
+// --help 命令 
+// --version
+// --usesage
+
+
+const { program } = require('commander');
+const config = require('./config');
+const Server = require('../src/main.js')
+const version = require('../package.json').version
+program.version(version)
+    .name('zsl')
+    .usage("[options]");
+
+const usages = [];
+Object.entries(config).forEach(([key, value]) => {
+    usages.push(value.usage);
+    program.option(value.option, value.description, value.default)
+})
+
+program.on('--help',function () {
+    console.log('\nExamples:')
+    usages.forEach(usage=> console.log('  ' + usage))
+})
+
+program.parse(process.argv);
+let ops = program.opts();
+
+// process.on('SIGINT',function(){
+//     console.log('exit');
+//     process.exit()
+// })
+
+
+let server = new Server(ops);
+server.start(); // 开启服务

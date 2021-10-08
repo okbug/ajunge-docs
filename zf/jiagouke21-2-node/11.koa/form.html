@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <form action="/login" method="POST" enctype="multipart/form-data">
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <input type="file" name="avatar">
+        <button type="submit">提交</button>
+    </form> -->
+
+
+    <form >
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <input type="file" name="avatar" onchange="selectChange(event)">
+        <button onclick="login">提交</button>
+    </form>
+    <script>
+        function selectChange(e){
+           let fd = new FormData();
+           fd.append('avatar',e.target.files[0]);
+
+           let xhr = new XMLHttpRequest();
+           xhr.open('POST','/login',true);
+           xhr.addEventListener('load',function () {
+               
+           });
+           xhr.send(fd)
+        }
+        
+    </script>
+</body>
+
+</html>
