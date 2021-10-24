@@ -428,3 +428,45 @@ presets中加入一个useBuiltIns选项 然后指定浏览器的版本
 ```
 
 配置了 `enforce: "pre"` 的规则会优先匹配
+
+webpack自带一个插件叫做ProvidePlugin
+```js
+plugins: {
+    new HtmlWebpackPlugin({
+        template: './src/index.html',
+    }),
+    new webpack.ProvidePlugin({
+        _: 'lodash' // 相当于全局引入lodash 所有文件都可以使用
+    })
+}
+```
+
+# webpack 中的loader和plugin
+## loader
+expose-loader
+将模块信息提前放到全局里面
+
+
+## plugin
+html-webpack-externals-plugin
+和externals选项类似，不需要手动在模板中引入cdn
+use: 
+
+```js
+new HtmlWebpackExternalsPlugin({
+    externals: {
+        module: 'lodash',
+        entry: '//cdn.com/lodash.js',
+        global: '_',
+    }
+})
+```
+
+definePlugin
+定义全局常量
+
+```js
+new webpack.definePlugin({
+    ...options
+})
+```
