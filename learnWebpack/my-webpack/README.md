@@ -441,10 +441,56 @@ plugins: {
 }
 ```
 
+webpack的entry 可以是一个对象，有更多的配置
+
+```js
+entry: {
+    main: 'src/index.js'
+}
+```
+
+----
+
+bundle chunk
+bundle意思是打包后的资源文件，每个入口(entry) 生成一个代码块(chunk) 就是bundle文件
+每一个chunk就是一个文件 以及它所依赖的那些模块 加在一起的代码块
+----
+
+hash chunkhash contenthash
+hash: 每次构建会生成统一hash
+chunkHash 代码块hash 每个代码块共享一个hash值
+contentHash 内容哈希，根据文件的内容生成的hash
+----
+
 # webpack 中的loader和plugin
 ## loader
+style-loader
+将样式添加到html中
+```js
+function loader(cssSource) {
+    return `
+        let style = document.createElement('style');
+        style.innerHTML = ${cssSource}
+        document.head.appendChild(style);
+    `
+}
+```
+
+
 expose-loader
 将模块信息提前放到全局里面
+```js
+rules: [
+      {
+        test: require.resolve("jquery"),
+        loader: "expose-loader",
+        options: {
+          exposes: ["$", "jQuery"],
+        },
+      },
+]
+// import $ from 'jquery';
+```
 
 
 ## plugin
@@ -469,4 +515,97 @@ definePlugin
 new webpack.definePlugin({
     ...options
 })
+```
+
+copyWebpackPlugin
+拷贝文件夹或文件
+
+```js
+const copyWebpackPlugin = require('copy=webpack-plugin');
+new copyWebpackPlugin({
+    patterns: [
+        {
+            from: resolve('src/fonts'),
+            to: resolve('dist/fonts'),
+        }
+    ]
+})
+```
+
+cleanWebpackPlugin
+在重新构建前 先删除在output目录下的原有文件
+```js
+const { cleanWebpackPlugin } = require('clean-webpack-plugin');
+
+new cleanWebpackPlugin({
+    cleanOnceBeforeBuildPatterns: ["**/*"]
+})
+// * 匹配任意字符， ** 类似递归匹配，所有文件夹下面的文件
+```
+
+mini-css-extract-plugin
+把css单独分离出来加载
+
+```js
+rules: [ // 用miniCssExtractPlugin.loader 替换掉 style-loader
+    {
+        test: 'css',
+        use: [miniCssExtractPlugin.loader, 'css-loader']
+    }, {
+        test: 'less',
+        use: [miniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+    }, {
+        test: 'scss',
+        use: [miniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+    }
+],
+plugins: [
+    new miniCssExtractPlugin({
+        filename: '[name].css'
+    })
+]
+```
+
+----------
+
+
+webpack proxy
+可以作为反向代理 （跨域等作用）
+使用
+```js
+devServer: {
+    proxy: {
+        '/api': 'http://api.com/api',// 访问/api/xxx 等于访问这个域名的这个路径，可以重写
+        '/api2': {
+            target: 'http://api.com.api',
+            pathRewrite: {
+                '^/api': '' // 这样访问 /api/xxx 等于 api.com/xxx
+            }
+        }
+    }
+}
+```
+
+webpack-dev-server 就是基于 `express` 启动的
+那么在配置中也可以体现这一点
+```js
+devServer: {
+    before(app) { // 这里的app就是 express() 执行后的app
+        app.get('/api/xxxx', (req, res) => {
+            res.json({data: 'data'})
+        })
+    }
+}
+```
+
+
+webpack-dev-middleware
+这个会返回一个express中间件，和webpack-dev-server有点相似
+使用
+```js
+// 1.js
+const app = express();
+const webpackConfig = require('webpack.config.js')
+const compilerResult = webpack(webpackConfig);
+app.use(webpackDevMiddleWare(compilerResult, {}))
 ```
