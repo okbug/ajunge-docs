@@ -641,5 +641,36 @@ module.exports = merge(config1, {
 
 首先安装几个工具
 (从零开始新建一个项目)
-`npm install webpack webpack-cli html-webpack-plugin clean-webpack-plugin`
+`npm install webpack webpack-cli html-webpack-plugin clean-webpack-plugin -D`
+
+基础配置
+
+```js
+// webpack.config.js
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+module.exports = {
+    mode: 'development',
+    devtool: 'source-map',
+    entry: './src/index.js',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
+    },
+    module: {},
+    plugins: [
+        new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['**/*'] }),
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'index.html'
+        })
+    ],
+    devServer: {},
+}
+```
+
+并且根据配置添加index.html和index.js,并且在package.json中添加scripts
+[代码](https://github.com/okbug/ajunge-docs/pull/1/commits/b9ba6f04aa3084d9d67c99bf7e4b04d62e751cd8)
 
