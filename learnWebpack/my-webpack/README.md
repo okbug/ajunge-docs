@@ -456,11 +456,14 @@ bundle意思是打包后的资源文件，每个入口(entry) 生成一个代码
 每一个chunk就是一个文件 以及它所依赖的那些模块 加在一起的代码块
 ----
 
-hash chunkhash contenthash
+hash chunkHash contentHash
 hash: 每次构建会生成统一hash
 chunkHash 代码块hash 每个代码块共享一个hash值
-contentHash 内容哈希，根据文件的内容生成的hash
+contentHash 内容哈希，根据文件的内容生成的hash（内容变了，这个hash才会变）
 ----
+
+## splitChunks
+等待补充
 
 # webpack 中的loader和plugin
 ## loader
@@ -609,3 +612,34 @@ const webpackConfig = require('webpack.config.js')
 const compilerResult = webpack(webpackConfig);
 app.use(webpackDevMiddleWare(compilerResult, {}))
 ```
+
+
+
+
+
+
+
+
+## webpack-merge
+
+`npm install webpack-merge`
+
+可以实现对配置的合并
+
+```js
+const { merge } = require('webpack-merge');
+const config1 = {...xxx};
+
+module.exports = merge(config1, {
+    ...otherConfig
+})
+```
+
+类似Object.assign 或者是 spread运算符
+
+# webpack 打包文件分析
+
+首先安装几个工具
+(从零开始新建一个项目)
+`npm install webpack webpack-cli html-webpack-plugin clean-webpack-plugin`
+
