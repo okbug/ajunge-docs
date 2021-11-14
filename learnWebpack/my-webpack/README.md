@@ -813,3 +813,5 @@ module.exports = 'title';
 首先新建一个html文件和一个空的js文件，通过这两个文件来模拟这个过程。(文件夹: `1.sync`)
 
 先通过调试代码来查看代码的运行逻辑
+[commit](https://github.com/okbug/ajunge-docs/pull/1/commits/95312a6600cc867f25c48668b3c5bb86b33f378f)
+
