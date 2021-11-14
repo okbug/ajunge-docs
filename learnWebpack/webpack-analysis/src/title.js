@@ -1,5 +1,3 @@
-// title.js
+export default "title_default"
 
-module.exports = {
-    name:'title'
-};
+export const age = "title_age"
