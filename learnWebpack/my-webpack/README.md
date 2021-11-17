@@ -823,3 +823,5 @@ module.exports = 'title';
 在做最后压缩的uglify时，这些变量都可以压缩，但是对于属性的访问没办法压缩（默认不压缩）
 
 所以在development模式下面保留.r .d .o 等方法的缩写
+
+pull requlest 1 告一段落
