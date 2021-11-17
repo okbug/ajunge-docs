@@ -641,5 +641,185 @@ module.exports = merge(config1, {
 
 首先安装几个工具
 (从零开始新建一个项目)
-`npm install webpack webpack-cli html-webpack-plugin clean-webpack-plugin`
+`npm install webpack webpack-cli html-webpack-plugin clean-webpack-plugin -D`
 
+基础配置
+
+```js
+// webpack.config.js
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+module.exports = {
+    mode: 'development',
+    devtool: 'source-map',
+    entry: './src/index.js',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
+    },
+    module: {},
+    plugins: [
+        new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['**/*'] }),
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'index.html'
+        })
+    ],
+    devServer: {},
+}
+```
+
+并且根据配置添加index.html和index.js,并且在package.json中添加scripts
+[代码](https://github.com/okbug/ajunge-docs/pull/1/commits/b9ba6f04aa3084d9d67c99bf7e4b04d62e751cd8)
+
+什么是模块ID，在打包前的代码中涉及到路径(比如 `import xx from './xxx.js'` 或者 `import Vue from 'vue'`)
+模块ID就是: './src/xx/js', './node_modules/vue/dist/vue.min.js'
+
+样例代码：
+
+```js
+// index.js
+
+import title form './title.js';
+console.log(title)；
+
+// title.js
+
+const title = 'Hello, World';
+
+export default title;
+```
+
+生成的代码如下
+
+```js
+(() => {
+  "use strict";
+  var __webpack_modules__ = {
+    "./src/title.js": (
+      __unused_webpack_module,
+      __webpack_exports__,
+      __webpack_require__
+    ) => {
+      __webpack_require__.r(__webpack_exports__);
+      __webpack_require__.d(__webpack_exports__, {
+        default: () => __WEBPACK_DEFAULT_EXPORT__,
+      });
+      const title = `Hello, World`;
+      const __WEBPACK_DEFAULT_EXPORT__ = title;
+    },
+  };
+  var __webpack_module_cache__ = {};
+  function __webpack_require__(moduleId) {
+    var cachedModule = __webpack_module_cache__[moduleId];
+    if (cachedModule !== undefined) {
+      return cachedModule.exports;
+    }
+    var module = (__webpack_module_cache__[moduleId] = {
+      exports: {},
+    });
+    __webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+    return module.exports;
+  }
+  (() => {
+    __webpack_require__.d = (exports, definition) => {
+      for (var key in definition) {
+        if (
+          __webpack_require__.o(definition, key) &&
+          !__webpack_require__.o(exports, key)
+        ) {
+          Object.defineProperty(exports, key, {
+            enumerable: true,
+            get: definition[key],
+          });
+        }
+      }
+    };
+  })();
+  (() => {
+    __webpack_require__.o = (obj, prop) =>
+      Object.prototype.hasOwnProperty.call(obj, prop);
+  })();
+  (() => {
+    __webpack_require__.r = (exports) => {
+      if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
+        Object.defineProperty(exports, Symbol.toStringTag, {
+          value: "Module",
+        });
+      }
+      Object.defineProperty(exports, "__esModule", { value: true });
+    };
+  })();
+  var __webpack_exports__ = {};
+  (() => {
+    __webpack_require__.r(__webpack_exports__);
+    var _title_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/title.js");
+
+    console.log(_title_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+  })();
+})();
+
+```
+
+
+跳过ESModule
+
+再看CommonJS的代码解析的样子
+
+源码:
+
+```js
+// index.js
+const title = require('./title.js');
+
+console.log(title);
+
+// title.js
+module.exports = 'title';
+```
+
+打包后的代码：
+```js
+(() => {
+  var __webpack_modules__ = {
+    "./src/title.js": (module) => {
+      module.exports = "title";
+    },
+  };
+  var __webpack_module_cache__ = {};
+
+  function __webpack_require__(moduleId) {
+    var cachedModule = __webpack_module_cache__[moduleId];
+    if (cachedModule !== undefined) {
+    }
+    var module = (__webpack_module_cache__[moduleId] = {
+      exports: {},
+    });
+    __webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+    return module.exports;
+  }
+  var __webpack_exports__ = {};
+  (() => {
+    const title = __webpack_require__("./src/title.js");
+    console.log(title);
+  })();
+})();
+
+```
+
+从零开始实现以上这样杂乱无章的代码。
+首先新建一个html文件和一个空的js文件，通过这两个文件来模拟这个过程。(文件夹: `1.sync`)
+
+先通过调试代码来查看代码的运行逻辑
+[commit](https://github.com/okbug/ajunge-docs/pull/1/commits/95312a6600cc867f25c48668b3c5bb86b33f378f)
+
+
+
+
+为什么`__webpack_require__` 这样的变量不压缩，而要压缩 `__webpack_require__` 下面的 `r/d/o` 等方法呢？
+
+在做最后压缩的uglify时，这些变量都可以压缩，但是对于属性的访问没办法压缩（默认不压缩）
+
+所以在development模式下面保留.r .d .o 等方法的缩写
