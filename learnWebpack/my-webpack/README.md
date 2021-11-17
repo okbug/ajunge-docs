@@ -815,3 +815,11 @@ module.exports = 'title';
 先通过调试代码来查看代码的运行逻辑
 [commit](https://github.com/okbug/ajunge-docs/pull/1/commits/95312a6600cc867f25c48668b3c5bb86b33f378f)
 
+
+
+
+为什么`__webpack_require__` 这样的变量不压缩，而要压缩 `__webpack_require__` 下面的 `r/d/o` 等方法呢？
+
+在做最后压缩的uglify时，这些变量都可以压缩，但是对于属性的访问没办法压缩（默认不压缩）
+
+所以在development模式下面保留.r .d .o 等方法的缩写
