@@ -134,3 +134,101 @@ const sum = function (a, b) {
 ```js
 
 ```
+
+
+## 使用babel转换ES6的class
+
+安装插件
+`npm install @babel/plugin-transform-classes -D`
+
+
+注意事项：
+编写插件，要去看下转前和转后的AST结构
+找出各自的区别，并且根据AST结构转换
+能复用就复用
+
+代码
+
+```js
+const core = require('@babel/core');
+const types = require('babel-types');
+const plugin2 = require('@babel/plugin-transform-classes');
+
+
+let code2 = `
+class A {
+    constructor(name) {
+        this.name = name
+    }
+
+    getName() {
+        return this.name
+    }
+}
+`
+
+
+let res2 = core.transform(code2, {
+    plugins: [plugin2]
+})
+
+console.log(res2.code)
+```
+
+结果:
+
+```js
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+let A = /*#__PURE__*/function () {
+  function A(name) {
+    // 这个是检查类有没有被直接调用的，暂时先注释掉
+    // _classCallCheck(this, A);
+
+    this.name = name;
+  }
+
+  // 给A的prototype加上getName方法
+  _createClass(A, [{
+    key: "getName",
+    value: function getName() {
+      return this.name;
+    }
+  }]);
+
+  return A;
+}();
+```
+
+
+实现：
+```js
+const myClassTransformPlugin = {
+    visitor: {
+        ClassDeclaration(nodePath) {
+            // console.log(nodePath)
+            let {node} = nodePath;
+            let {id} = node;
+            let body = []
+            let classMethods = node.body.body; // 方法： constructor, getName
+            classMethods.forEach(method => {
+                if (method.kind === 'construcotr') { // 构造函数的话，就创建一个函数
+                    let ctorFunc = types.functionDeclaration(id, method.params, method.body, method.generator, method.async);
+                    body.push(ctorFunc);
+                } else { // 类上的方法
+                    let left = types.memberExpression(types.memberExpression(id, types.identifier('prototype')), method.key)
+                    let right = types.functionExpression(method.key /* 函数的名字 这里传null就是匿名函数 */, method.params, method.body, method.generator, method.async);
+
+                    let func = types.assignmentExpression('=', left, right)
+                    body.push(func)
+                }
+            });
+            nodePath.replaceWithMultiple(body)
+        }
+    }
+}
+```

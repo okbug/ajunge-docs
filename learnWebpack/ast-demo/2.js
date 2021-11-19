@@ -1,6 +1,7 @@
 const core = require('@babel/core');
 const types = require('babel-types');
-const plugin = require('babel-plugin-transform-es2015-arrow-functions');
+const plugin1 = require('babel-plugin-transform-es2015-arrow-functions');
+const plugin2 = require('@babel/plugin-transform-classes');
 
 const code = `
 const sum = (a, b) => a + b;
@@ -8,7 +9,7 @@ const sum = (a, b) => a + b;
 // babel/core 本身只有 生成、遍历、生成 代码的功能，和上面的三个工具一样
 // 它本身不会在代码遍历的时候做一个处理，除了用插件等方法
 let target = core.transform(code, {
-    plugins: [plugin]
+    plugins: [plugin1]
 })
 // console.log(target.code);
 
@@ -40,4 +41,5 @@ let target2 = core.transform(code, {
     plugins: [myPlugin]
 })
 
-console.log(target2.code)
+// console.log(target2.code)
+
