@@ -232,3 +232,10 @@ const myClassTransformPlugin = {
     }
 }
 ```
+
+> babel-types 不用安装，core里面其实也有
+
+```js
+// const types = require('babel-types');
+const {types} = core
+```

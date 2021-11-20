@@ -1,5 +1,6 @@
 const core = require('@babel/core');
-const types = require('babel-types');
+// const types = require('babel-types');
+const {types} = core
 const plugin2 = require('@babel/plugin-transform-classes');
 
 
