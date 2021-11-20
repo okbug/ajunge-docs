@@ -234,8 +234,14 @@ const myClassTransformPlugin = {
 ```
 
 > babel-types 不用安装，core里面其实也有
+还有template
 
 ```js
 // const types = require('babel-types');
-const {types} = core
+// const template = require('@babel/template');
+const {types, template} = core
 ```
+
+以上实现代码查看 (./4.js)['./4.js']
+
+## 实现tree-shaking
