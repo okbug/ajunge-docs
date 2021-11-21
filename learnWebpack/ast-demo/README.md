@@ -245,3 +245,4 @@ const {types, template} = core
 以上实现代码查看 (./4.js)['./4.js']
 
 ## 实现tree-shaking
+
