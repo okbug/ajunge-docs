@@ -825,3 +825,52 @@ module.exports = 'title';
 所以在development模式下面保留.r .d .o 等方法的缩写
 
 pull requlest 1 告一段落
+
+
+
+
+
+
+
+## webpack中的tapable
+
+这是一个类似发布订阅的库
+
+
+```js
+import { SyncHook } from 'tapable'
+
+let syncHook = new SyncHook();
+
+// tab就是发布订阅中的on 参数是 eventName和cb
+
+syncHook.tap('just a name', (payload) => {
+    console.log('callback', payload);
+})
+
+// call就是触发回调，并且可以作为参数，并且不用传入eventName
+
+syncHook.call('zhufeng')
+```
+
+### 实现tapable
+
+
+最简版
+
+```js
+class SyncHook {
+    constructor() {
+        this.taps = [];
+    }
+
+    tap(name, fn) {
+        this.taps.push(fn);
+    }
+
+    call(...args) {
+        this.taps.forEach(tap => tap(...args))
+    }
+}
+```
+
