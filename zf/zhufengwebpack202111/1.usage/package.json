@@ -1,0 +1,44 @@
+{
+  "name": "1.usage",
+  "version": "1.0.0",
+  "description": "- 代码\r https://gitee.com/zhufengpeixun/zhufengwebpack202111 \r - 课件 \r http://www.zhufengpeixun.com/strong/html/103.1.webpack-usage.html#t01.%20webpack%E4%BB%8B%E7%BB%8D \r - 上课进度\r https://docs.qq.com/sheet/DSmh3Z0dTVGRBa2p3",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.5.1",
+    "expose-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "node-sass": "^6.0.1",
+    "postcss-loader": "^6.2.0",
+    "postcss-preset-env": "^6.7.0",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.62.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
+  },
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production": [
+      ">0.2%"
+    ]
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "remote",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-react": "^7.16.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.64.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
