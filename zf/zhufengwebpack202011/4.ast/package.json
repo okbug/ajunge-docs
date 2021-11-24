@@ -1,0 +1,28 @@
+{
+  "name": "3.ast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode=development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "escodegen": "^2.0.0",
+    "esprima": "^4.0.1",
+    "estraverse": "^5.2.0",
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-transform-classes": "^7.12.1",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-import": "^1.13.3",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
+    "babel-types": "^6.26.0",
+    "webpack": "^5.9.0",
+    "webpack-cli": "^4.2.0"
+  }
+}

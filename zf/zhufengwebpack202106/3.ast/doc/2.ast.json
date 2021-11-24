@@ -1,0 +1,17 @@
+{
+    "type": "Program",
+    "body": [
+      {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "ast"
+        },
+        "params": [],
+        "body": {
+          "type": "BlockStatement",
+          "body": []
+        }
+      }
+    ]
+  }

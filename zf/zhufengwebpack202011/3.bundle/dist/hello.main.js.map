@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://3.bundle/./src/hello.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;AACA,6IAAgB;AAChB;AACA,CAAC;AACD,iEAAe,QAAQ,E","file":"hello.main.js","sourcesContent":["\r\nimport('./name').then(result=>{\r\nconsole.log(result);\r\n});\r\nexport default 'hello ';"],"sourceRoot":""}

@@ -1,0 +1,10 @@
+@import "base.scss";
+#css{
+    color: red;
+    background-image: url(./kf.jpg);
+    background-image: url(@/kf.jpg);
+   /*  background-image: url(~image/kf.jpg); */
+}
+.orange{
+   font-size:25px;
+}

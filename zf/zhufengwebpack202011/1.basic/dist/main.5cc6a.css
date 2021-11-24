@@ -1,0 +1,11 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  width: 10rem;
+  height: 10rem;
+  border: 0.013333rem solid red;
+  box-sizing: border-box;
+}
