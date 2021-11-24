@@ -1,0 +1,57 @@
+{
+    "hash": "62f168b30178b2e7715e",
+    "version": "5.39.1",
+    "time": 81,
+    "builtAt": 1624170190921,
+    "publicPath": "auto",
+    "outputPath": "c:\\aproject\\zhufengwebpack202106\\4.flow\\dist",
+    "assetsByChunkName": {
+        "main": [
+            "main.js"
+        ]
+    },
+    "assets": [
+        {
+            "type": "asset",
+            "name": "main.js"
+        }
+    ],
+    "chunks": [
+        {
+            "names": [
+                "main"
+            ],
+            "files": [
+                "main.js"
+            ]
+        }
+    ],
+    "modules": [],
+    "entrypoints": {
+        "main": {
+            "name": "main",
+            "chunks": [
+                "main"
+            ],
+            "assets": [
+                {
+                    "name": "main.js",
+                }
+            ]
+        }
+    },
+    "namedChunkGroups": {
+        "main": {
+            "name": "main",
+            "chunks": [
+                "main"
+            ],
+            "assets": [
+                {
+                    "name": "main.js",
+                    "size": 99
+                }
+            ]
+        }
+    }
+}

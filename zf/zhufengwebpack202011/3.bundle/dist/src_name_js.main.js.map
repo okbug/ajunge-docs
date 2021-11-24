@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://3.bundle/./src/name.js"],"names":[],"mappings":";;;;;;;;;;;AAAA,wB","file":"src_name_js.main.js","sourcesContent":["module.exports = 'name';"],"sourceRoot":""}
