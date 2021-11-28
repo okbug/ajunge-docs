@@ -1,4 +1,4 @@
-> http://www.zhufengpeixun.com/strong/html/103.1.webpack-usage.html
+> http://www.strong.com/com/html/103.1.webpack-usage.html
 
 
 
