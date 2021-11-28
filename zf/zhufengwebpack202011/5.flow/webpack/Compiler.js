@@ -30,7 +30,6 @@ class Compiler{
        //当调用run方法的时候会触发run这个钩子, 进而执行它的回调函调 
        this.hooks.run.call(); 
        //5.根据配置中的entry找出入口文件,得到entry的绝对路径
-       //C:\aproject\zhufengwebpack202011\5.flow\src\index.js
        //打包后的文件，所有的路径都是\ => /
        let entry = {};
        if(typeof this.options.entry === 'string'){
@@ -44,7 +43,7 @@ class Compiler{
         let entryModule =  this.buildModule(entryName,entryFilePath);
         //this.modules.add(entryModule);
         //7.根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk
-        let chunk = {name:entryName,entryModule,modules:this.modules.filter(module=>module.name===entryName)}; 
+        let chunk = {name:entryName,entryModule,modules:Array.from(this.modules).filter(module=>module.name===entryName)}; 
         this.chunks.add(chunk);
         this.entries.add(chunk);//也是入口代码块
        }
@@ -122,19 +121,16 @@ class Compiler{
                     let moduleName = node.arguments[0].value;
                     //要判断一个moduleName绝对还是相对，相对路径才需要下面的处理
                     //获取路径所有的目录
-                    //C:\aproject\zhufengwebpack202011\5.flow\src
                     let dirname = path.posix.dirname(modulePath);
-                    //C:\aproject\zhufengwebpack202011\5.flow\src\title
                     let depModulePath = path.posix.join(dirname,moduleName);
                     let extensions = this.options.resolve.extensions;
-                    //C:\aproject\zhufengwebpack202011\5.flow\src\title.js
                     depModulePath = tryExtensions(depModulePath,extensions,moduleName,dirname);
                     //模块ID的问题 每个打包后的模块都会有一个moduleId
                     //"./src/title.js"  depModulePath=/a/b/c  baseDir=/a/b relative=>c ./c
                     let depModuleId = './'+path.posix.relative(baseDir,depModulePath);//./src/title.js
                     //修改抽象语法树
                     node.arguments = [types.stringLiteral(depModuleId)];
-                    module.dependencies.add(depModulePath);
+                    module.dependencies.push(depModulePath);
                 }
             }
         });

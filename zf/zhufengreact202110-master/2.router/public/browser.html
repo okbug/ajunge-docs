@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>browser</title>
+</head>
+<body>
+    <div id="root"></div>
+    <ul>
+        <li><a id="page1">page1</a></li>
+        <li><a id="page2">page2</a></li>
+    </ul>
+    <script>
+       var globalHistory = window.history;
+       //onpushstate只是一个自定久属性，浏览器并不识别
+       window.onpushstate = function(event){
+         console.log(event.type,event.state);
+         root.innerHTML = window.location.pathname;
+       }
+       //go back forward
+       window.addEventListener('popstate',(event)=>{
+        console.log(event.type,event.state);//其实只是一个让你用来存放数据的属性
+        root.innerHTML = window.location.pathname;
+       });
+       ;(function(globalHistory){
+        let oldPushState = globalHistory.pushState;
+        globalHistory.pushState = function(state,title,pathname){
+            let result = oldPushState.apply(globalHistory,arguments);
+            if(typeof window.onpushstate === 'function'){
+                window.onpushstate({type:'pushstate',state});
+            }
+            return result;
+        }
+       })(globalHistory);
+       page1.addEventListener('click',(event)=>{
+            globalHistory.pushState({page:2,params:'参数值'},null,'/page2');
+       });
+       /* setTimeout(()=>{
+           //第一个参数用于存储该url对应的状态对象，该对象可在onpopstate事件中获取，也可在history对象中获取
+           //pushState 并不是触发popstate事件
+           //array push pop
+        globalHistory.pushState({page:1},null,'/page1');
+       },1000);
+       setTimeout(()=>{
+        globalHistory.pushState({page:2},null,'/page2');
+       },2000);
+       setTimeout(()=>{
+        globalHistory.pushState({page:3},null,'/page3');
+       },3000);
+        setTimeout(()=>{
+        globalHistory.back();
+       },4000);
+        setTimeout(()=>{
+        globalHistory.pushState({page:4},null,'/page4');
+       },5000);
+        setTimeout(()=>{
+        globalHistory.go(1);
+        //globalHistory.forward();
+       },6000); */
+    </script>
+</body>
+</html>

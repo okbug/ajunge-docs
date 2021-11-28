@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>珠峰课堂</title>
+</head>
+<body>
+   <script>
+       let docElement = document.documentElement;
+       function setRemUnit(){
+           docElement.style.fontSize = '75px';
+           //如果屏幕宽度是750px/10=75px;
+           //如果屏幕宽度是375px/10=37.5px;  37.5*10rem=375px
+           docElement.style.fontSize = docElement.clientWidth/10+'px';
+       }
+       setRemUnit();
+       window.addEventListener('resize',setRemUnit);
+   </script>
+    <div id="root"></div>
+</body>
+</html>

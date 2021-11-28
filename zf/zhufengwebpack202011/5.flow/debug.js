@@ -2,7 +2,8 @@
 const webpack = require('./webpack');
 //2.加载配置文件
 const options = require('./webpack.config');
-debugger
+debugger;
+debugger;
 //执行webpack得到编译对象Compiler,就是一个大管理，是核心编译对象
 const compiler = webpack(options);
 //调用它的run方法开始启动编译

@@ -67,9 +67,12 @@ class Complication {
             let {test}=rules[i];
             //如果此rule的正则和模块的路径匹配的话
             if(modulePath.match(test)){
+                // 如果当前文件和rule匹配，就将rule中的use加入到loaders中
                 loaders = [...loaders,...rules[i].use];
             }
         }
+
+        // 这是从右往左开始执行loader了
         sourceCode=loaders.reduceRight((sourceCode,loader)=>{
             return require(loader)(sourceCode);
         },sourceCode);

@@ -7,12 +7,8 @@ const READMEPlugin = require('./plugins/readme-plugin')
 module.exports = {
     mode:'development',
     devtool:'inline-source-map',
-    //C:\aproject\zhufengwebpack202011\5.flow
     context:process.cwd(),//根目录 current working directory
-    entry:{
-        page1:'./src/page1.js',
-        page2:'./src/page2.js'
-    },
+    entry:'./src/index.js',
     output:{
         path:path.resolve(__dirname,'dist'),
         filename:'[name].js'

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>browser</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+      var historyObj = window.history;
+      //这是完全 自定久的，跟原生没有关系 
+      window.onpushstate = (state,pathname)=>{
+        console.log(state,pathname);
+        root.innerHTML = pathname;//当前的路径
+      }
+      //如果当前的历史栈指针发生变化的话会触发popstate事件，执行对应的回调函数
+      window.addEventListener('popstate',(event)=>{
+        console.log(event.type,event.state);
+        root.innerHTML = window.location.pathname;//当前的路径
+      });
+      ;(function(historyObj){
+        let oldPushState = historyObj.pushState;
+        historyObj.pushState = (state,title,pathname)=>{
+            let result = oldPushState.call(historyObj,state,title,pathname);
+            //let result = oldPushState(state,title,pathname);
+            if(typeof window.onpushstate === 'function'){
+                //window.onpushstate(new CustomEvent('pushstate',{detail:{pathname,state}}));
+                window.onpushstate(state,pathname));
+            }
+            return result;
+        }
+      })(historyObj);
+      setTimeout(()=>{
+          // 调用pushState会修改当前的路径
+        historyObj.pushState({page:1},null,'/page1');
+      },1000);
+      setTimeout(()=>{
+          // 调用pushState会修改当前的路径
+        historyObj.pushState({page:2},null,'/page2');
+      },2000);
+      setTimeout(()=>{
+          // 调用pushState会修改当前的路径
+        historyObj.pushState({page:3},null,'/page3');
+      },3000);
+     /*  setTimeout(()=>{
+          // 调用pushState会修改当前的路径
+        historyObj.back();
+      },4000);
+      setTimeout(()=>{
+          // 调用pushState会修改当前的路径
+        historyObj.pushState({page:4},null,'/page4');
+      },5000);
+      setTimeout(()=>{
+        historyObj.go(1);
+      },6000); */
+
+  </script>
+</body>
+</html>
