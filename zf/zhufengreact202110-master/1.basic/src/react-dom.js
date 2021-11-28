@@ -382,7 +382,6 @@ function updateFunctionComponent(oldVdom, newVdom) {
     newVdom.oldRenderVdom = newRenderVdom
 }
 function updateChildren(parentDOM, oldVChildren, newVChildren) {
-    O
     oldVChildren = (Array.isArray(oldVChildren) ? oldVChildren : [oldVChildren]).filter(item => item);
     newVChildren = (Array.isArray(newVChildren) ? newVChildren : [newVChildren]).filter(item => item);
     //1.构建老map key虚拟DOM的key,值虚拟DOM
