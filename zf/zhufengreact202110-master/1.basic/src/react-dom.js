@@ -296,23 +296,25 @@ export function compareTwoVdom(parentDOM, oldVdom, newVdom, nextDOM) {
         updateElement(oldVdom, newVdom);
     }
 }
+
+/** 
+ * 如果新老节点都是文本节点，复用老的文本节点
+*/
 function updateElement(oldVdom, newVdom) {
-    //如果新老节点都是文本节点，复用老的文本节点
     if (oldVdom.type.$$typeof === REACT_MEMO) {
         updateMemoComponent(oldVdom, newVdom);
     } else if (oldVdom.type.$$typeof === REACT_CONTEXT) {
         updateContextComponent(oldVdom, newVdom);
     } else if (oldVdom.type.$$typeof === REACT_PROVIDER) {
         updateProviderComponent(oldVdom, newVdom);
-    } else if (oldVdom.type === REACT_TEXT && newVdom.type === REACT_TEXT) {
+    } else if (oldVdom.type === REACT_TEXT && newVdom.type === REACT_TEXT) { // 1. 新老都是文本 直接复用
         let currentDOM = newVdom.dom = findDOM(oldVdom);
         currentDOM.textContent = newVdom.props.content;
-    } else if (typeof oldVdom.type === 'string') {
+    } else if (typeof oldVdom.type === 'string') { // 2. 老的是字符串
         let currentDOM = newVdom.dom = findDOM(oldVdom);
         updateProps(currentDOM, oldVdom.props, newVdom.props);
         updateChildren(currentDOM, oldVdom.props.children, newVdom.props.children);
-        //如果老的类型是一个函数，说明它是一个类组件或者函数组件    
-    } else if (typeof oldVdom.type === 'function') {
+    } else if (typeof oldVdom.type === 'function') { //如果老的类型是一个函数，说明它是一个类组件或者函数组件
         if (oldVdom.type.isReactComponent) {
             newVdom.classInstance = oldVdom.classInstance;
             updateClassComponent(oldVdom, newVdom);
