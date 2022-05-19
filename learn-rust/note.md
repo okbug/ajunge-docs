@@ -19,7 +19,7 @@ fn main() {
     println!("{}", mod1::TEXT);
 }
 
-// mod1.rs 或者mod1文件下下面的mod.rs文件
+// mod1.rs 或者mod1文件夹下面的mod.rs文件
 pub const TEXT: &str = "Hello, World";
 ```
 
