@@ -27,3 +27,5 @@ rustc main.rs
 `cd p-name`
 
 `cargo run`
+
+test
